@@ -1,0 +1,30 @@
+.col-lg-3.col-md-6:nth-child(1) .cart{
+  background-color: #E6F5A9;
+}
+.col-lg-3.col-md-6:nth-child(2) .cart{
+  background-color: #F0F0F0;
+}
+.col-lg-3.col-md-6:nth-child(3) .cart{
+  background-color: #E2E2FF;
+}
+.col-lg-3.col-md-6:nth-child(4) .cart{
+  background-color: #BDEBCE;
+}
+
+.cart{
+  &:hover svg{animation: bounceIn 1.2s linear;}
+  h3{height: 40px; }
+  svg{height: 40px; width: 40px;}
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
