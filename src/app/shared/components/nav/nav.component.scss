@@ -145,16 +145,18 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
-  background-color: #25d366;
-  color: #fff;
+  // background-color: #25d366;
+  // color: #fff;
+  color: #25d366;
+  border: $border;
   border-radius: $border-radius;
   font-family: $bady-font;
   font-weight: 500;
   text-decoration: none;
 
 
-  .fa-whatsapp {
-    font-size: 1.5rem;
+  i {
+    font-size: 1.2rem;
   }
 
 }
@@ -233,7 +235,7 @@
 
   .language-btn {
     background: none;
-    border: $border;
+    border: none;
     color: $second-color;
     font-size: 0.9rem;
     padding: 0.5rem;

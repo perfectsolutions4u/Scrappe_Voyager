@@ -18,6 +18,7 @@ import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TourCartComponent } from '../tour-cart/tour-cart.component';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-nav',
@@ -28,6 +29,7 @@ import { TourCartComponent } from '../tour-cart/tour-cart.component';
     CommonModule,
     FormsModule,
     TourCartComponent,
+    CarouselModule,
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
@@ -72,6 +74,30 @@ export class NavComponent implements OnInit, OnDestroy {
   // get logo from settings
   logo: string = '';
   title: string = '';
+  phoneNumber: string = '';
+
+  siteTitle: string[] = [
+    'one-click booking , up to 50% off on your favorite tours', 
+    'easy booking , fast payment , secure checkout',
+     'best deals , best prices , best tours',
+     'custome your trip plan and get special discount instantly',
+     'easy family holiday planning , get special discount instantly',
+    ];
+
+  siteTitleOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    nav: false,
+    items: 1,
+    autoplay: true,
+    smartSpeed: 2500,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+   
+  };
   getLogo(): void {
     this._DataService.getSetting().subscribe((res) => {
       setTimeout(() => {
@@ -80,8 +106,11 @@ export class NavComponent implements OnInit, OnDestroy {
         this.logo= '../../../../assets/main_logo.jpg'
         const title = res.data.find((item: any) => item.option_key === 'site_title');
         this.title = title?.option_value[0] || '';
+        const phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER');
+        this.phoneNumber = phoneNumber?.option_value[0] || '';
         console.log('nav page -- logo -- ', this.logo);
         console.log('nav page -- title -- ', this.title);
+        console.log('nav page -- phoneNumber -- ', this.phoneNumber);
         this.cdr.markForCheck();
       }, 0);
     });

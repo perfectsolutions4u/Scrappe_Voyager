@@ -7,6 +7,15 @@ body{
   font-family: $bady-font;
 
   p{font-family: $paragraph-font;}
+
+  svg{
+    fill : #c4a164 !important;
+  }
+
+  ::selection{
+    background-color: $primary-color;
+    color: #fff;
+  }
 }
 .Btn{
   // background-color: $primary-color;
@@ -39,9 +48,13 @@ body{
 }
 .mainBtn{
   @extend .Btn;
-  background: linear-gradient(to right, $primary-color, $primary-white-color);
+  background-color: $primary-color;
   &::after{
-    background-color: $second-color;
+    background:  $primary-white-color;
+  }
+  &:hover{
+    background:  linear-gradient(to right, $primary-color, $primary-white-color);
+    
   }
 
 }

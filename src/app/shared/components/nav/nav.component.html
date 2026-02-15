@@ -1,3 +1,14 @@
+<div class="bgMainColor text-white p-3">
+  <!-- use carousel to show the site title -->
+  <owl-carousel-o [options]="siteTitleOptions">
+    @for (title of siteTitle; track title) {
+    <ng-template carouselSlide>
+      <h6 class="text-center mb-0 text-capitalize">{{title}}</h6>
+    </ng-template>
+    }
+  </owl-carousel-o>
+</div>
+
 <!-- Mobile Sidebar Overlay -->
 @if (sidebarOpen()) {
 <div class="sidebar-overlay" (click)="sidebarOpen.set(false)"></div>
@@ -92,6 +103,30 @@
           Contact
         </a>
       </li>
+      <li class="menu-item">
+         <!-- Language Selector -->
+         <div
+         class="language-dropdown mx-1"
+         (mouseenter)="showLanguage.set(true)"
+         (mouseleave)="showLanguage.set(false)"
+       >
+         <button class="btn language-btn" type="button">
+           <i class="fas fa-globe"></i>
+           <span>{{ getCurrentLanguageCode() }}</span>
+           <!-- <i class="fas fa-chevron-down"></i> -->
+         </button>
+         @if (showLanguage()) {
+         <div class="dropdown-menu show">
+           <a class="dropdown-item" (click)="selectLanguage('en')">
+             <span class="flag-icon">🇬🇧</span> English
+           </a>
+           <a class="dropdown-item" (click)="selectLanguage('fr')">
+             <span class="flag-icon">🇫🇷</span> French
+           </a>
+         </div>
+         }
+       </div>
+      </li>
     </ul>
   </nav>
 
@@ -107,9 +142,13 @@
       <span>Make a Trip</span>
     </button>
 
-    <a href="https://wa.me/91345533865" class="whatsapp-section">
+    <a href="https://wa.me/{{phoneNumber}}" class="whatsapp-section mb-2">
       <i class="fab fa-whatsapp"></i>
-      <span>+91 345 533 865</span>
+      <span>{{phoneNumber}}</span>
+    </a>
+    <a href="tel:{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section mb-2 textMainColor">
+      <i class="fas fa-phone-volume"></i>
+      <span>{{phoneNumber}}</span>
     </a>
   </div>
 </div>
@@ -196,19 +235,54 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
             </li>
+            <li class="nav-item">
+               <!-- Language Selector -->
+                <div
+                class="language-dropdown mx-1"
+                (mouseenter)="showLanguage.set(true)"
+                (mouseleave)="showLanguage.set(false)"
+              >
+                <button class="btn language-btn" type="button">
+                  <i class="fas fa-globe"></i>
+                  <span>{{ getCurrentLanguageCode() }}</span>
+                  <!-- <i class="fas fa-chevron-down"></i> -->
+                </button>
+                @if (showLanguage()) {
+                <div class="dropdown-menu show">
+                  <a class="dropdown-item" (click)="selectLanguage('en')">
+                    <span class="flag-icon">🇬🇧</span> English
+                  </a>
+                  <a class="dropdown-item" (click)="selectLanguage('fr')">
+                    <span class="flag-icon">🇫🇷</span> French
+                  </a>
+                </div>
+                }
+              </div>
+            </li>
           </ul>
           
         </nav>
       </div>
 
       <!-- Right Side Icons - Desktop -->
-      <div class="col-lg-4 d-none d-lg-flex justify-content-end align-items-center">
+      <div class="col-lg-4 d-none d-lg-flex justify-content-end align-items-center gap-1">
         <!-- Search Icon -->
         <button class="btn mobile-btn border rounded-2 mx-1" (click)="openSearchOverlay()">
           <i class="fas fa-search"></i>
         </button>
+
+        <!-- whats phone number -->
+        <!-- <a href="https://wa.me/{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section">
+          <i class="fab fa-whatsapp"></i>
+        </a> -->
+
+        <a href="tel:{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section textMainColor">
+          <i class="fas fa-phone-volume"></i>
+          <!-- <span>{{phoneNumber}}</span> -->
+        </a>
+
         <!-- Language Selector -->
-        <div
+        <!-- <div
           class="language-dropdown mx-1"
           (mouseenter)="showLanguage.set(true)"
           (mouseleave)="showLanguage.set(false)"
@@ -216,7 +290,6 @@
           <button class="btn language-btn" type="button">
             <i class="fas fa-globe"></i>
             <span>{{ getCurrentLanguageCode() }}</span>
-            <!-- <i class="fas fa-chevron-down"></i> -->
           </button>
           @if (showLanguage()) {
           <div class="dropdown-menu show">
@@ -228,10 +301,10 @@
             </a>
           </div>
           }
-        </div>
+        </div> -->
 
         <!-- Settings Dropdown -->
-        <div
+        <!-- <div
           class="settings-dropdown mx-1 border rounded-2"
           (mouseenter)="showSettings.set(true)"
           (mouseleave)="showSettings.set(false)"
@@ -262,7 +335,7 @@
             }
           </div>
           }
-        </div>
+        </div> -->
 
         @if (!isLoggedIn()) {
         <!-- login button -->
@@ -278,8 +351,19 @@
             <i class="fas fa-search"></i>
           </button>
 
+          <!-- whats phone number -->
+          <a href="https://wa.me/{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section">
+            <i class="fab fa-whatsapp"></i>
+            <!-- <span>{{phoneNumber}}</span> -->
+          </a>
+
+          <a href="tel:{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section textMainColor">
+            <i class="fas fa-phone-volume"></i>
+            <!-- <span>{{phoneNumber}}</span> -->
+          </a>
+
           <!-- Settings Icon -->
-          <div
+          <!-- <div
             class="settings-dropdown mobile border rounded-2"
             (mouseenter)="showSettings.set(true)"
             (mouseleave)="showSettings.set(false)"
@@ -314,16 +398,15 @@
               }
             </div>
             }
-          </div>
+          </div> -->
 
           <!-- Language Selector - Mobile -->
-          <div
+          <!-- <div
             class="language-dropdown mobile border rounded-2"
             (mouseenter)="showLanguage.set(true)"
             (mouseleave)="showLanguage.set(false)"
           >
             <button class="btn mobile-btn" type="button">
-              <!-- <i class="fas fa-globe"></i> -->
               <span>{{ getCurrentLanguageCode() }}</span>
             </button>
             @if (showLanguage()) {
@@ -336,7 +419,7 @@
               </a>
             </div>
             }
-          </div>
+          </div> -->
 
           <!-- Hamburger Menu -->
           <button class="btn mobile-btn border rounded-2" (click)="sidebarOpen.set(true)">

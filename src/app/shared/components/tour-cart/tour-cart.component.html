@@ -17,7 +17,7 @@
 
       <span
         (click)="tour && tour.id && addFav(tour.id, $event)"
-        class="text-white fs-5 fw-bold position-absolute top-0 end-0 m-2"
+        class="textMainColor bg-white rounded-circle p-1 pb-0 fs-5 fw-bold position-absolute top-0 end-0 m-2 z-3"
       >
         <i
           [ngClass]="{
@@ -29,9 +29,9 @@
         ></i>
       </span>
 
-      <span class="position-absolute top-0 start-0 m-2">
+      <!-- <span class="position-absolute top-0 start-0 m-2">
         <b class="text-white fs-5">{{ tour?.start_from | currency }}</b>
-      </span>
+      </span> -->
       <!-- @if (tour?.featured) {
       <span
         class="text-uppercase text-whit py-0 px-2 m-1 m-2 secBtn Btn position-absolute top-0 start-0"
@@ -43,30 +43,48 @@
 
   <div [ngClass]="layoutType === 'grid' ? '' : ' col-md-7'" class="p-2">
     <figcaption>
-      <div class="mb-1 fontsm">
+      <!-- <div class="mb-1 fontsm">
           @for (filled of [1, 2, 3, 4, 5]; track filled) {
           <i [ngClass]="filled ? 'fa fa-star text-warning' : 'fa-regular fa-star text-warning'"></i>
           }
-      </div>
+      </div> -->
 
       <h3 [routerLink]="['/tour', tour?.slug]" class="text-capitalize transition cPointer">
         {{ tour?.title }}
       </h3>
 
-      <!-- destination - duration -->
-      <div class="fontsm flexBetween gap-2">
-        @if (tour && tour.destinations && tour.destinations.length > 0) {
-        <span class="me-">
+      <!-- destination -->
+      @if (tour && tour.destinations && tour.destinations.length > 0) {
+        <span class="destinationBox">
           <i class="fas fa-location-dot me-1 textSecondColor"></i>
-          {{ tour.destinations[0].title }}
+            {{ tour.destinations[0].title }}
         </span>
-        <i class="fa fa-arrows-left-right mx- textSecondColor"></i>
+      }
+      @if (tour && tour.type ) {
+        <span class="destinationBox typeBox">
+            {{ tour.type }}
+        </span>
+      }
+
+      <!-- duration - price -->
+       <div class="flexBetween  align-items-end mt-3">
+        <div>
+          <span class="fontsm text-muted">start from</span> <br>
+          <span class="textMainColor fs-5 fw-bold">
+            {{ tour?.start_from | currency }}
+          </span>
+        </div>
+
+        @if (tour && tour.duration ) {
+          <div class="durationBox py-1 px-2 rounded-2 border">
+            <i class="fa fa-calendar-days me-1 text-muted"></i>
+            <span class="">
+              {{ tour?.duration }}
+            </span>
+          </div>
         }
-        <span class="me-">
-          <!-- <i class="fa fa-calendar-days me-1 textSecondColor"></i> -->
-          {{ tour?.duration }}
-        </span>
-      </div>
+
+       </div>
 
       @if (cartItemId != null) {
       <button
@@ -76,11 +94,7 @@
       >
         Remove from cart
       </button>
-      } @else {
-      <button class="mainBtn text-nowrap w-100 mt-2">
-        Add to cart
-      </button>
-      }
+      } 
     </figcaption>
   </div>
 </div>

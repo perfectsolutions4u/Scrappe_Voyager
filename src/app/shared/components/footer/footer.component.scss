@@ -1,7 +1,7 @@
 @use '../../../styles/variables.scss' as *;
 footer{
 
- background: url('../../../../assets/image/footer-bg.webp') no-repeat center center , #110f0f;
+ background: url('../../../../assets/image/footer-bg.webp') no-repeat center center , #072c2f;
  background-size: cover;
  color: #fff;
 
@@ -15,12 +15,12 @@ footer{
 
  p , a{
   font-size: 0.875rem;
-  color: $text-color-secondary !important;
+  color: $second-color !important;
   margin-bottom: 0.5rem;
   text-decoration: none;
   transition: $transition;
   &:hover{
-    color: #fff;
+    color: #fff !important;
   }
  }
 
@@ -43,7 +43,7 @@ footer{
       transition: $transition-fast;
     }
     &:hover a{
-      color: $primary-color !important;
+      color: #fff !important;
       padding-left: 1.2rem !important;
 }
   }

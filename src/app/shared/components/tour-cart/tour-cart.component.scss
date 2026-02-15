@@ -13,17 +13,33 @@
 
   }
   figcaption{
-    height: 100px;
+    // height: 100px;
+
+    .destinationBox{
+      background-color:  rgba($second-color, 0.15);
+      padding: 0.3rem 0.5rem;
+      border-radius: $border-radius;
+      color: $second-color;
+      font-size: 14px;
+      margin-right: 0.3rem;
+    }
+
+    .typeBox{
+      background-color:  rgba($primary-color, 0.15);
+      color: $primary-color;
+    }
+
+    .fontsm{font-size: 11px;}
   }
 
   &:hover{
     h3{color: $primary-color;}
-    figcaption{
-      height: auto;
-    }
-    .mainBtn{
-      transform: translateY(10%);
-    }
+    // figcaption{
+    //   height: auto;
+    // }
+    // .mainBtn{
+    //   transform: translateY(10%);
+    // }
 
   }
 
