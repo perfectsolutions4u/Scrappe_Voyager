@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './whatsapp-icon.component.scss',
 })
 export class WhatsappIconComponent {
-  whatsappNumber: string = '+2011226600995'; // Default WhatsApp number
+  whatsappNumber: string = '+2010 26118233'; // Default WhatsApp number
   whatsappMessage: string = 'Hello! I would like to know more about your services.';
 
   getWhatsAppUrl(): string {

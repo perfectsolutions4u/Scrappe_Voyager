@@ -39,6 +39,10 @@ export class FooterComponent implements OnInit {
     });
   }
 
+  getWhatsAppUrl(): string {
+    return `https://wa.me/${this.phone.replace(/[^0-9]/g, '')}`;
+  }
+
   private processSettings(): void {
     // loop through settings and get the logo, address, phone, email, social links
     // if found option_key is logo , address, CONTACT_PHONE_NUMBER, email_address, social_links
@@ -86,6 +90,11 @@ export class FooterComponent implements OnInit {
           ? item.option_value[0] || ''
           : item.option_value || '';
       }
+
+      this.email= 'info@scrappevoyager.com';
+      this.phone= '20 10 26118233';
+      this.address= '123 Main St, Cairo, Egypt';
+      this.title= 'Scrappe Voyager';
     });
   }
 }

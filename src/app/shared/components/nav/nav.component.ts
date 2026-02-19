@@ -108,6 +108,8 @@ export class NavComponent implements OnInit, OnDestroy {
         this.title = title?.option_value[0] || '';
         const phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER');
         this.phoneNumber = phoneNumber?.option_value[0] || '';
+        this.phoneNumber = '+20 10 26118233';
+        this.title = 'Scrappe Voyager';
         console.log('nav page -- logo -- ', this.logo);
         console.log('nav page -- title -- ', this.title);
         console.log('nav page -- phoneNumber -- ', this.phoneNumber);
@@ -181,6 +183,10 @@ export class NavComponent implements OnInit, OnDestroy {
           this.isSearching.set(false);
         }
       });
+  }
+
+  getWhatsAppUrl(): string {
+    return `https://wa.me/${this.phoneNumber.replace(/[^0-9]/g, '')}`;
   }
 
   // toggleMobileSearch(): void {

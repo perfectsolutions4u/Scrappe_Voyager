@@ -1,3 +1,5 @@
+@use '../../../styles/variables.scss' as *;
+
 .videoBox {
   position: relative;
   height: 60vh;
@@ -28,8 +30,8 @@
     position: absolute;
     width: 60px;
     height: 60px;
-    border: 5px solid rgba(0, 102, 255, 0.6);
-    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.6);
+    border: 5px solid $primary-color;
+    box-shadow: 0 0 0 0 $primary-white-color;
     border-radius: 50%;
     top: 50%;
     left: 50%;

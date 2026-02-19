@@ -142,7 +142,7 @@
       <span>Make a Trip</span>
     </button>
 
-    <a href="https://wa.me/{{phoneNumber}}" class="whatsapp-section mb-2">
+    <a [href]="getWhatsAppUrl()" class="whatsapp-section mb-2">
       <i class="fab fa-whatsapp"></i>
       <span>{{phoneNumber}}</span>
     </a>
@@ -272,7 +272,7 @@
         </button>
 
         <!-- whats phone number -->
-        <!-- <a href="https://wa.me/{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section">
+        <!-- <a [href]="getWhatsAppUrl()" [title]="phoneNumber" class="whatsapp-section">
           <i class="fab fa-whatsapp"></i>
         </a> -->
 
@@ -352,7 +352,7 @@
           </button>
 
           <!-- whats phone number -->
-          <a href="https://wa.me/{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section">
+          <a [href]="getWhatsAppUrl()" [title]="phoneNumber" class="whatsapp-section">
             <i class="fab fa-whatsapp"></i>
             <!-- <span>{{phoneNumber}}</span> -->
           </a>

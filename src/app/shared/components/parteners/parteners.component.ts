@@ -46,14 +46,16 @@ export class Parteners {
     nav: false,
     navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
     responsive: {
-      0: { items: 1 },
+      0: { items: 2 },
       360: { items: 2 },
-      586: { items: 3 },
+      400: { items: 2.5 },
+      586: { items: 3.5 },
       768: { items: 4 },
       992: { items: 5 },
     },
     margin: 20,
     autoplay: true,
     smartSpeed: 3500,
+    center: true,
   };
 }
