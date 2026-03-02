@@ -201,7 +201,7 @@ export class TourDetailsComponent implements OnInit {
           }
           // Sanitize HTML descriptions for itinerary days
           if (this.tour && this.tour.days && Array.isArray(this.tour.days)) {
-            this.tour.days = this.tour.days.reverse().map((day: any) => ({
+            this.tour.days = this.tour.days.map((day: any) => ({
               ...day,
               safeDescription: day.description
                 ? this.sanitizer.bypassSecurityTrustHtml(day.description)

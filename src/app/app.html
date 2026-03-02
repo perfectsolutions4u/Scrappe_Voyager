@@ -9,13 +9,15 @@
 
 <!-- spinner - only show in browser (not SSR) -->
 @if (isBrowser()) {
-<ngx-spinner
-  bdColor="rgba(0,0,0,0.93)"
-  size="large"
-  color="#c4a164"
-  [fullScreen]="true"
-  type="square-jelly-box"
-  >
-   <p class="text-white text-center fw-bolder mt-5 fs-4 text-capitalize">scrappe voyager</p>
-</ngx-spinner>
-}
+  <ngx-spinner
+    bdColor="rgba(255,255,255)"
+    size="large"
+    color="#c4a164"
+    [fullScreen]="true"
+    >
+    <!-- loading video -->
+    <figure>
+      <img src="../assets/image/scrappe-loader.gif" alt="scrappe voyager loader" class="w-100 h-100 object-fit-cover">
+    </figure>    <p class="textMainColor text-center fw-bolder mt-5 fs-4 text-capitalize">scrappe voyager</p>
+  </ngx-spinner>
+  }

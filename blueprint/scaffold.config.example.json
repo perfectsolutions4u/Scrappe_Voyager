@@ -1,0 +1,15 @@
+{
+  "projectName": "My Travel App",
+  "slug": "my_travel_app",
+  "seo": {
+    "defaultTitle": "My Travel App",
+    "defaultDescription": "Discover amazing tours and travel experiences with My Travel App. Book your dream vacation today.",
+    "defaultImage": "/assets/image/banner.webp",
+    "siteUrl": "https://my-travel-app.example.com"
+  },
+  "contact": {
+    "email": "info@mytravelapp.com",
+    "mapUrl": "https://www.google.com/maps/place/My+Travel+App"
+  },
+  "apiUrl": "https://tourism-api.perfectsolutions4u.com/api"
+}
