@@ -9,8 +9,8 @@ $primary-white-color: rgba(16, 93, 99, 0.455) ;
 $text-color: #110f0f;
 $text-color-secondary: #525252;
 $border-color: #EEEFEF;
-$bady-font: "Poppins", sans-serif;
-$paragraph-font: "Roboto", sans-serif;
+$bady-font:  sans-serif;
+$paragraph-font:  sans-serif;
 $transition: all 1s ease-in-out;
 $transition-fast: all 0.5s linear;
 $border-radius: 8px;
@@ -21,3 +21,7 @@ $box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.02);
 // #525252  , #110f0f
 
 // #105D63  ,  #C4A164
+
+// $bady-font: "Poppins", sans-serif;
+// $paragraph-font: "Roboto", sans-serif;
+// trip sans font family not working ---> use default font family sans-serif

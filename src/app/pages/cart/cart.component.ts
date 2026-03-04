@@ -28,9 +28,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - Cart',
-      'Manage your cart, bookings, and preferences with scrappe voyager. Access your account dashboard.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - Cart',
+      'Manage your cart, bookings, and preferences with scarabée voyageur. Access your account dashboard.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
     this.getListCart();
   }

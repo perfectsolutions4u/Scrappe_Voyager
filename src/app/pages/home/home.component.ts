@@ -60,7 +60,6 @@ import { VideoComponent } from '../../shared/components/video/video.component';
     TourCartComponent,
     DestinationCartComponent,
     BlogCartComponent,
-    BestServices,
     CarouselModule,
     MakeTripFormComponent,
     Parteners,
@@ -176,7 +175,7 @@ export class HomeComponent implements OnInit {
           const seoData = this.seoService.extractSeoFromSettings(res.data, currentLang);
 
           // Always add "test" to title in home page
-          const baseTitle = seoData.meta_title || seoData.og_title || 'Scrappe Voyager Travel - Home';
+          const baseTitle = seoData.meta_title || seoData.og_title || 'Scarabée Voyageur Travel - Home';
           const titleWithTest = ` ${baseTitle}`;
 
           // Update SEO with test in title
@@ -185,18 +184,18 @@ export class HomeComponent implements OnInit {
             titleWithTest,
             seoData.meta_description ||
               seoData.og_description ||
-              'Discover amazing tours and travel experiences with Scrappe Voyager. Book your dream vacation today.',
+              'Discover amazing tours and travel experiences with Scarabée Voyageur. Book your dream vacation today.',
             seoData.og_image || '../../../assets/image/banner.webp'
           );
         } else {
           // If settings API fails, use defaults with test
           this.seoService.updateSeoData(
             {
-              meta_title: 'Scrappe Voyager Travel - Home',
-              og_title: 'Scrappe Voyager Travel - Home',
+              meta_title: 'Scarabée Voyageur Travel - Home',
+              og_title: 'Scarabée Voyageur Travel - Home',
             },
-            'Scrappe Voyager Travel - Home',
-            'Discover amazing tours and travel experiences with Scrappe Voyager Travel. Book your dream vacation today.',
+            'Scarabée Voyageur Travel - Home',
+            'Discover amazing tours and travel experiences with Scarabée Voyageur Travel. Book your dream vacation today.',
             '../../../assets/image/banner.webp'
           );
         }
@@ -205,11 +204,11 @@ export class HomeComponent implements OnInit {
         // If settings API fails, use defaults with test
         this.seoService.updateSeoData(
           {
-            meta_title: 'Scrappe Voyager Travel - Home',
-            og_title: 'Scrappe Voyager Travel - Home',
+            meta_title: 'Scarabée Voyageur Travel - Home',
+            og_title: 'Scarabée Voyageur Travel - Home',
           },
-          'Scrappe Voyager Travel - Home',
-          'Discover amazing tours and travel experiences with Scrappe Voyager Travel. Book your dream vacation today.',
+          'Scarabée Voyageur Travel - Home',
+          'Discover amazing tours and travel experiences with Scarabée Voyageur Travel. Book your dream vacation today.',
           '../../../assets/image/banner.webp'
         );
       },
@@ -513,6 +512,28 @@ export class HomeComponent implements OnInit {
         },
       });
   }
+
+  sliderOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    nav: false,
+    navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+    items: 1,
+    autoplay: true,
+    smartSpeed: 2500,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+  };
+
+  images = [
+    '../../../assets/image/banner.webp',
+    '../../../assets/image/15.webp',
+    '../../../assets/image/4.webp',
+    '../../../assets/image/3.webp',
+  ];
 
   destinationsOptions: OwlOptions = {
     loop: true,

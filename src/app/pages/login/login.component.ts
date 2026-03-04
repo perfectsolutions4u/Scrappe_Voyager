@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'Scrappe Voyager Tours - Login',
-      'Login to your scrappe voyager Tours account to access your bookings, profile, and exclusive travel offers.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'Scarabée Voyageur Tours - Login',
+      'Login to your scarabée voyageur Tours account to access your bookings, profile, and exclusive travel offers.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
     // this.getSettings();
     // this.getCountries();

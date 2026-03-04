@@ -62,9 +62,9 @@ export class ContactComponent {
   ngOnInit(): void {
     this._SeoService.updateSeoData(
       {},
-      'scrappe voyager - Contact',
-      "Get in touch with scrappe voyager. Contact us for bookings, inquiries, or travel assistance. We're here to help you plan your perfect trip.",
-      '/assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - Contact',
+      "Get in touch with scarabée voyageur. Contact us for bookings, inquiries, or travel assistance. We're here to help you plan your perfect trip.",
+      '/assets/image/scarabée-voyageur-logo.webp'
     );
     this.getCountries();
     this.getSettings();
@@ -137,9 +137,9 @@ export class ContactComponent {
           this.userAddress = addressItem ? this.extractOptionValue(addressItem) : '';
           this.userLocation = locationItem ? this.extractOptionValue(locationItem) : '';
 
-          this.userEmail = 'info@scrappevoyager.com';
+          this.userEmail = 'info@scarabéevoyageur.com';
           this.userAddress = '123 Main St, Cairo, Egypt';
-          this.userLocation = 'https://www.google.com/maps/place/Scrappe+Voyager/@30.0641303,31.229112,15z/data=!4m6!3m5!1s0x14583fa60b21be71:0x75686b8d4c537a8f!8m2!3d30.0641303!4d31.229112!16s%2Fg%2F11c400czgr?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D';
+          this.userLocation = 'https://www.google.com/maps/place/scarabée+Voyageur/@30.0641303,31.229112,15z/data=!4m6!3m5!1s0x14583fa60b21be71:0x75686b8d4c537a8f!8m2!3d30.0641303!4d31.229112!16s%2Fg%2F11c400czgr?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D';
 
           this.cdr.markForCheck();
         }, 0);

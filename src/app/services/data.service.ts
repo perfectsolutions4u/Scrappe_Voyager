@@ -9,11 +9,11 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class DataService extends BaseService implements OnDestroy {
   private readonly STORAGE_KEYS = {
-    destinations: 'scrappe_voyager_destinations',
-    settings: 'scrappe_voyager_settings',
-    countries: 'scrappe_voyager_countries',
-    durations: 'scrappe_voyager_durations',
-    categories: 'scrappe_voyager_categories',
+    destinations: 'scarabée_voyageur_destinations',
+    settings: 'scarabée_voyageur_settings',
+    countries: 'scarabée_voyageur_countries',
+    durations: 'scarabée_voyageur_durations',
+    categories: 'scarabée_voyageur_categories',
   };
 
   // Cache expiration time: 3 minutes in milliseconds

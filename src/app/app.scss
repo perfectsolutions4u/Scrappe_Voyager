@@ -3,3 +3,20 @@ figure {
   height: 200px;
   object-fit: cover;
 }
+
+.typing-cursor {
+  animation: typing-blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes typing-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+

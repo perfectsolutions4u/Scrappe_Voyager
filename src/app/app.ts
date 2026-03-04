@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID, signal } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -6,6 +6,11 @@ import { WhatsappIconComponent } from './shared/components/whatsapp-icon/whatsap
 import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SpinnerEventsService } from './services/spinner-events.service';
+import { Subscription } from 'rxjs';
+
+const TYPING_FULL_TEXT = 'scarabée voyageur';
+const TYPING_DELAY_MS = 120;
 
 @Component({
   selector: 'app-root',
@@ -13,15 +18,18 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('scrappe voyager');
+export class App implements OnDestroy {
+  protected readonly title = signal('scarabée voyageur');
+  protected readonly typingText = signal('');
   protected readonly isBrowserValue: boolean;
+  private typingIntervalId: ReturnType<typeof setInterval> | null = null;
+  private spinnerSub?: Subscription;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private spinnerEvents: SpinnerEventsService
   ) {
-    // Set browser flag immediately in constructor to avoid change detection issues
     this.isBrowserValue = isPlatformBrowser(this.platformId);
   }
 
@@ -29,7 +37,40 @@ export class App {
     return this.isBrowserValue;
   }
 
+  ngOnDestroy(): void {
+    this.clearTypingInterval();
+    this.spinnerSub?.unsubscribe();
+  }
+
+  private clearTypingInterval(): void {
+    if (this.typingIntervalId != null) {
+      clearInterval(this.typingIntervalId);
+      this.typingIntervalId = null;
+    }
+  }
+
+  private startTypingAnimation(): void {
+    this.clearTypingInterval();
+    this.typingText.set('');
+    let index = 0;
+    this.typingIntervalId = setInterval(() => {
+      if (index >= TYPING_FULL_TEXT.length) {
+        if (this.typingIntervalId != null) {
+          clearInterval(this.typingIntervalId);
+          this.typingIntervalId = null;
+        }
+        return;
+      }
+      this.typingText.set(TYPING_FULL_TEXT.slice(0, index + 1));
+      index += 1;
+    }, TYPING_DELAY_MS);
+  }
+
   ngOnInit(): void {
+    if (this.isBrowserValue) {
+      this.startTypingAnimation();
+      this.spinnerSub = this.spinnerEvents.onShown.subscribe(() => this.startTypingAnimation());
+    }
     if (isPlatformBrowser(this.platformId)) {
       const langCode = localStorage.getItem('language') || 'en';
 

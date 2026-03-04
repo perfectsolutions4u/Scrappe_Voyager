@@ -213,7 +213,7 @@ All routes use `loadComponent: () => import('...').then(m => m.X)` (lazy loading
 ## 5. State management
 
 - **Reactive**: `MakeTripService.makeTripSteps$` (BehaviorSubject) for make-trip flow.
-- **Cache**: `DataService` – localStorage with keys prefixed by **project name** (e.g. `scrappe_voyager_destinations`) and TTL.
+- **Cache**: `DataService` – localStorage with keys prefixed by **project name** (e.g. `scarabée_voyageur_destinations`) and TTL.
 - **Auth**: Token and user data in memory/localStorage via `AuthService`.
 - **Cart**: Server-side cart via `BookingService`; no client-only cart store.
 
@@ -249,7 +249,7 @@ All routes use `loadComponent: () => import('...').then(m => m.X)` (lazy loading
 
 ### 8.1 angular.json
 
-- **Project key**: Must match project name (e.g. `scrappe_voyager`) – used in `buildTarget` and serve.
+- **Project key**: Must match project name (e.g. `scarabée_voyageur`) – used in `buildTarget` and serve.
 - **Builder**: `@angular/build:application`; production uses `server: src/main.server.ts`, `outputMode: server`, `ssr.entry: src/server.ts`.
 - **Styles**: SCSS; global: ngx-spinner, Material theme, Bootstrap, FontAwesome, owl-carousel, toastr, `styles.scss`.
 - **Scripts**: Bootstrap bundle.
@@ -293,7 +293,7 @@ These files must be updated when generating a new project from the blueprint. On
 
 ### 9.1 Project name (slug and display name)
 
-Replace **project slug** (e.g. `scrappe_voyager`) and **display name** (e.g. `Scrappe Voyager`) in:
+Replace **project slug** (e.g. `scarabée_voyageur`) and **display name** (e.g. `Scarabée Voyageur`) in:
 
 | File | What to replace |
 |------|------------------|
@@ -301,14 +301,14 @@ Replace **project slug** (e.g. `scrappe_voyager`) and **display name** (e.g. `Sc
 | `angular.json` | Project key `"<slug>": { ... }`, `buildTarget` / `serve` references |
 | `vercel.json` | `outputDirectory`: `dist/<slug>/browser` |
 | `src/app/app.ts` | `title = signal('<display name lower>')` |
-| `src/app/app.html` | Spinner text (e.g. "scrappe voyager") |
+| `src/app/app.html` | Spinner text (e.g. "scarabée voyageur") |
 | `src/index.html` | `<title>` (default) |
 | `src/app/services/data.service.ts` | `STORAGE_KEYS`: prefix each key with `<slug>_` (e.g. `<slug>_destinations`) |
 | `src/app/services/seo.service.ts` | `defaultTitle`, `defaultDescription`, `siteUrl` (and default image if needed) |
 | `src/app/shared/components/nav/nav.component.ts` | `this.title = '<Display Name>'` (or from config) |
 | `src/app/shared/components/footer/footer.component.ts` | `this.title`, `this.email` |
-| All **pages** that call `seoService.updateSeoData(...)` or set document title | Fallback titles/descriptions and logo path (e.g. `scrappe voyager - Contact` → `<display> - Contact`) |
-| **Pages with hardcoded brand**: `home`, `about`, `contact` (e.g. "Scrappe Voyager Egypt", contact email, map link) | Replace with new project name and contact details |
+| All **pages** that call `seoService.updateSeoData(...)` or set document title | Fallback titles/descriptions and logo path (e.g. `scarabée voyageur - Contact` → `<display> - Contact`) |
+| **Pages with hardcoded brand**: `home`, `about`, `contact` (e.g. "Scarabée Voyageur Egypt", contact email, map link) | Replace with new project name and contact details |
 | `src/app/pages/blog-details/blog-details.component.ts` | `localStorage.getItem('<slug>_settings')` |
 
 Use a **single slug** (e.g. `my_travel_app`) for: package name, Angular project key, dist folder, storage keys, and script names. Derive **kebab** for assets (e.g. `my-travel-app-logo.webp`) and **display name** for UI/SEO.
@@ -355,12 +355,12 @@ Use a **single slug** (e.g. `my_travel_app`) for: package name, Angular project 
 | `src/app/shared/components/nav/nav.component.ts` | `title` |
 | `src/app/shared/components/footer/footer.component.ts` | `title`, `email` |
 | All page components that call `SeoService.updateSeoData` | Fallback title/description/image (e.g. home, about, contact, tour, cart, profile, login, signup, etc.) |
-| `src/app/pages/home/home.component.html` | Brand text (e.g. "Scrappe Voyager Egypt") |
+| `src/app/pages/home/home.component.html` | Brand text (e.g. "Scarabée Voyageur Egypt") |
 | `src/app/pages/about/about.component.html` | Brand text |
 | `src/app/pages/contact/contact.component.ts` | SEO, email, map URL |
 | `src/app/pages/blog-details/blog-details.component.ts` | localStorage key `<slug>_settings` |
 
-Logo path used in many pages: `assets/image/scrappe-voyager-logo.webp` → add new image as `assets/image/<slug-kebab>-logo.webp` and update references, or keep path and replace the file.
+Logo path used in many pages: `assets/image/scarabée-voyageur-logo.webp` → add new image as `assets/image/<slug-kebab>-logo.webp` and update references, or keep path and replace the file.
 
 ---
 

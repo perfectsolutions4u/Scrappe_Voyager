@@ -86,13 +86,13 @@
             <h3>Email</h3>
             <!-- if text longer than width of the div , wrap the text in new line -->
             <a href="mailto:{{ email }}" class="text-white" target="_blank">
-              @if (email.length > 21) {
-              <span class="d-inline-block">
-                {{ email | slice : 0 : 21 }}<br />
-                {{ email | slice : 21 }}
+              @if (email.length > 31) {
+              <span class="d-inline-block text-nowrap">
+                {{ email | slice : 0 : 31 }}<br />
+                {{ email | slice : 31 }}
               </span>
               } @else {
-              <span class="d-inline-block">{{ email }}</span>
+              <span class="d-inline-block text-nowrap">{{ email }}</span>
               }
             </a>
           </div>
@@ -155,24 +155,24 @@
           <li><a routerLink="/">Home</a></li>
           <li><a routerLink="/about">About</a></li>
           <li><a routerLink="/blog">Blog</a></li>
-          <li><a routerLink="/contact">Contact</a></li>
+          <li><a routerLink="/destinations">Destinations</a></li>
+          <!-- <li><a routerLink="/contact">Contact</a></li>
           <li><a routerLink="/faq">FAQ</a></li>
           <li><a routerLink="/profile">Profile</a></li>
-          <li><a routerLink="/makeTrip">Make Trip</a></li>
-          <li><a routerLink="/destinations">Destinations</a></li>
+          <li><a routerLink="/makeTrip">Make Trip</a></li> -->
         </ul>
       </div>
       <div class="col-lg-3 col-md-6">
-        <h3>Quick Links</h3>
+        <h3>Helping Links</h3>
         <ul class="list-unstyled">
-          <li><a routerLink="/">Home</a></li>
+          <!-- <li><a routerLink="/">Home</a></li>
           <li><a routerLink="/about">About</a></li>
           <li><a routerLink="/blog">Blog</a></li>
+          <li><a routerLink="/destinations">Destinations</a></li> -->
           <li><a routerLink="/contact">Contact</a></li>
           <li><a routerLink="/faq">FAQ</a></li>
           <li><a routerLink="/profile">Profile</a></li>
           <li><a routerLink="/makeTrip">Make Trip</a></li>
-          <li><a routerLink="/destinations">Destinations</a></li>
         </ul>
       </div>
       <!-- <div class="col-lg-2">

@@ -109,7 +109,7 @@ export class NavComponent implements OnInit, OnDestroy {
         const phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER');
         this.phoneNumber = phoneNumber?.option_value[0] || '';
         this.phoneNumber = '+20 10 26118233';
-        this.title = 'Scrappe Voyager';
+        this.title = 'Scarabée Voyageur';
         console.log('nav page -- logo -- ', this.logo);
         console.log('nav page -- title -- ', this.title);
         console.log('nav page -- phoneNumber -- ', this.phoneNumber);

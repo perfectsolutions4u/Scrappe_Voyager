@@ -37,9 +37,9 @@ export class DestinationComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - Destination',
+      'scarabée voyageur - Destination',
       'Explore our destinations',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
     this.getDestination();
   }

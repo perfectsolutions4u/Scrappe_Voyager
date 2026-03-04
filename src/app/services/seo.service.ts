@@ -35,9 +35,9 @@ export interface LanguageSeoData {
   providedIn: 'root',
 })
 export class SeoService {
-  private defaultTitle = 'Scrappe Voyager'; 
+  private defaultTitle = 'Scarabée Voyageur'; 
   private defaultDescription =
-    'Discover amazing tours and travel experiences with Scrappe Voyager. Book your dream vacation today.'; 
+    'Discover amazing tours and travel experiences with Scarabée Voyageur. Book your dream vacation today.'; 
   private defaultImage = '/assets/image/banner.webp'; 
   private siteUrl = 'https://tourism-api.perfectsolutions4u.com/api'; 
 

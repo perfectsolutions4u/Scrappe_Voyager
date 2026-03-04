@@ -145,9 +145,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - My Account',
-      'Manage your profile, bookings, and preferences with scrappe voyager. Access your account dashboard.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - My Account',
+      'Manage your profile, bookings, and preferences with scarabée voyageur. Access your account dashboard.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
 
     // Check if we're in browser environment (for SSR compatibility)

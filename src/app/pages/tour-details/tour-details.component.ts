@@ -232,9 +232,9 @@ export class TourDetailsComponent implements OnInit {
           console.log('tour', this.tour);
           this.seoService.updateSeoData(
             res.data.seo,
-            'scrappe voyager - Tour Details',
+            'scarabée voyageur - Tour Details',
             'Explore the tour details',
-            '../../../assets/image/scrappe-voyager-logo.webp'
+            '../../../assets/image/scarabée-voyageur-logo.webp'
           );
           this._cdr.markForCheck();
         }

@@ -2,7 +2,7 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: '/Scrappe_Voyager/',
+  baseHref: '/scarabée_Voyageur/',
   locale: undefined,
   routes: [
   {
@@ -19,7 +19,7 @@ export default {
       "chunk-EHT6P5MI.js",
       "chunk-G2NH5EB7.js"
     ],
-    "route": "/Scrappe_Voyager"
+    "route": "/scarabée_Voyageur"
   },
   {
     "renderMode": 0,
@@ -27,7 +27,7 @@ export default {
       "chunk-WFU7SFT5.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/login"
+    "route": "/scarabée_Voyageur/login"
   },
   {
     "renderMode": 0,
@@ -35,7 +35,7 @@ export default {
       "chunk-77UH257K.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/signup"
+    "route": "/scarabée_Voyageur/signup"
   },
   {
     "renderMode": 0,
@@ -43,7 +43,7 @@ export default {
       "chunk-BTWKCI7D.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/forget-password"
+    "route": "/scarabée_Voyageur/forget-password"
   },
   {
     "renderMode": 0,
@@ -55,7 +55,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/about"
+    "route": "/scarabée_Voyageur/about"
   },
   {
     "renderMode": 0,
@@ -66,7 +66,7 @@ export default {
       "chunk-SGXU4PYT.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/destination"
+    "route": "/scarabée_Voyageur/destination"
   },
   {
     "renderMode": 0,
@@ -77,7 +77,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/destination/*"
+    "route": "/scarabée_Voyageur/destination/*"
   },
   {
     "renderMode": 0,
@@ -86,7 +86,7 @@ export default {
       "chunk-SGXU4PYT.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/tour"
+    "route": "/scarabée_Voyageur/tour"
   },
   {
     "renderMode": 0,
@@ -98,7 +98,7 @@ export default {
       "chunk-OSCE4TAW.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/tour/*"
+    "route": "/scarabée_Voyageur/tour/*"
   },
   {
     "renderMode": 0,
@@ -109,7 +109,7 @@ export default {
       "chunk-SGXU4PYT.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/blog"
+    "route": "/scarabée_Voyageur/blog"
   },
   {
     "renderMode": 0,
@@ -118,7 +118,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/blog/*"
+    "route": "/scarabée_Voyageur/blog/*"
   },
   {
     "renderMode": 0,
@@ -129,7 +129,7 @@ export default {
       "chunk-SGXU4PYT.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/blog-category/*"
+    "route": "/scarabée_Voyageur/blog-category/*"
   },
   {
     "renderMode": 0,
@@ -139,7 +139,7 @@ export default {
       "chunk-SGXU4PYT.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/category/*"
+    "route": "/scarabée_Voyageur/category/*"
   },
   {
     "renderMode": 0,
@@ -152,7 +152,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/contact"
+    "route": "/scarabée_Voyageur/contact"
   },
   {
     "renderMode": 0,
@@ -162,7 +162,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/faq"
+    "route": "/scarabée_Voyageur/faq"
   },
   {
     "renderMode": 0,
@@ -172,7 +172,7 @@ export default {
       "chunk-OSCE4TAW.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/profile"
+    "route": "/scarabée_Voyageur/profile"
   },
   {
     "renderMode": 0,
@@ -182,7 +182,7 @@ export default {
       "chunk-OSCE4TAW.js",
       "chunk-XB6PQKIB.js"
     ],
-    "route": "/Scrappe_Voyager/checkout"
+    "route": "/scarabée_Voyageur/checkout"
   },
   {
     "renderMode": 0,
@@ -192,7 +192,7 @@ export default {
       "chunk-XB6PQKIB.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/cart"
+    "route": "/scarabée_Voyageur/cart"
   },
   {
     "renderMode": 0,
@@ -203,14 +203,14 @@ export default {
       "chunk-CIOD2JKG.js",
       "chunk-Y3KLVRP5.js"
     ],
-    "route": "/Scrappe_Voyager/makeTrip"
+    "route": "/scarabée_Voyageur/makeTrip"
   },
   {
     "renderMode": 0,
     "preload": [
       "chunk-7R4MKHO6.js"
     ],
-    "route": "/Scrappe_Voyager/**"
+    "route": "/scarabée_Voyageur/**"
   }
 ],
   entryPointToBrowserMapping: undefined,

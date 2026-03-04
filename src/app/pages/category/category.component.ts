@@ -40,9 +40,9 @@ export class Category implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - Category',
+      'scarabée voyageur - Category',
       'Explore tours by category.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
 
     this._ActivatedRoute.params.subscribe((params) => {

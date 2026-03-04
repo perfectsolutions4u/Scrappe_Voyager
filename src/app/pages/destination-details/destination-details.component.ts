@@ -44,9 +44,9 @@ export class DestinationDetailsComponent implements OnInit {
             console.log('destination details', this.destination);
             this.seoService.updateSeoData(
               res.data.seo,
-              'scrappe voyager - Destination Details',
+              'scarabée voyageur - Destination Details',
               'Explore the destination information',
-              '../../../assets/image/scrappe-voyager-logo.webp'
+              '../../../assets/image/scarabée-voyageur-logo.webp'
             );
             this.cdr.markForCheck();
           }, 0);

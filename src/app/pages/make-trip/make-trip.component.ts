@@ -148,9 +148,9 @@ export class MakeTripComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager   - Make Your Trip',
-      'Create your custom travel itinerary with scrappe voyager. Plan your perfect trip tailored to your preferences.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - Make Your Trip',
+      'Create your custom travel itinerary with scarabée voyageur. Plan your perfect trip tailored to your preferences.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
     this.showCountries();
     this.buildForms();

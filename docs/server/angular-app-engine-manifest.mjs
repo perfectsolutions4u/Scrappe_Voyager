@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/Scrappe_Voyager',
+  basePath: '/scarabée_Voyageur',
   supportedLocales: {
   "en-US": ""
 },

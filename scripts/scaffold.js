@@ -95,40 +95,40 @@ function buildReplacements(config) {
   const apiUrl = config.apiUrl || 'https://tourism-api.perfectsolutions4u.com/api';
 
   const replacements = [
-    ['scrappe_voyager', slug],
-    ['Scrappe Voyager', displayName],
-    ['scrappe voyager', displayNameLower],
-    ['Scrappe Voyager Egypt', displayName + ' Egypt'],
-    ['scrappevoyager', slug.replace(/_/g, '')],
-    ['scrappe-voyager', kebab],
-    ['scrappe-voyager-logo.webp', kebab + '-logo.webp'],
-    ['info@scrappevoyager.com', contact.email || `info@${slug.replace(/_/g, '')}.com`],
-    ['Scrappe Voyager Travel - Home', (seo.defaultTitle || displayName) + ' Travel - Home'],
-    ['Discover amazing tours and travel experiences with Scrappe Voyager. Book your dream vacation today.', seo.defaultDescription || 'Discover amazing tours and travel experiences with ' + displayName + '. Book your dream vacation today.'],
-    ['Discover amazing tours and travel experiences with Scrappe Voyager Travel. Book your dream vacation today.', (seo.defaultDescription || '').replace(displayName, displayName + ' Travel') || 'Discover amazing tours and travel experiences with ' + displayName + ' Travel. Book your dream vacation today.'],
+    ['scarabée_voyageur', slug],
+    ['Scarabée Voyageur', displayName],
+    ['scarabée voyageur', displayNameLower],
+    ['Scarabée Voyageur Egypt', displayName + ' Egypt'],
+    ['scarabéevoyageur', slug.replace(/_/g, '')],
+    ['scarabée-voyageur', kebab],
+    ['scarabée-voyageur-logo.webp', kebab + '-logo.webp'],
+    ['info@scarabéevoyageur.com', contact.email || `info@${slug.replace(/_/g, '')}.com`],
+    ['Scarabée Voyageur Travel - Home', (seo.defaultTitle || displayName) + ' Travel - Home'],
+    ['Discover amazing tours and travel experiences with Scarabée Voyageur. Book your dream vacation today.', seo.defaultDescription || 'Discover amazing tours and travel experiences with ' + displayName + '. Book your dream vacation today.'],
+    ['Discover amazing tours and travel experiences with Scarabée Voyageur Travel. Book your dream vacation today.', (seo.defaultDescription || '').replace(displayName, displayName + ' Travel') || 'Discover amazing tours and travel experiences with ' + displayName + ' Travel. Book your dream vacation today.'],
     ['https://tourism-api.perfectsolutions4u.com/api', apiUrl],
   ];
 
   if (seo.defaultTitle) {
-    replacements.push(['Scrappe Voyager', seo.defaultTitle]);
+    replacements.push(['Scarabée Voyageur', seo.defaultTitle]);
   }
   if (seo.defaultDescription) {
-    replacements.push(['Discover amazing tours and travel experiences with Scrappe Voyager. Book your dream vacation today.', seo.defaultDescription]);
+    replacements.push(['Discover amazing tours and travel experiences with Scarabée Voyageur. Book your dream vacation today.', seo.defaultDescription]);
   }
   if (seo.siteUrl) {
     replacements.push(['this.siteUrl = \'https://tourism-api.perfectsolutions4u.com/api\'', `this.siteUrl = '${seo.siteUrl}'`]);
     replacements.push(['this.siteUrl = \'https://tourism-api.perfectsolutions4u.com/api\';', `this.siteUrl = '${seo.siteUrl}';`]);
   }
   replacements.push([
-    'private defaultTitle = \'Scrappe Voyager\';',
+    'private defaultTitle = \'Scarabée Voyageur\';',
     `private defaultTitle = '${(seo.defaultTitle || displayName).replace(/'/g, "\\'")}';`
   ]);
   replacements.push([
-    '\'Discover amazing tours and travel experiences with Scrappe Voyager. Book your dream vacation today.\';',
+    '\'Discover amazing tours and travel experiences with Scarabée Voyageur. Book your dream vacation today.\';',
     `'${(seo.defaultDescription || 'Discover amazing tours and travel experiences with ' + displayName + '. Book your dream vacation today.').replace(/'/g, "\\'")}';`
   ]);
   if (contact.mapUrl) {
-    replacements.push(['https://www.google.com/maps/place/Scrappe+Voyager/@30.0641303,31.229112,15z/data=!4m6!3m5!1s0x14583fa60b21be71:0x75686b8d4c537a8f!8m2!3d30.0641303!4d31.229112!16s%2Fg%2F11c400czgr?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D', contact.mapUrl]);
+    replacements.push(['https://www.google.com/maps/place/scarabée+Voyageur/@30.0641303,31.229112,15z/data=!4m6!3m5!1s0x14583fa60b21be71:0x75686b8d4c537a8f!8m2!3d30.0641303!4d31.229112!16s%2Fg%2F11c400czgr?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D', contact.mapUrl]);
   }
 
   return { replacements, slug, displayName, displayNameLower, seo, contact, apiUrl };

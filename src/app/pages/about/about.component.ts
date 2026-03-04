@@ -20,9 +20,9 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - About Us',
+      'scarabée voyageur - About Us',
       'Learn more about us',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
   }
 }

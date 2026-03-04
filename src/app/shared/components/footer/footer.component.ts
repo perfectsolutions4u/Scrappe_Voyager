@@ -91,10 +91,10 @@ export class FooterComponent implements OnInit {
           : item.option_value || '';
       }
 
-      this.email= 'info@scrappevoyager.com';
+      this.email= 'info@scarabéevoyageur.com';
       this.phone= '20 10 26118233';
       this.address= '123 Main St, Cairo, Egypt';
-      this.title= 'Scrappe Voyager';
+      this.title= 'Scarabée Voyageur';
     });
   }
 }

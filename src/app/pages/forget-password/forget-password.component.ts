@@ -38,9 +38,9 @@ export class ForgetPasswordComponent {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - Forget Password',
-      'Reset your scrappe voyager account password. Recover access to your travel account securely.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - Forget Password',
+      'Reset your scarabée voyageur account password. Recover access to your travel account securely.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
     // this.getSettings();
     // this.getCountries();

@@ -99,9 +99,9 @@ export class TourComponent implements OnInit {
   ngOnInit(): void {
     this.seoService.updateSeoData(
       {},
-      'scrappe voyager - Tours',
-      'Search and discover amazing tours with scrappe voyager. Your trusted travel partner for premium tours and exceptional travel experiences.',
-      '../../../assets/image/scrappe-voyager-logo.webp'
+      'scarabée voyageur - Tours',
+      'Search and discover amazing tours with scarabée voyageur. Your trusted travel partner for premium tours and exceptional travel experiences.',
+      '../../../assets/image/scarabée-voyageur-logo.webp'
     );
 
     // Load destinations, categories, and durations
