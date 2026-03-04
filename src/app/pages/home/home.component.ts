@@ -529,10 +529,11 @@ export class HomeComponent implements OnInit {
   };
 
   images = [
+    '../../../assets/image/Aswan Slider.webp',
+    '../../../assets/image/Luxor Slider.webp',
+    '../../../assets/image/Grand.webp',
     '../../../assets/image/banner.webp',
-    '../../../assets/image/15.webp',
-    '../../../assets/image/4.webp',
-    '../../../assets/image/3.webp',
+    
   ];
 
   destinationsOptions: OwlOptions = {
