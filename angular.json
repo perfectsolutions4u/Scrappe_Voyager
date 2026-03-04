@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "scarabée_voyageur": {
+    "scarabee_voyageur": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -85,10 +85,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "scarabée_voyageur:build:production"
+              "buildTarget": "scarabee_voyageur:build:production"
             },
             "development": {
-              "buildTarget": "scarabée_voyageur:build:development"
+              "buildTarget": "scarabee_voyageur:build:development"
             }
           },
           "defaultConfiguration": "development"
