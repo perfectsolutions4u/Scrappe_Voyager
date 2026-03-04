@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/scrappe_voyager/browser",
+  "outputDirectory": "dist/scarabée_voyageur/browser",
   "framework": null,
   "rewrites": [
     {
