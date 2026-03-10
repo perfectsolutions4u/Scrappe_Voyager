@@ -23,7 +23,7 @@ export class VideoComponent implements OnInit {
   @ViewChild('videoModal') videoModal!: ElementRef;
   @ViewChild('videoIframe') videoIframe!: ElementRef;
 
-  @Input() posterImage: string = '../../../assets/image/3.webp';
+  @Input() posterImage: string = '../../../../assets/image/Scarabee-banner.png';
   @Input() videoUrl: string = 'https://www.youtube.com/embed/BapSQFJPMM0';
   @Input() posterAlt: string = 'video poster image';
 

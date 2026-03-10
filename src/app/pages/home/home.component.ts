@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
   ViewChild,
   inject,
+  Input,
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subject, takeUntil, tap } from 'rxjs';
@@ -123,6 +124,16 @@ export class HomeComponent implements OnInit {
   makeTripForm!: FormGroup;
   featuredCategories: ICategory[] = [];
 
+  phoneNumber: string = '';
+  getPhoneNumber(): void {
+    this._DataService.getSetting().subscribe({
+      next: (res) => {
+        this.phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER')?.option_value || '';
+        // console.log('home page -- phone number -- ', this.phoneNumber);
+      },
+    });
+  }
+
   ngOnInit(): void {
     this.getPopularTours();
     // Get settings and update SEO from API, with fallback to defaults
@@ -131,6 +142,8 @@ export class HomeComponent implements OnInit {
     this.getCategory();
     this.getDurations();
     this.getBlogs();
+
+    this.getPhoneNumber();
 
     this.tourSearchForm = this.fb.group({
       location: ['', Validators.required],
