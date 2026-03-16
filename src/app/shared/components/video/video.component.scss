@@ -5,6 +5,12 @@
   height: 65vh;
 }
 
+@media screen and (min-width: 1200px) {
+  .videoBox {
+    height: 75vh;
+  }
+}
+
 .play-button {
   background: transparent;
   border: none;
