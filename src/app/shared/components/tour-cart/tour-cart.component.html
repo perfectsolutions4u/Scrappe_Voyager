@@ -70,9 +70,11 @@
        <div class="flexBetween  align-items-end mt-3">
         <div>
           <span class="fontsm text-muted">start from</span> <br>
-          <span class="textMainColor fs-5 fw-bold">
+          @let dp = getDisplayPrice(tour?.start_from);
+          <b class="textMainColor fs-5">{{ dp.symbol }}{{ dp.value | number:'1.2-2' }}</b>
+          <!-- <span class="textMainColor fs-5 fw-bold">
             {{ tour?.start_from | currency }}
-          </span>
+          </span> -->
         </div>
 
         @if (tour && tour.duration ) {

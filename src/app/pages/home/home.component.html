@@ -555,7 +555,9 @@
         <div class="iconBox border rounded-circle me-3 p-2 flex-shrink-0"><i class="fa fa-phone"></i></div>
         <div>
           <p class="mb-1">need help?</p>
-          <a class="text-white fw-bold text-decoration-none" href="tel:{{phoneNumber}}"> {{phoneNumber}} </a>
+          <a class="text-white fw-bold text-decoration-none" [href]="'tel:' + phoneNumber">
+            {{ phoneNumber }}
+          </a>
         </div>
       </div>
     </div>

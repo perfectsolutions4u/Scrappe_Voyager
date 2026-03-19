@@ -6,9 +6,11 @@
     img{
       height: 100%;
       object-fit: cover;
-      animation: zoomIn 10s ease-in-out infinite;
+      width: 100%;
+      animation: zoomIn 18s ease-out infinite;
       transition: $transition;
     }
+    background-color: #000000;
   }
 
   figcaption{
@@ -177,19 +179,37 @@
 
 @keyframes zoomIn {
   0% {
-    transform: scale(1);
+    transform: scale(1.12) translateY(-2%);
+    transform-origin: center;
   }
-  25% {
-    transform: scale(1.08);
+  20% {
+    transform: scale(1.05) translateY(-2%);
+    transform-origin: center;
   }
-  50% {
-    transform: scale(1.15);
+  20% {
+    transform: scale(.95) translateY(0%);
+    transform-origin: center;
   }
-  75% {
-    transform: scale(1.25);
+  40% {
+    transform: scale(.85) translateY(0%);
+    transform-origin: center;
+  }
+  60% {
+    transform: scale(.75) translateY(0%);
+    transform-origin: center;
+  }
+  
+  80% {
+    transform: scale(.85) translateY(0%);
+    transform-origin: center;
+  }
+  90% {
+    transform: scale(.95) translateY(0%);
+    transform-origin: center;
   }
   100% {
-    transform: scale(1.35);
+    transform: scale(1) translateY(2%);
+    transform-origin: center;
   }
 }
 

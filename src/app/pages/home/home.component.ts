@@ -154,8 +154,16 @@ export class HomeComponent implements OnInit {
   getPhoneNumber(): void {
     this._DataService.getSetting().subscribe({
       next: (res) => {
-        this.phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER')?.option_value || '';
-        // console.log('home page -- phone number -- ', this.phoneNumber);
+        const optionValue = res?.data?.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER')?.option_value;
+        // API might return an array like ["+2010..."].
+        const normalized =
+          Array.isArray(optionValue) ? optionValue[0] : optionValue;
+
+        // Avoid NG0100: update after the current change detection pass.
+        setTimeout(() => {
+          this.phoneNumber = normalized ? String(normalized) : '';
+          this.cdr.markForCheck();
+        }, 0);
       },
     });
   }

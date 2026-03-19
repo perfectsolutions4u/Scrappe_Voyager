@@ -3,20 +3,26 @@
 .item{
   text-align: center;
   transition: $transition-fast;
-  height: 200px;
+  background-color: $primary-color;
+  color: #fff;
+  height: 150px;
   a,i{
     transition: $transition-fast;
+    color: #fff;
+  }
+  p{
+    color: #fff;
   }
   &:hover{
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: $primary-color !important;
-    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: $second-color !important;
+    color: $primary-color !important;
     i{
       transform: rotate(360deg) !important;
     }
     a{
-      color: #fff !important;
+      color: $primary-color !important;
     }
   }
 }

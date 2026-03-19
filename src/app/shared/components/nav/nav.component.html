@@ -103,29 +103,58 @@
           Contact
         </a>
       </li>
-      <li class="menu-item">
+      <li class="menu-item has-submenu">
          <!-- Language Selector -->
          <div
          class="language-dropdown mx-1"
          (mouseenter)="showLanguage.set(true)"
          (mouseleave)="showLanguage.set(false)"
        >
+       
          <button class="btn language-btn" type="button">
            <i class="fas fa-globe"></i>
            <span>{{ getCurrentLanguageCode() }}</span>
            <!-- <i class="fas fa-chevron-down"></i> -->
          </button>
          @if (showLanguage()) {
-         <div class="dropdown-menu show">
-           <a class="dropdown-item" (click)="selectLanguage('en')">
-             <span class="flag-icon">🇬🇧</span> English
-           </a>
-           <a class="dropdown-item" (click)="selectLanguage('fr')">
-             <span class="flag-icon">🇫🇷</span> French
-           </a>
-         </div>
+         <ul class="submenu">
+           <li class="cPointer">
+             <a (click)="selectLanguage('en')">
+                <span class="flag-icon">🇬🇧</span> English
+              </a>
+           </li>
+           <li>
+            <a (click)="selectLanguage('fr')">
+              <span class="flag-icon">🇫🇷</span> French
+            </a>
+           </li>
+         </ul>
          }
        </div>
+      </li>
+
+      <!-- currency selector -->
+      <li class="menu-item has-submenu">
+        <div class="language-dropdown mx-1"
+         (mouseenter)="showCurrency.set(true)"
+         (mouseleave)="onCurrencyMouseLeave($event)"
+        >
+          <button class="btn language-btn" type="button">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>{{ getSelectedCurrency() }}</span>
+          </button>
+          @if (showCurrency()) {
+          <ul class="submenu">
+            @for (currency of currencyOptions; track currency.value) {
+            <li class="cPointer">
+              <a (click)="selectCurrency(currency.value)">
+                {{ currency.name }}
+              </a>
+            </li>
+          }
+          </ul>
+          }
+        </div>
       </li>
     </ul>
   </nav>
@@ -239,22 +268,44 @@
                <!-- Language Selector -->
                 <div
                 class="language-dropdown mx-1"
-                (mouseenter)="showLanguage.set(true)"
-                (mouseleave)="showLanguage.set(false)"
+                  (mouseenter)="showLanguage.set(true)"
+                  (mouseleave)="showLanguage.set(false)"
+                >
+                  <button class="btn language-btn" type="button">
+                    <i class="fas fa-globe"></i>
+                    <span>{{ getCurrentLanguageCode() }}</span>
+                    <!-- <i class="fas fa-chevron-down"></i> -->
+                  </button>
+                  @if (showLanguage()) {
+                  <div class="dropdown-menu show">
+                    <a class="dropdown-item cPointer" (click)="selectLanguage('en')">
+                      <span class="flag-icon">🇬🇧</span> English
+                    </a>
+                    <a class="dropdown-item cPointer" (click)="selectLanguage('fr')">
+                      <span class="flag-icon">🇫🇷</span> French
+                    </a>
+                  </div>
+                }
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <!-- currency selector -->
+              <div class="language-dropdown mx-1"
+               (mouseenter)="showCurrency.set(true)"
+               (mouseleave)="onCurrencyMouseLeave($event)"
               >
                 <button class="btn language-btn" type="button">
-                  <i class="fas fa-globe"></i>
-                  <span>{{ getCurrentLanguageCode() }}</span>
-                  <!-- <i class="fas fa-chevron-down"></i> -->
+                  <i class="fas fa-money-bill-wave"></i>
+                  <span>{{ getSelectedCurrency() }}</span>
                 </button>
-                @if (showLanguage()) {
+                @if (showCurrency()) {
                 <div class="dropdown-menu show">
-                  <a class="dropdown-item" (click)="selectLanguage('en')">
-                    <span class="flag-icon">🇬🇧</span> English
+                  @for (currency of currencyOptions; track currency.value) {
+                  <a class="dropdown-item cPointer" (click)="selectCurrency(currency.value)">
+                    <span class="flag-icon">{{currency.symbol}}</span> {{ currency.name }}
                   </a>
-                  <a class="dropdown-item" (click)="selectLanguage('fr')">
-                    <span class="flag-icon">🇫🇷</span> French
-                  </a>
+                  }
                 </div>
                 }
               </div>

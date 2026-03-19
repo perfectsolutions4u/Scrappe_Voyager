@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../../../services/data.service';
 import { CommonModule } from '@angular/common';
 import { Itour } from '../../../core/interfaces/itour';
+import { CurrencyService } from '../../../services/currency.service';
 
 @Component({
   selector: 'app-tour-cart',
@@ -18,7 +19,8 @@ export class TourCartComponent implements OnInit {
     private _DataService: DataService,
     private toaster: ToastrService,
     private _Router: Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private _CurrencyService: CurrencyService
   ) {}
 
   @Input() layoutType: 'grid' | 'list' = 'grid';
@@ -34,6 +36,10 @@ export class TourCartComponent implements OnInit {
   ngOnInit(): void {
     // قراءة الـ favouriteIds من localStorage عند تحميل الـ component
     this.loadFavouritesFromStorage();
+  }
+
+  getDisplayPrice(amount: number | undefined | null) {
+    return this._CurrencyService.getConvertedPrice(amount);
   }
 
   /**

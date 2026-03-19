@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TourCartComponent } from '../tour-cart/tour-cart.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CurrencyService } from '../../../services/currency.service';
 
 @Component({
   selector: 'app-nav',
@@ -65,6 +66,7 @@ export class NavComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private _DataService: DataService,
     private _AuthService: AuthService,
+    private _CurrencyService: CurrencyService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private cdr: ChangeDetectorRef
   ) {}
@@ -75,6 +77,29 @@ export class NavComponent implements OnInit, OnDestroy {
   logo: string = '';
   title: string = '';
   phoneNumber: string = '';
+
+  currencyOptions: { name: string; symbol: string; value: string }[] = [
+    {
+      name: 'Dollar',
+      symbol: 'USD',
+      value: 'dollar',
+    },
+    {
+      name: 'Euro',
+      symbol: 'EUR',
+      value: 'euro',
+    },
+    {
+      name: 'Sterling Pound',
+      symbol: 'GBP',
+      value: 'sterling pound',
+    }
+  ];
+  // We store the currency *name* (Dollar/Euro/...), not the value/code.
+  // This is consistent with `CurrencyService.setCurrency()`.
+  currency: string = 'Dollar';
+  showCurrency = signal(false);
+
 
   siteTitle: string[] = [
     'one-click booking , up to 50% off on your favorite tours', 
@@ -135,6 +160,9 @@ export class NavComponent implements OnInit, OnDestroy {
       this.selectedLanguage.set(savedLang);
       this.translate.use(savedLang);
 
+      // Initialize current currency from storage (default is USD/Dollar).
+      this.currency = this._CurrencyService.getCurrencyName();
+
       // Add ESC key listener to close search overlay
       this.escKeyListener = (event: KeyboardEvent) => {
         if (event.key === 'Escape' && this.searchOverlayOpen()) {
@@ -183,6 +211,32 @@ export class NavComponent implements OnInit, OnDestroy {
           this.isSearching.set(false);
         }
       });
+  }
+
+  selectCurrency(currency: string): void {
+    const selectedCurrency = this.currencyOptions.find((item) => item.value === currency)?.name;
+    if (selectedCurrency) {
+      this.currency = selectedCurrency;
+      this._CurrencyService.setCurrency(selectedCurrency);
+      this.showCurrency.set(false);
+    }
+    this.cdr.markForCheck();
+  }
+  getSelectedCurrency(): string {
+    return this.currencyOptions.find((item) => item.name === this.currency)?.symbol || 'USD';
+  }
+
+  onCurrencyMouseLeave(event: MouseEvent): void {
+    const root = event.currentTarget as HTMLElement | null;
+    const next = event.relatedTarget as HTMLElement | null;
+
+    // If the pointer moved into the dropdown (which is absolutely positioned),
+    // keep it open and don't close on root `mouseleave`.
+    if (root && next && root.contains(next)) {
+      return;
+    }
+
+    this.showCurrency.set(false);
   }
 
   getWhatsAppUrl(): string {

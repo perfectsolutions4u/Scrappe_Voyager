@@ -9,7 +9,7 @@ import { VideoComponent } from '../../shared/components/video/video.component';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [BannerComponent, BestServices, CommonModule, Parteners, VideoComponent],
+  imports: [BannerComponent, BestServices, CommonModule, VideoComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })

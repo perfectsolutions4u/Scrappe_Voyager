@@ -1,15 +1,16 @@
 .banner-container {
   position: relative;
   width: 100%;
-  height: 55vh;
+  height: 65vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: end;
+  // justify-content: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  // background-color: #007bff;
+  background-color: #000000;
   overflow: hidden;
+  animation: bannerZoomDown 18s ease-out infinite;
 }
 
 .banner-overlay {
@@ -18,7 +19,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
   z-index: 1;
 }
 
@@ -28,6 +29,7 @@
   text-align: center;
   color: #fff;
   padding: 2rem;
+  animation: bannerContentIn 8s ease-out 2s infinite;
 }
 
 .banner-title {
@@ -41,6 +43,68 @@
   font-size: 1.5rem;
   margin: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes bannerZoomDown {
+  0% {
+    background-size: 90%;
+    
+  }
+  10% {
+    background-size: 85%;
+    
+  }
+  20% {
+    background-size: 80%;
+    
+  }
+  30% {
+    background-size: 75%;
+    
+  }
+  40% {
+    background-size: 70%;
+    
+  }
+  50% {
+    background-size: 65%;
+    
+  }
+  60% {
+    background-size: 70%;
+    
+  }
+  80% {
+    background-size: 72%;
+    
+  }
+  90% {
+    background-size: 74%;
+    
+  }
+  100% {
+    background-size: 76%;
+    
+  }
+}
+
+@keyframes bannerContentIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  87.5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
