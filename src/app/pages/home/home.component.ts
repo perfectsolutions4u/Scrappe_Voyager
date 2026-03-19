@@ -10,7 +10,7 @@ import {
   inject,
   Input,
 } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, SafeStyle } from '@angular/platform-browser';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { Router, RouterLink } from '@angular/router';
@@ -37,7 +37,7 @@ import { DestinationCartComponent } from '../../shared/components/destination-ca
 import { IBlog } from '../../core/interfaces/iblog';
 import { BlogCartComponent } from '../../shared/components/blog-cart/blog-cart.component';
 import { BestServices } from '../../shared/components/best-services/best-services.component';
-import { OwlOptions, CarouselModule } from 'ngx-owl-carousel-o';
+import { OwlOptions, CarouselModule, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MakeTripFormComponent } from '../../shared/components/make-trip-form/make-trip-form.component';
 import { Parteners } from '../../shared/components/parteners/parteners.component';
 import { FaqContent } from '../../shared/components/faq-content/faq-content.component';
@@ -63,7 +63,7 @@ import { VideoComponent } from '../../shared/components/video/video.component';
     BlogCartComponent,
     CarouselModule,
     MakeTripFormComponent,
-    Parteners,
+    // Parteners,
     FaqContent,
     VideoComponent,
     CommonModule,
@@ -77,6 +77,17 @@ export class HomeComponent implements OnInit {
 
   private $destory = new Subject<void>();
   isBrowser: boolean;
+  useDesktopImages = false;
+  private desktopMediaQuery: MediaQueryList | null = null;
+
+  /** 8 vertical slices for hero image reveal */
+  readonly sliceIndices: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
+  private readonly sliceTotal = 8;
+  /** Relative slide index from Owl (matches @for $index) */
+  mainSliderActiveIndex = 0;
+  /** Shown after slice stagger (~800ms) */
+  showSliderText = false;
+  private mainSliderTextTimer: ReturnType<typeof setTimeout> | null = null;
   sanitizedVideoUrl: SafeResourceUrl;
   rawVideoUrl = 'https://gofly-wp.egenstheme.com/wp-content/uploads/2025/09/home1-banner-video.mp4';
 
@@ -97,6 +108,21 @@ export class HomeComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(platformId);
     this.initMakeTripForm();
   }
+
+  imageDesktop = [
+    '../../../assets/image/Grand.webp',
+    '../../../assets/image/Scarabee/Scarabee-slider1.png',
+    '../../../assets/image/Scarabee/Scarabee-slider2.png',
+    '../../../assets/image/Scarabee/Scarabee-banner.png',
+    '../../../assets/image/Scarabee/Scarabee-Guest.png',
+    
+  ];
+  imageMobile = [
+    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile1.png',
+    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile2.png',
+    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile3.png',
+    
+  ];
 
 
   MarkTime: string = 'exact';
@@ -144,6 +170,8 @@ export class HomeComponent implements OnInit {
     this.getBlogs();
 
     this.getPhoneNumber();
+
+    this.initHeroImagesByViewport();
 
     this.tourSearchForm = this.fb.group({
       location: ['', Validators.required],
@@ -407,9 +435,117 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    this.clearMainSliderTextTimer();
+    this.desktopMediaQuery?.removeEventListener('change', this.handleDesktopMediaQueryChange);
     this.$destory.next();
     this.$destory.complete();
   }
+
+  /**
+   * Panorama-style horizontal position for each strip (0 … 100%).
+   * With background-size 800% × 100%, each slice shows 1/8 of the image across the full width.
+   */
+  getSliceBackgroundPositionX(sliceIndex: number): string {
+    const last = this.sliceTotal - 1;
+    const x = last === 0 ? 0 : (sliceIndex / last) * 100;
+    return `${x}%`;
+  }
+
+  /**
+   * Site-root URL for static assets (works with hash routing and avoids `../` vs current route).
+   * Public for hero underlay `<img [src]>`.
+   */
+  resolveSliderAssetUrl(path: string): string {
+    if (!path) return path;
+    if (/^https?:\/\//i.test(path)) return path;
+    const cleaned = path.replace(/^(\.\.\/)+/, '');
+    return cleaned.startsWith('/') ? cleaned : `/${cleaned}`;
+  }
+
+  /** Owl can briefly report NaN/undefined; clamp to a valid slide index. */
+  private normalizeMainSliderIndex(pos: number | undefined): number {
+    if (typeof pos !== 'number' || Number.isNaN(pos)) {
+      return 0;
+    }
+    const count = this.useDesktopImages ? this.imageDesktop.length : this.imageMobile.length;
+    if (count <= 0) return 0;
+    const max = count - 1;
+    return Math.max(0, Math.min(Math.floor(pos), max));
+  }
+
+  isHeroSlideActive(slideIndex: number): boolean {
+    return this.normalizeMainSliderIndex(this.mainSliderActiveIndex) === slideIndex;
+  }
+
+  getTrustedSliceBackground(image: string): SafeStyle {
+    const url = this.resolveSliderAssetUrl(image);
+    return this.sanitizer.bypassSecurityTrustStyle(`url("${url}")`);
+  }
+
+  /** Layout only — never put url() here or it will be sanitized. */
+  getSliceLayoutStyle(sliceIndex: number): Record<string, string> {
+    const x = this.getSliceBackgroundPositionX(sliceIndex);
+    return {
+      'background-size': 'cover',
+      'background-position': `${x} center`,
+      'background-repeat': 'no-repeat',
+      left: `calc((100% / ${this.sliceTotal}) * ${sliceIndex})`,
+      width: 'calc(100% / 8)',
+    };
+  }
+
+  onMainSliderInitialized(data: SlidesOutputData): void {
+    this.applyMainSliderSlideState(data, true);
+  }
+
+  onMainSliderTranslated(data: SlidesOutputData): void {
+    this.applyMainSliderSlideState(data, true);
+  }
+
+  private applyMainSliderSlideState(data: SlidesOutputData, scheduleTextReveal: boolean): void {
+    this.mainSliderActiveIndex = this.normalizeMainSliderIndex(data.startPosition);
+    if (scheduleTextReveal) {
+      this.scheduleSliderTextReveal();
+    } else {
+      this.clearMainSliderTextTimer();
+      this.showSliderText = false;
+    }
+    this.cdr.markForCheck();
+  }
+
+  private scheduleSliderTextReveal(): void {
+    this.clearMainSliderTextTimer();
+    this.showSliderText = false;
+    this.cdr.markForCheck();
+    this.mainSliderTextTimer = setTimeout(() => {
+      this.showSliderText = true;
+      this.mainSliderTextTimer = null;
+      this.cdr.markForCheck();
+    }, 800);
+  }
+
+  private clearMainSliderTextTimer(): void {
+    if (this.mainSliderTextTimer !== null) {
+      clearTimeout(this.mainSliderTextTimer);
+      this.mainSliderTextTimer = null;
+    }
+  }
+
+  private initHeroImagesByViewport(): void {
+    if (!this.isBrowser) return;
+
+    this.desktopMediaQuery = window.matchMedia('(min-width: 768px)');
+    this.useDesktopImages = this.desktopMediaQuery.matches;
+
+    // Update slider images when user resizes the viewport.
+    this.desktopMediaQuery.addEventListener('change', this.handleDesktopMediaQueryChange);
+  }
+
+  private handleDesktopMediaQueryChange = (): void => {
+    if (!this.desktopMediaQuery) return;
+    this.useDesktopImages = this.desktopMediaQuery.matches;
+    this.cdr.markForCheck();
+  };
 
   getDestination() {
     // Use getDestination() which handles cache and API calls
@@ -537,17 +673,11 @@ export class HomeComponent implements OnInit {
     items: 1,
     autoplay: true,
     smartSpeed: 2500,
-    animateIn: 'fadeIn',
-    animateOut: 'fadeOut',
+    // Custom slice + text animations handle hero motion; disable Owl fade on the slide
+    animateIn: false,
+    animateOut: false,
   };
 
-  images = [
-    '../../../assets/image/Aswan Slider.webp',
-    '../../../assets/image/Luxor Slider.webp',
-    '../../../assets/image/Grand.webp',
-    '../../../assets/image/banner.webp',
-    
-  ];
 
   destinationsOptions: OwlOptions = {
     loop: true,

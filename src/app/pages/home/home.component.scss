@@ -2,47 +2,100 @@
 
 main {
 
-  margin-bottom: 50px;
-  height: calc(100vh - 150px);
+  margin-bottom: 110px;
+  $slider-height: calc(100vh - 110px);
+  height: $slider-height;
 
   .main-slider {
     position: relative;
     width: 100%;
-    height: calc(100vh - 150px);
+    height: $slider-height;
     overflow: hidden;
 
     &__carousel {
       position: absolute;
       inset: 0;
       z-index: 0;
+      /* Without this, % heights inside Owl can collapse to 0 (custom elements default to inline). */
+      min-height: $slider-height;
     }
 
     &__slide {
+      position: relative;
       width: 100%;
-      height: calc(100vh - 150px);
-     
+      height: $slider-height;
     }
 
-    &__img {
+    /** Full-bleed fallback / underlay for slice `background-image` issues */
+    &__img-under {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       width: 100%;
-      height: calc(100vh - 150px); 
+      height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center;
       display: block;
+      pointer-events: none;
     }
 
+    .slice-container {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-    // Owl carousel fill height
+    .slice {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(50px) scale(1.1);
+      will-change: transform;
+      transition-property: opacity, transform;
+      transition-duration: 0.25s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0s;
+      backface-visibility: hidden;
+    }
+
+    &__slide.active-slide .slice {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition-duration: 0.65s;
+    }
+
+    @for $i from 1 through 8 {
+      &__slide.active-slide .slice:nth-child(#{$i}) {
+        transition-delay: ($i - 1) * 0.1s;
+      }
+    }
+
+    // Owl carousel fill height (hosts must be block-level for % height to work)
     ::ng-deep .main-slider__carousel {
+      owl-carousel-o,
+      owl-stage {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: $slider-height;
+      }
+
       .owl-carousel,
+      .owl-carousel.owl-theme,
       .owl-stage-outer,
       .owl-stage,
       .owl-item {
         height: 100%;
+        min-height: $slider-height;
       }
 
       .owl-item .main-slider__slide {
         height: 100%;
+        min-height: $slider-height;
       }
     }
 
@@ -67,6 +120,12 @@ main {
       max-width: 90%;
       color: #fff;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 
       h5 {
         font-size: clamp(0.95rem, 2.2vw, 1.25rem);
@@ -80,6 +139,11 @@ main {
         margin: 0;
         line-height: 1.2;
       }
+    }
+
+    .slider-content.show-text .slider-content__text {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (max-width: 768px) {
@@ -116,12 +180,11 @@ main {
 
   .formBox {
     position: relative;
-    transform: translateY(-120%);
+    transform: translateY(-22%);
     z-index: 10;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.98) !important;
-    // border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     width: 100%;
     max-width: 1100px;
@@ -130,28 +193,39 @@ main {
     visibility: visible !important;
     display: block !important;
     flex-shrink: 0;
+    padding: 0.75rem 1rem !important;
 
     .mainBtn {
-      padding: 17px 5px !important;
+      padding: 10px 8px !important;
+      font-size: 0.875rem;
     }
 
     @media (max-width: 1200px) {
       max-width: 95%;
-      padding: 1.5rem !important;
+      padding: 0.65rem 0.9rem !important;
     }
 
     @media (max-width: 992px) {
-      padding: 1.25rem !important;
+      padding: 0.6rem 0.85rem !important;
       border-radius: 1rem !important;
+      .mainBtn { padding: 9px 6px !important; font-size: 0.8125rem; }
     }
     @media (max-width: 768px) {
-      transform: translateY(-50%);
+      transform: translateY(-14%);
+      padding: 0.55rem 0.75rem !important;
+      .mainBtn { padding: 8px 6px !important; font-size: 0.8125rem; }
     }
     
     @media (max-width: 576px) {
       max-width: 98%;
-      padding: 1rem !important;
+      padding: 0.5rem 0.65rem !important;
       border-radius: 0.75rem !important;
+      .mainBtn { padding: 8px 6px !important; font-size: 0.75rem; }
+    }
+
+    @media (max-width: 380px) {
+      padding: 0.45rem 0.5rem !important;
+      .mainBtn { font-size: 0.7rem; padding: 7px 4px !important; }
     }
 
     &:hover {
@@ -176,39 +250,48 @@ main {
       opacity: 0.3;
     }
 
-    form {
+      form {
 
-      // Responsive form layout
-      @media (max-width: 768px) {
+      // Responsive form layout — consistent across breakpoints
+      @media (max-width: 991px) {
+        .col-md-3, .col-md-6 {
+          margin-bottom: 0.5rem;
+        }
+      }
 
-        .col-md-3,
-        .col-md-6 {
-          margin-bottom: 1rem;
+      @media (max-width: 767px) {
+        .col-md-3, .col-md-6 {
+          margin-bottom: 0.5rem;
+          flex: 0 0 100%;
+          max-width: 100%;
         }
       }
 
       @media (max-width: 576px) {
-
-        .col-md-3,
-        .col-md-6 {
-          width: 100%;
-          margin-bottom: 1rem;
+        .col-md-3, .col-md-6 {
+          margin-bottom: 0.4rem;
         }
       }
 
-      // Input with icon and label styling
+      @media (max-width: 380px) {
+        .col-md-3, .col-md-6 {
+          margin-bottom: 0.35rem;
+        }
+      }
+
+      // Input with icon and label styling — compact
       .input-with-icon-label {
         position: relative;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 8px;
         background: white;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-        padding: 12px 16px;
+        border-radius: 10px;
+        padding: 8px 10px;
         transition: all 0.3s ease;
         cursor: pointer;
-        min-height: 60px;
+        min-height: 44px;
 
         &:hover {
           border-color: $primary-color;
@@ -216,10 +299,10 @@ main {
         }
 
         .input-icon {
-          font-size: 20px;
+          font-size: 16px;
           color: $second-color;
           flex-shrink: 0;
-          width: 24px;
+          width: 20px;
           text-align: center;
         }
 
@@ -242,7 +325,7 @@ main {
             background: transparent;
             padding: 0;
             margin: 0;
-            font-size: 16px;
+            font-size: 14px;
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -260,20 +343,51 @@ main {
             position: relative;
 
             .input-value {
-              font-size: 16px;
+              font-size: 13px;
               font-weight: 600;
               color: #333;
-              line-height: 1.4;
+              line-height: 1.3;
             }
 
             .input-label {
-              font-size: 12px;
+              font-size: 10px;
               color: #999;
               line-height: 1.2;
-              margin-top: 2px;
+              margin-top: 1px;
             }
           }
         }
+      }
+
+      @media (max-width: 576px) {
+        .input-with-icon-label {
+          min-height: 42px;
+          padding: 6px 8px;
+          gap: 6px;
+          .input-icon { font-size: 14px; width: 18px; }
+          .input-display .input-value { font-size: 12px; }
+          .input-display .input-label { font-size: 9px; }
+        }
+      }
+
+      @media (max-width: 380px) {
+        .input-with-icon-label {
+          min-height: 40px;
+          padding: 5px 6px;
+          border-radius: 8px;
+          .input-display .input-value { font-size: 11px; }
+          .input-display .input-label { font-size: 9px; }
+        }
+      }
+
+      // Compact radio group
+      .make-trip-radio {
+        font-size: 0.8125rem;
+        margin-bottom: 0.25rem;
+        ::ng-deep .mat-mdc-radio-button .mdc-label { font-size: 0.8125rem; }
+      }
+      @media (max-width: 576px) {
+        .make-trip-radio { font-size: 0.75rem; ::ng-deep .mat-mdc-radio-button .mdc-label { font-size: 0.75rem; } }
       }
 
       // Remove all borders and outlines from select elements
@@ -285,7 +399,7 @@ main {
         border: $border !important;
         outline: none !important;
         box-shadow: none !important;
-        padding: 17px 5px !important;
+        padding: 10px 4px !important;
 
         &:focus {
           border: $border !important;
@@ -469,12 +583,12 @@ main {
 
   ::ng-deep {
 
-    .mat-mdc-tab-body-wrapper{
-      padding-top: 25px !important;
+    .mat-mdc-tab-body-wrapper {
+      padding-top: 12px !important;
     }
-    .mat-mdc-tab-labels{
-      gap: 25px !important;
-      transform: translateY(11px);
+    .mat-mdc-tab-labels {
+      gap: 10px !important;
+      transform: translateY(13px);
     }
 
 
@@ -483,7 +597,7 @@ main {
     }
 
     .mat-mdc-form-field-infix {
-      padding: 17px 5px !important;
+      padding: 10px 4px !important;
     }
 
     .mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
@@ -515,13 +629,14 @@ main {
 
     .mat-mdc-tab {
       position: relative;
-      min-height: 48px; /* ensure host has height so ::before/::after are visible */
+      min-height: 40px;
       transition: all 0.3s ease;
-      border-top-left-radius: 18px;
-      border-top-right-radius: 18px;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
       margin-right: 5px;
       background-color: $primary-color !important;
       color: #fff !important;
+      font-size: 0.875rem;
 
       // Curve at bottom-left — same as ::after but direction left (mirror of right)
       &::before {
@@ -620,20 +735,23 @@ main {
         transform: translateY(-53px);
       }
       .mat-mdc-tab-labels{
-        transform: translateY(-14px);
+        transform: translateY(-4px);
       }
 
     }
+    @media (max-width: 768px) {
+      .mat-mdc-tab-body-wrapper { padding-top: 10px !important; }
+      .mat-mdc-tab-labels { gap: 6px !important; }
+      .mat-mdc-tab { min-height: 38px; font-size: 0.8125rem; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+    }
     @media (max-width: 576px) {
-      
-      .mat-mdc-tab-labels{
-        transform: translateY(-11px);
-      }
+      .mat-mdc-tab-body-wrapper { padding-top: 8px !important; }
+      .mat-mdc-tab-labels { transform: translateY(-3px); gap: 4px !important; }
+      .mat-mdc-tab { min-height: 36px; font-size: 0.75rem; }
     }
     @media (max-width: 450px) {
-      .mdc-tab {
-        padding: 0 4px !important;
-      }
+      .mdc-tab { padding: 0 4px !important; }
+      .mat-mdc-tab { min-height: 34px; font-size: 0.7rem; }
     }
 
     .mat-mdc-tab-header {
@@ -655,152 +773,6 @@ main {
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 240px;
-  }
-
-
-
-}
-
-.newServices {
-  .item {
-    min-height: 240px;
-  }
-}
-
-.new-about-section {
-  background-image: url('../../../assets/image/home4-about-bg.png'), linear-gradient(180deg, #FFF2E2 0%, #FFF2E2 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    .worldWideImages {
-      li {
-        width: 40px;
-        height: 40px;
-        margin-left: -20px;
-        &:first-child {
-          margin-left: 0;
-        }
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-    }
-    figure{
-      height: 200px;
-      margin-bottom: 0;
-    }
-
-    .link:hover {
-      color: $primary-color !important;
-      i {
-        transform: rotate(-30deg);
-      }
-    }
-
-    
-    .col-6:first-child >div {
-      border-bottom-right-radius: 0 !important;
-    }
-    .col-6:nth-child(2) figure {
-      border-bottom-left-radius: 0 !important;
-    }
-    .col-6:nth-child(3) figure {
-      border-top-right-radius: 0 !important;
-    }
-    .col-6:last-child figure {
-      border-top-left-radius: 0 !important;
-    }
-}
-
-
-.video-section {
-  // background-image: url('../../../assets/image/hom4-why-choose-bg.webp'), linear-gradient(180deg, #F2F2FF 0%, #F2F2FF 100%);
-  // background-size: cover;
-  // background-repeat: no-repeat;
-
-  .contactInfo {
-    border: 8px solid #F2F2FF;
-    transform: translateY(40px);
-    position: relative;
-    z-index: 10;
-    max-width: 700px;
-    margin: 0 auto;
-    @media (max-width: 768px) {
-      max-width: 95%;
-
-    }
-    @media (max-width: 576px) {
-      max-width: 95%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 10px;
-      // padding: 10px;
-      border-radius: 10px !important;
-      border: 1px solid #F2F2FF;
-      // background-color: #F2F2FF;
-    }
-
-  }
-
-}
-
-.category-cart {
-  figure {
-    height: 200px;
-    transition: $transition;
-    -webkit-transition: $transition;
-    -moz-transition: $transition;
-    -ms-transition: $transition;
-    -o-transition: $transition;
-  }
-
-  figcaption {
-    padding-bottom: 0 !important;
-
-    h3 {
-      margin-bottom: 0px;
-    }
-
-    h4 {
-      margin-bottom: 0;
-      transform: translateY(40px);
-      -webkit-transform: translateY(40px);
-      -moz-transform: translateY(40px);
-      -ms-transform: translateY(40px);
-      -o-transform: translateY(40px);
-    }
-  }
-
-  &:hover {
-    figure {
-      height: 160px;
-    }
-
-    figcaption {
-
-      h3,
-      h4 {
-        color: $primary-color;
-      }
-
-      h3 {
-        margin-bottom: 4px;
-      }
-
-      h4 {
-        margin-bottom: 4px;
-        transform: translateY(0px);
-        -webkit-transform: translateY(0px);
-        -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
-        -o-transform: translateY(0px);
-      }
-
-    }
+    margin-bottom: 150px;
   }
 }

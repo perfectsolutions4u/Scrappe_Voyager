@@ -86,9 +86,9 @@
 
 .btn-group {
   .btn.active {
-    background-color: #0d6efd;
+    background-color: $primary-color;
     color: white;
-    border-color: #0d6efd;
+    border-color: $primary-color;
   }
 }
 

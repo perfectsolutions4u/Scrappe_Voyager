@@ -6,18 +6,68 @@
     <!-- do slider for images and text  -->
     <div class="main-slider">
       <div class="main-slider__carousel">
-        <owl-carousel-o [options]="sliderOptions">
-          @for (image of images; track image) {
-          <ng-template carouselSlide>
-            <div class="main-slider__slide">
-              <img [src]="image" alt="image" class="main-slider__img">
-            </div>
-          </ng-template>
+        <owl-carousel-o
+          [options]="sliderOptions"
+          (translated)="onMainSliderTranslated($event)"
+          (initialized)="onMainSliderInitialized($event)"
+        >
+          <!-- desktop images use from 768px and up, mobile images use from 0px to 767px -->
+          @if (useDesktopImages) {
+            @for (image of imageDesktop; track image; let slideIndex = $index) {
+              <ng-template carouselSlide>
+                <div
+                  class="main-slider__slide"
+                  [class.active-slide]="isHeroSlideActive(slideIndex)"
+                >
+                  <!-- Underlay: always shows the image (same path as slices) if CSS background is stripped or slices stay transparent -->
+                  <img
+                    [src]="resolveSliderAssetUrl(image)"
+                    alt=""
+                    class="main-slider__img-under"
+                    decoding="async"
+                    fetchpriority="high"
+                  />
+                  <div class="slice-container" aria-hidden="true">
+                    <div
+                      *ngFor="let si of sliceIndices"
+                      class="slice"
+                      [style.background-image]="getTrustedSliceBackground(image)"
+                      [ngStyle]="getSliceLayoutStyle(si)"
+                    ></div>
+                  </div>
+                </div>
+              </ng-template>
+            }
+          } @else {
+            @for (image of imageMobile; track image; let slideIndex = $index) {
+              <ng-template carouselSlide>
+                <div
+                  class="main-slider__slide"
+                  [class.active-slide]="isHeroSlideActive(slideIndex)"
+                >
+                  <img
+                    [src]="resolveSliderAssetUrl(image)"
+                    alt=""
+                    class="main-slider__img-under"
+                    decoding="async"
+                    fetchpriority="high"
+                  />
+                  <div class="slice-container" aria-hidden="true">
+                    <div
+                      *ngFor="let si of sliceIndices"
+                      class="slice"
+                      [style.background-image]="getTrustedSliceBackground(image)"
+                      [ngStyle]="getSliceLayoutStyle(si)"
+                    ></div>
+                  </div>
+                </div>
+              </ng-template>
+            }
           }
         </owl-carousel-o>
       </div>
 
-      <div class="slider-content">
+      <div class="slider-content" [class.show-text]="showSliderText">
         <div class="slider-content__text text-center mb-5">
           <h5 class="text-capitalize mb-4">get start your journey with us</h5>
           <h2 class="text-capitalize">scarabée Voyageur Egypt</h2>
@@ -26,15 +76,15 @@
       
     </div>
     <!-- form search -->
-    <div class="formBox bg-white rounded-4 p-4 py-3 sideBar text-capitalize">
+    <div class="formBox bg-white rounded-4 sideBar text-capitalize">
       <mat-tab-group>
         <mat-tab [label]="'home.findYourTour' | translate">
           <form
             [formGroup]="tourSearchForm"
             (ngSubmit)="onTourSubmit()"
-            class="row g-3 align-items-center justify-content-between"
+            class="row g-2 align-items-center justify-content-between tour-form"
           >
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-compass input-icon"></i>
                 <div class="input-content">
@@ -53,7 +103,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-layer-group input-icon"></i>
                 <div class="input-content">
@@ -72,7 +122,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-calendar-days input-icon"></i>
                 <div class="input-content">
@@ -92,7 +142,7 @@
               </div>
             </div>
 
-            <div class="col-md-3 col-12">
+            <div class=" col-6 col-lg-3">
               <div class="text-capitalize flexCenter">
                 <button type="submit" class="mainBtn Btn flexBetween gap-2 w-100">
                   {{ 'common.search' | translate
@@ -107,13 +157,13 @@
           <form
             [formGroup]="makeTripForm"
             (ngSubmit)="onMakeTripSubmit()"
-            class="row g-3 align-items-center justify-content-between"
+            class="row g-2 align-items-center justify-content-between tour-form"
           >
             <div class="col-12">
               <mat-radio-group
                 [value]="MarkTime"
                 (change)="onChangeTime($event)"
-                class="d-flex flex-wrap gap-1"
+                class="d-flex flex-wrap gap-1 make-trip-radio"
               >
                 <mat-radio-button value="exact">{{
                   'home.haveAnExactTime' | translate
@@ -123,7 +173,7 @@
                 }}</mat-radio-button>
               </mat-radio-group>
             </div>
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-compass input-icon"></i>
                 <div class="input-content">
@@ -149,7 +199,7 @@
 
             <!-- if have exact time -->
             @if (MarkTime==='exact') {
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-calendar-days input-icon"></i>
                 <div class="input-content">
@@ -174,7 +224,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
                 <i class="fa fa-calendar-days input-icon"></i>
                 <div class="input-content">
@@ -200,7 +250,7 @@
 
             <!-- if have aproximate time -->
             @if (MarkTime==='approximate') {
-            <div class="col-md-6">
+            <div class=" col-6 col-lg-6">
               <div class="input-with-icon-label">
                 <i class="fa fa-calendar-days input-icon"></i>
                 <div class="input-content">
@@ -220,7 +270,7 @@
             </div>
             }
 
-            <div class="col-md-3">
+            <div class=" col-6 col-lg-3">
               <div class="text-capitalize flexCenter">
                 <button type="submit" class="mainBtn Btn flexBetween gap-2 w-100">
                   {{ 'common.makeTrip' | translate
@@ -569,8 +619,6 @@
 <app-make-trip-form></app-make-trip-form>
 
 
-<!-- One Day Trips 'tours' -->
-
 <!-- Travel Inspirations 'blogs' -->
 <section class="travel-inspirations my-5 pt-5">
   <div class="container">
@@ -628,4 +676,4 @@
   </div>
 </section>
 
-<!-- counters -->
+
