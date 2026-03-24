@@ -36,13 +36,13 @@ export class FaqContent implements OnInit {
           console.warn('Invalid FAQ data structure:', res);
           this.faqs = [];
         }
-        this.openIndex = this.faqs.length > 0 ? 0 : null;
+        // this.openIndex = this.faqs.length > 0 ? 0 : null;
         this.cdr.markForCheck();
       },
       error: (err) => {
         console.error('Error loading FAQs:', err);
         this.faqs = [];
-        this.openIndex = null;
+        // this.openIndex = null;
         this.cdr.markForCheck();
       },
     });

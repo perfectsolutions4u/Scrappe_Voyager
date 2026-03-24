@@ -73,7 +73,7 @@
             get start your journey with us
           </h5>
           <h2 class="text-capitalize mb-4" [class.hero-caption-visible]="heroCaptionStep >= 2">
-            scarabée Voyageur Egypt
+            scarabée Voyageur 
           </h2>
           <button
             class="mainBtn"
@@ -344,7 +344,7 @@
     <div class="bg-secondary bg-opacity-10 rounded-pill px-3 py-1 ">
       You’ve Customize Your Travel Package by One Click.
     </div>
-    <div routerLink="/contact" class="bg-secondary bg-opacity-10 rounded-pill px-3 py-1 fw-bold cPointer">
+    <div routerLink="/makeTrip" class="bg-secondary bg-opacity-10 rounded-pill px-3 py-1 fw-bold cPointer">
       Customize Package <i class="fa fa-arrow-right mx-1"></i>
     </div>
    </div>
@@ -552,7 +552,7 @@
   <div class="container-fluid">
 
     <div class="contactInfo flexBetween bgMainColor text-white rounded-pill px-4 py-3 ">
-      <h6>Need to Help? Don’t Hesitate Friendly Collaboarte with Experties</h6>
+      <h6 class="text-center text-md-start">Need to Help? Don’t Hesitate Friendly Collaboarte with Experties</h6>
       <div class="d-flex align-items-center">
         <div class="iconBox border rounded-circle me-3 p-2 flex-shrink-0"><i class="fa fa-phone"></i></div>
         <div>
@@ -571,22 +571,22 @@
 <!-- Best services -->
 <!-- <app-best-services></app-best-services> -->
 
-<!-- our popular tours slider carousel-->
+<!-- our popular tours slider carousel  day tours-->
 <section class="our-tours my-5 pt-5">
   <div class="container">
     <!-- main title -->
     <div class="row justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-8">
         <div class="mainTitle">
-          <h2 class="text-capitalize">Popular Travel Packages</h2>
-          <p>A curated list of the most popular travel packages based on different destinations.</p>
+          <h2 class="text-capitalize">Popular Day Tours</h2>
+          <p>A curated list of the most popular tour of day tour category based on different destinations.</p>
         </div>
       </div>
     </div>
 
     <!-- tours cards slider carousel -->
     <owl-carousel-o [options]="popularToursOptions">
-      @for (tour of popularTours; track tour.id) {
+      @for (tour of dayTourTours; track tour.id) {
       <ng-template carouselSlide>
         <app-tour-cart [tour]="tour"></app-tour-cart>
       </ng-template>
@@ -595,22 +595,22 @@
   </div>
 </section>
 
-<!-- Last Minute Deals! 'recent tours'   -->
+<!-- Last Minute Deals! 'recent tours '  multi-days tours-->
 <section class="my-5 pt-5">
   <div class="container">
     <!-- main title -->
     <div class="row justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-8">
         <div class="mainTitle">
-          <h2 class="text-capitalize">Recent Tours</h2>
-          <p>A curated list of the most recent travel packages based on different destinations.</p>
+          <h2 class="text-capitalize">Popular Multi-Days Tours</h2>
+          <p>A curated list of the most popular tour of multi-days category based on different destinations.</p>
         </div>
       </div>
     </div>
 
     <!-- tours cards   -->
     <div class="row g-3">
-      @for (tour of popularTours.slice(-6); track tour.id) {
+      @for (tour of packagesTours.slice(-6); track tour.id) {
       <div class="col-md-6 col-lg-4">
         <app-tour-cart [tour]="tour"></app-tour-cart>
       </div>

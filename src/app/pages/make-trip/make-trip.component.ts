@@ -220,7 +220,7 @@ export class MakeTripComponent implements OnInit, OnDestroy {
       last_name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       nationality: new FormControl('', [Validators.required]),
-      phone_number: new FormControl('' , [Validators.required, Validators.pattern(/^01[0-2|5]\d{8}$/)]),
+      phone_number: new FormControl('' , [Validators.required , Validators.pattern(/^[0,9]$/)]),
       adults: new FormControl(0),
       children: new FormControl(0),
       infants: new FormControl(0),

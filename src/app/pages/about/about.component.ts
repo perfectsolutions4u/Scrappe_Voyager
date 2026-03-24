@@ -5,11 +5,12 @@ import { BestServices } from '../../shared/components/best-services/best-service
 import { CommonModule } from '@angular/common';
 import { Parteners } from '../../shared/components/parteners/parteners.component';
 import { VideoComponent } from '../../shared/components/video/video.component';
+import { WhyChooseUs } from "../../shared/components/why-choose-us/why-choose-us.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [BannerComponent, BestServices, CommonModule, VideoComponent],
+  imports: [BannerComponent, BestServices, CommonModule, VideoComponent, WhyChooseUs],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })

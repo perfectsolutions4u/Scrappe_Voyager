@@ -16,7 +16,7 @@ import { FaqContent } from "../../shared/components/faq-content/faq-content.comp
 @Component({
   selector: 'app-destination-details',
   standalone: true,
-  imports: [BannerComponent, CarouselModule, TourCartComponent, WhyChooseUs, BlogCartComponent, FaqContent],
+  imports: [BannerComponent, CarouselModule, TourCartComponent, BlogCartComponent, FaqContent],
   templateUrl: './destination-details.component.html',
   styleUrl: './destination-details.component.scss',
 })

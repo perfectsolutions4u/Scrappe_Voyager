@@ -147,6 +147,8 @@ export class HomeComponent implements OnInit {
     'december',
   ];
   popularTours: Itour[] = [];
+  packagesTours: Itour[] = [];
+  dayTourTours: Itour[] = [];
   allDestinations: IDestination[] = [];
   allCategories: ICategory[] = [];
   allDurations: IDuration[] = [];
@@ -422,29 +424,56 @@ export class HomeComponent implements OnInit {
   }
 
   getPopularTours() {
+    // packages tours
     this._DataService
-      .getTours()
+      .getTours({category_slug: 'Multi-Days-Tours'})
       .pipe(takeUntil(this.$destory))
       .subscribe({
         next: (res) => {
-          // Handle both response formats: { data: { data: [...] } } or { data: [...] }
-          const tours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
-          if (Array.isArray(tours) && tours.length > 0) {
+          // console.log('popular day tours', res);
+          const packagesTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
+          if (Array.isArray(packagesTours) && packagesTours.length > 0) {
             setTimeout(() => {
-              this.popularTours = tours;
-              console.log('popular tours', this.popularTours);
+              this.packagesTours = packagesTours;
+              console.log('packages tours', this.packagesTours);
               this.cdr.markForCheck();
             }, 0);
           } else {
             // Ensure it's always an array to avoid iterator errors
-            this.popularTours = [];
+            this.packagesTours = [];
           }
         },
         error: (err) => {
           console.error('Error loading popular tours:', err);
-          this.popularTours = [];
+          // this.popularTours = [];
         },
       });
+
+    // day tour tours
+    this._DataService
+      .getTours({category_slug: 'day-tours'})
+      .pipe(takeUntil(this.$destory))
+      .subscribe({
+        next: (res) => {
+          // console.log('popular day tours', res);
+          const dayTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
+          if (Array.isArray(dayTours) && dayTours.length > 0) {
+            setTimeout(() => {
+              this.dayTourTours = dayTours;
+              console.log('day tour tours', this.dayTourTours);
+              this.cdr.markForCheck();
+            }, 0);
+          } else {
+            // Ensure it's always an array to avoid iterator errors
+            this.dayTourTours = [];
+          }
+        },
+        error: (err) => {
+          console.error('Error loading day tour tours:', err);
+          // this.popularTours = [];
+        },
+      });
+
   }
 
   ngOnDestroy(): void {

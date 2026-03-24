@@ -137,7 +137,8 @@
                   <span class="faq-question-text">{{ day.title || 'Day ' + (i + 1) }}</span>
                   <span class="faq-icon">
                     @if (isOpen(i)) {
-                    <svg
+                    <i class="fa fa-minus-square"></i>
+                    <!-- <svg
                       width="12"
                       height="12"
                       viewBox="0 0 12 12"
@@ -145,9 +146,10 @@
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path d="M6 3L10 7H2L6 3Z" fill="currentColor" transform="rotate(180 6 6)" />
-                    </svg>
+                    </svg> -->
                     } @else {
-                    <svg
+                    <i class="fa fa-plus-square"></i>
+                    <!-- <svg
                       width="12"
                       height="12"
                       viewBox="0 0 12 12"
@@ -155,7 +157,7 @@
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path d="M6 3L10 7H2L6 3Z" fill="currentColor" />
-                    </svg>
+                    </svg> -->
                     }
                   </span>
                 </button>
@@ -176,11 +178,11 @@
 
           <!-- included & excluded -->
           <div class="mb-5">
-            <h2 class="text-capitalize mb-3 text-color h4">Package Features List</h2>
+            <!-- <h2 class="text-capitalize mb-3 text-color h4">Package Features List</h2> -->
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="">
-                  <h6 class="mb-3 text-capitalize">Included features</h6>
+                  <h6 class="mb-3 text-capitalize">Tour Included </h6>
                   <ul class="list-unstyled">
                     @for (include of includedList; track $index) {
                     <li class="d-flex gap-2 mb-2">
@@ -192,11 +194,11 @@
                         viewBox="0 0 16 14"
                       >
                         <path
-                          fill="#1781FE"
+                          fill="green"
                           d="M15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15V16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16V15C11.866 15 15 11.866 15 8Z"
                         ></path>
                         <path
-                          fill="#1781FE"
+                          fill="green"
                           d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                         ></path>
                       </svg>
@@ -208,7 +210,7 @@
               </div>
               <div class="col-md-6">
                 <div class="">
-                  <h6 class="mb-3 text-capitalize">Excluded features</h6>
+                  <h6 class="mb-3 text-capitalize">Tour Excluded </h6>
                   <ul class="list-unstyled">
                     @for (exclude of excludedList; track $index) {
                     <li class="d-flex gap-2 mb-2">
@@ -221,11 +223,11 @@
                       >
                         <g>
                           <path
-                            fill="#FF3927"
+                            fill="red"
                             d="M15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C11.866 15 15 11.866 15 8ZM16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8Z"
                           ></path>
                           <path
-                            fill="#FF3927"
+                            fill="red"
                             d="M6.00165 5.00036C5.8601 5.00368 5.72612 5.05514 5.62413 5.15703L5.1296 5.65267C4.89714 5.88495 4.92646 6.28828 5.19443 6.55662L6.67129 8.03561L5.19443 9.51394C4.92646 9.78219 4.89704 10.1856 5.1296 10.4184L5.62413 10.9136C5.8566 11.1458 6.2592 11.117 6.52753 10.8486L8.0044 9.36982L9.48126 10.8486C9.74978 11.117 10.1527 11.1458 10.3847 10.9136L10.8799 10.4184C11.1119 10.1857 11.0831 9.78228 10.8145 9.51394L9.33769 8.03561L10.8145 6.55662C11.0831 6.28828 11.1119 5.88495 10.8799 5.65267L10.3847 5.15703C10.1527 4.92429 9.74978 4.9537 9.48126 5.22241L8.0044 6.70084L6.52753 5.2225C6.37677 5.07109 6.18321 4.99594 6.00165 5.00036Z"
                           ></path>
                         </g>

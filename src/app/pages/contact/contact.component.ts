@@ -8,6 +8,7 @@ import { DataService } from '../../services/data.service';
 import { SeoService } from '../../services/seo.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
+import { WhyChooseUs } from "../../shared/components/why-choose-us/why-choose-us.component";
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +20,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     BannerComponent,
     TranslateModule,
-  ],
+    WhyChooseUs
+],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

@@ -20,7 +20,7 @@
     <div class="row g-3 mb-5 pb-3">
       <div class="col-md-6 col-lg-4">
         <div class="item p-3 rounded-3 shadow-sm border">
-          <i class="fa fa-phone-volume fs-1"></i>
+          <i class="fa fa-phone-volume fs-4"></i>
           <h3 class="text-capitalize my-2">{{ 'contact.callUs' | translate }}</h3>
           @if (getPhoneDisplay()) {
           <a
@@ -34,7 +34,7 @@
 
       <div class="col-md-6 col-lg-4">
         <div class="item p-3 rounded-3 shadow-sm border">
-          <i class="fa fa-envelope fs-1"></i>
+          <i class="fa fa-envelope fs-4"></i>
           <h3 class="text-capitalize my-2">{{ 'contact.emailUs' | translate }}</h3>
           @if (userEmail) {
           <a [href]="'mailto:' + userEmail" class="text-decoration-none  fw-bold text-break">{{
@@ -46,9 +46,9 @@
 
       <div class="col-md-6 col-lg-4">
         <div class="item p-3 rounded-3 shadow-sm border">
-          <i class="fa fa-map-marker-alt fs-1"></i>
+          <i class="fa fa-map-marker-alt fs-4"></i>
           <h3 class="text-capitalize my-2">{{ 'contact.visitUs' | translate }}</h3>
-          <p class=" fw-bold">{{ userAddress }}</p>
+          <p class=" fw-bold mb-0">{{ userAddress }}</p>
         </div>
       </div>
     </div>
@@ -141,6 +141,8 @@
 <section class="mb-5">
   <app-make-trip-form></app-make-trip-form>
 </section>
+
+<app-why-choose-us></app-why-choose-us>
 
 <section class="my-5 py-5">
   <div class="container">

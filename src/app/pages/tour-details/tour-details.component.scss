@@ -61,6 +61,18 @@
     background: #fff;
     border-color: rgba($primary-color, 0.5);
     box-shadow: 0 2px 8px rgba(0, 102, 255, 0.1);
+
+    .faq-question{
+      background-color: $primary-color;
+      color: #fff;
+      .faq-icon {
+        color: #fff;
+      }
+    }
+
+    .faq-answer {
+      background-color: #eee;
+    }
   }
 }
 
@@ -79,14 +91,19 @@
   font-weight: 500;
   color: #333;
 
-  &:hover {
-    background: rgba($primary-color, 0.05);
+  &:hover, &.active {
+    background: rgba($primary-color, 1);
+    color: #fff;
+    .faq-icon {
+      color: #fff;
+    }
   }
 
-  .faq-item.active & {
-    color: $primary-color;
-    font-weight: 600;
-  }
+  // .faq-item.active {
+  //   background-color: $primary-color;
+  //   color: #fff;
+  //   font-weight: 600;
+  // }
 }
 
 .faq-question-text {
