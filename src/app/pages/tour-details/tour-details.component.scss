@@ -7,7 +7,7 @@
       height: 100%;
       object-fit: cover;
       width: 100%;
-      animation: zoomIn 18s ease-out infinite;
+      // animation: zoomIn 18s ease-out infinite;
       transition: $transition;
     }
     background-color: #000000e8;
@@ -21,17 +21,37 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 
+    h6{
+      animation: bannerContentIn 0.6s ease-out 1s both;
+    }
+
+    h1{
+      animation: bannerContentIn 0.6s ease-out 2s both;
+    }
+
     .info{
       background-color: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(20px);
       border-radius: $border-radius;
       // font-size: 20px;
       padding: 14px 30px;
-}
+      animation: bannerContentIn 0.6s ease-out 3s both;
+    }
   }
 
   @media (max-width: 768px) {
     height: 300px;
+  }
+}
+
+@keyframes bannerContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -194,41 +214,41 @@
   }
 }
 
-@keyframes zoomIn {
-  0% {
-    transform: scale(1.12) translateY(-2%);
-    transform-origin: center;
-  }
-  20% {
-    transform: scale(1.05) translateY(-2%);
-    transform-origin: center;
-  }
-  20% {
-    transform: scale(.95) translateY(0%);
-    transform-origin: center;
-  }
-  40% {
-    transform: scale(.85) translateY(0%);
-    transform-origin: center;
-  }
-  60% {
-    transform: scale(.75) translateY(0%);
-    transform-origin: center;
-  }
+// @keyframes zoomIn {
+//   0% {
+//     transform: scale(1.12) translateY(-2%);
+//     transform-origin: center;
+//   }
+//   20% {
+//     transform: scale(1.05) translateY(-2%);
+//     transform-origin: center;
+//   }
+//   20% {
+//     transform: scale(.95) translateY(0%);
+//     transform-origin: center;
+//   }
+//   40% {
+//     transform: scale(.85) translateY(0%);
+//     transform-origin: center;
+//   }
+//   60% {
+//     transform: scale(.75) translateY(0%);
+//     transform-origin: center;
+//   }
   
-  80% {
-    transform: scale(.85) translateY(0%);
-    transform-origin: center;
-  }
-  90% {
-    transform: scale(.95) translateY(0%);
-    transform-origin: center;
-  }
-  100% {
-    transform: scale(1) translateY(2%);
-    transform-origin: center;
-  }
-}
+//   80% {
+//     transform: scale(.85) translateY(0%);
+//     transform-origin: center;
+//   }
+//   90% {
+//     transform: scale(.95) translateY(0%);
+//     transform-origin: center;
+//   }
+//   100% {
+//     transform: scale(1) translateY(2%);
+//     transform-origin: center;
+//   }
+// }
 
 // Booking Form Styles
 .booking-input-wrapper {
