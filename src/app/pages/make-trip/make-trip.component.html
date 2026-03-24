@@ -136,7 +136,11 @@
                     </h4>
                     <mat-form-field appearance="outline" class="w-100 date-range-field">
                       <mat-label>Select a date range</mat-label>
-                      <mat-date-range-input [formGroup]="secondFormGroup" [rangePicker]="picker">
+                      <mat-date-range-input
+                        [formGroup]="secondFormGroup"
+                        [rangePicker]="picker"
+                        [min]="minSelectableDate"
+                      >
                         <input
                           matStartDate
                           matInput
@@ -447,9 +451,9 @@
                 </mat-form-field>
               </div>
 
-              <div class="step-actions final-actions" @fadeInUp>
+              <div class="step-actions final-actions flex-nowrap" @fadeInUp>
                 <button
-                  class="modern-btn btn-secondary"
+                  class="modern-btn btn-secondary "
                   matStepperPrevious
                   *ngIf="!prefilled"
                   type="button"
@@ -457,11 +461,11 @@
                   <i class="fa fa-arrow-left me-2"></i>
                   <span>Back</span>
                 </button>
-                <button (click)="submitForm()" class="modern-btn btn-success" type="button">
+                <button (click)="submitForm()" class="modern-btn btn-success " type="button">
                   <i class="fa fa-paper-plane me-2"></i>
                   <span>Submit Inquiry</span>
                 </button>
-                <button class="modern-btn btn-outline" (click)="stepper.reset()" type="button">
+                <button class="modern-btn btn-outline " (click)="stepper.reset()" type="button">
                   <i class="fa fa-redo me-2"></i>
                   <span>Reset</span>
                 </button>

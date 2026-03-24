@@ -465,6 +465,7 @@
                   <input
                     matInput
                     formControlName="start_date"
+                    [min]="minSelectableDate"
                     [matDatepicker]="bookingDatepicker"
                     readonly
                   />
@@ -816,6 +817,7 @@
                     <input
                       matInput
                       formControlName="travel_date"
+                      [min]="minSelectableDate"
                       [matDatepicker]="enquiryDatepicker"
                       readonly
                     />

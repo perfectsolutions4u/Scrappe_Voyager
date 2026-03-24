@@ -218,6 +218,7 @@
                     <input
                       formControlName="start_date"
                       matInput
+                      [min]="minSelectableDate"
                       [matDatepicker]="StartDatepicker"
                       (click)="openStartDatePicker()"
                       readonly
@@ -243,6 +244,7 @@
                     <input
                       formControlName="end_date"
                       matInput
+                      [min]="minSelectableDate"
                       [matDatepicker]="EndDatepicker"
                       (click)="openEndDatePicker()"
                       readonly

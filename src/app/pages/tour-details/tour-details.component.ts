@@ -89,6 +89,9 @@ export class TourDetailsComponent implements OnInit {
 
   // Selected option IDs (options form value) – pricing uses form adults/children/infants
 
+  /** Past calendar days disabled (today onward only). */
+  readonly minSelectableDate = DatepickerService.startOfTodayLocal();
+
   // booking form UI state
   isTravelersDropdownOpen: boolean = false;
   selectedTourType: string = '';

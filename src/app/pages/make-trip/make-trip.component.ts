@@ -104,6 +104,9 @@ import { DatepickerService } from '../../services/datepicker.service';
   styleUrl: './make-trip.component.scss',
 })
 export class MakeTripComponent implements OnInit, OnDestroy {
+  /** Past calendar days disabled (today onward only). */
+  readonly minSelectableDate = DatepickerService.startOfTodayLocal();
+
   private $destory = new Subject<void>();
   constructor(
     private _MaketripService: MakeTripService,
@@ -232,18 +235,27 @@ export class MakeTripComponent implements OnInit, OnDestroy {
     return v instanceof Date ? v : v ? new Date(v) : null;
   }
 
+  /** Accepts array, single title, or comma-separated string e.g. "cairo,fayoum,alex". */
+  private parseDestinationsFromPayload(destination: string | string[] | undefined | null): string[] {
+    if (Array.isArray(destination)) {
+      return destination.map((d) => String(d).trim()).filter(Boolean);
+    }
+    if (destination == null || destination === '') {
+      return [];
+    }
+    return String(destination)
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
+
   private applyIncoming(data: TripPayload) {
     const destination = data.destination ?? '';
     const fromDate = this.toDate(data.fromDuration ?? null);
     const toDate = this.toDate(data.ToDuration ?? null);
     const approx = data.appro ?? null;
 
-    // Handle destination as array (can be string or array)
-    const destinationArray = Array.isArray(destination)
-      ? destination
-      : destination
-      ? [destination]
-      : [];
+    const destinationArray = this.parseDestinationsFromPayload(destination);
     const destinationFormArray = this.firstFormGroup.get('destination') as FormArray;
     destinationFormArray.clear();
     destinationArray.forEach((dest: string) => {
@@ -302,7 +314,7 @@ export class MakeTripComponent implements OnInit, OnDestroy {
       const destinations = destinationFormArray.controls.map((control) => control.value);
 
       this.makeTripForm = {
-        destination: destinations, // Send as array
+        destination: destinations.filter(Boolean).join(','),
         ...this.secondFormGroup.value,
         ...this.submitFormGroup.value,
       };

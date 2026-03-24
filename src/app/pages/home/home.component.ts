@@ -75,6 +75,9 @@ export class HomeComponent implements OnInit {
   @ViewChild('StartDatepicker') startDatepicker!: MatDatepicker<Date>;
   @ViewChild('EndDatepicker') endDatepicker!: MatDatepicker<Date>;
 
+  /** Past calendar days disabled (today onward only). */
+  readonly minSelectableDate = DatepickerService.startOfTodayLocal();
+
   private $destory = new Subject<void>();
   isBrowser: boolean;
   useDesktopImages = false;

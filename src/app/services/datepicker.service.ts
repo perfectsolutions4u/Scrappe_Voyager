@@ -6,6 +6,15 @@ import { MatDatepicker } from '@angular/material/datepicker';
 })
 export class DatepickerService {
   /**
+   * Local midnight of today — use as `[min]` on Material datepickers so past days are disabled.
+   */
+  static startOfTodayLocal(): Date {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
+  /**
    * Opens a date picker if it exists
    * @param datepicker - The MatDatepicker instance to open
    */

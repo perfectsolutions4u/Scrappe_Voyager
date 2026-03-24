@@ -54,11 +54,13 @@
       padding: 0.5rem;
       border-radius: 10px;
       transition: all 0.3s ease;
-      margin-bottom: 0.25rem;
+      // margin-bottom: 0.25rem;
 
       &:hover {
-        background: rgba(129, 154, 145, 0.05);
-        transform: translateX(5px);
+        background: $second-color;
+        color: $primary-color !important;
+        border-radius: 8px !important;
+        transform: translate(5px , -5px);
       }
 
       .mat-step-label {
@@ -79,6 +81,9 @@
         color: white;
       }
     }
+    .mat-step-icon,.mat-stepper-horizontal-line{display: none !important; border: none !important;}
+    .mat-horizontal-stepper-header-container {flex-wrap: wrap !important; justify-content: center !important;}
+    .mat-horizontal-stepper-header{height: fit-content !important;}
 
     .mat-step-content {
       padding: 1rem 0;
@@ -239,8 +244,8 @@
   -o-transform: rotate(360deg);
 }
 
-.destination-card-label:hover .check-icon-wrapper,
-input:checked+.destination-card-label .check-icon-wrapper {
+/* fa-check only when selected — click again to deselect (no hover “fake” selected state) */
+input:checked + .destination-card-label .check-icon-wrapper {
   transform: scale(1);
 }
 
@@ -788,17 +793,15 @@ input[type="radio"] {
   }
 
   .step-actions {
-    flex-direction: column;
-
-    .modern-btn {
-      width: 100%;
+    .modern-btn{
+      padding: 0.75rem 1rem;
     }
   }
 
-  .final-actions {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  // .final-actions {
+  //   flex-direction: column;
+  //   gap: 0.75rem;
+  // }
 
   .counter-wrapper {
     gap: 0.75rem;
@@ -826,6 +829,14 @@ input[type="radio"] {
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
     z-index: 100;
     border-radius: 0;
+  }
+
+  .step-actions {
+    .modern-btn{
+      padding: 0.5rem 0.75rem;
+      font-size: 12px !important;
+    }
+    gap: 0.25rem !important;
   }
 
   .make-trip-section {
