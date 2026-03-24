@@ -1,4 +1,4 @@
-<div class="bgMainColor text-white p-3">
+<div class="bgMainColor text-white p-2">
   <!-- use carousel to show the site title -->
   <owl-carousel-o [options]="siteTitleOptions">
     @for (title of siteTitle; track title) {
@@ -15,7 +15,7 @@
 }
 
 <!-- Mobile Sidebar -->
-<div class="mobile-sidebar" [class.open]="sidebarOpen()">
+<div class="mobile-sidebar pb-5" [class.open]="sidebarOpen()">
   <div class="sidebar-header">
     <a routerLink="/" class="sidebar-logo" (click)="sidebarOpen.set(false)">
       <img [src]="logo" alt="logo" title="logo" class="logo-img" />
@@ -171,10 +171,10 @@
       <span>Make a Trip</span>
     </button>
 
-    <a [href]="getWhatsAppUrl()" class="whatsapp-section mb-2">
+    <!-- <a [href]="getWhatsAppUrl()" class="whatsapp-section mb-2">
       <i class="fab fa-whatsapp"></i>
       <span>{{phoneNumber}}</span>
-    </a>
+    </a> -->
     <a href="tel:{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section mb-2 textMainColor">
       <i class="fas fa-phone-volume"></i>
       <span>{{phoneNumber}}</span>
@@ -402,75 +402,11 @@
             <i class="fas fa-search"></i>
           </button>
 
-          <!-- whats phone number -->
-          <a [href]="getWhatsAppUrl()" [title]="phoneNumber" class="whatsapp-section">
-            <i class="fab fa-whatsapp"></i>
-            <!-- <span>{{phoneNumber}}</span> -->
-          </a>
 
           <a href="tel:{{phoneNumber}}" [title]="phoneNumber" class="whatsapp-section textMainColor">
             <i class="fas fa-phone-volume"></i>
             <!-- <span>{{phoneNumber}}</span> -->
           </a>
-
-          <!-- Settings Icon -->
-          <!-- <div
-            class="settings-dropdown mobile border rounded-2"
-            (mouseenter)="showSettings.set(true)"
-            (mouseleave)="showSettings.set(false)"
-          >
-            <button class="btn mobile-btn" type="button">
-              <i class="fas fa-cog"></i>
-            </button>
-            @if (showSettings()) {
-            <div class="dropdown-menu show">
-              @if (!isLoggedIn()) {
-              <a class="dropdown-item" routerLink="/signup">
-                <i class="fas fa-user"></i> Sign Up
-              </a>
-              } @if (isLoggedIn()) {
-              <a class="dropdown-item cPointer" routerLink="/profile">
-                <i class="fas fa-user"></i> Profile
-              </a>
-              }
-              <a class="dropdown-item" routerLink="/cart">
-                <i class="fas fa-shopping-cart"></i> Cart
-              </a>
-              <a class="dropdown-item" href="https://wa.me/91345533865">
-                <i class="fab fa-whatsapp"></i> +91 345 533 865
-              </a>
-              <a class="dropdown-item" href="mailto:info@example.com">
-                <i class="fas fa-envelope"></i> Email
-              </a>
-              @if (isLoggedIn()) {
-              <a class="dropdown-item" (click)="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              }
-            </div>
-            }
-          </div> -->
-
-          <!-- Language Selector - Mobile -->
-          <!-- <div
-            class="language-dropdown mobile border rounded-2"
-            (mouseenter)="showLanguage.set(true)"
-            (mouseleave)="showLanguage.set(false)"
-          >
-            <button class="btn mobile-btn" type="button">
-              <span>{{ getCurrentLanguageCode() }}</span>
-            </button>
-            @if (showLanguage()) {
-            <div class="dropdown-menu show">
-              <a class="dropdown-item" (click)="selectLanguage('en')">
-                <span class="flag-icon">🇬🇧</span> English
-              </a>
-              <a class="dropdown-item" (click)="selectLanguage('fr')">
-                <span class="flag-icon">🇫🇷</span> French
-              </a>
-            </div>
-            }
-          </div> -->
 
           <!-- Hamburger Menu -->
           <button class="btn mobile-btn border rounded-2" (click)="sidebarOpen.set(true)">

@@ -1,4 +1,4 @@
-<app-banner
+  <app-banner
   [title]="destination.title"
   [subtitle]="'Explore destination information'"
   [backgroundImage]="backgroundImage"
@@ -93,5 +93,24 @@
       }
     </owl-carousel-o>
     }
+  </div>
+</section>
+
+
+<!-- General Questions 'faqs' -->
+<section class="my-5 pt-5">
+  <div class="container">
+    <!-- main title -->
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xl-6 col-lg-8">
+        <div class="mainTitle">
+          <h2 class="text-capitalize">General Questions</h2>
+          <p>
+            We’re committed to offering more than just products—we provide exceptional experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+    <app-faq-content></app-faq-content>
   </div>
 </section>

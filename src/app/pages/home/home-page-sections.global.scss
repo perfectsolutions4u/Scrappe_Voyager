@@ -4,7 +4,13 @@
 app-home {
   .newServices {
     .item {
-      min-height: 240px;
+      min-height: 140px;
+    }
+
+    @media (max-width: 767px) {
+      .item {
+        min-height: auto;
+      }
     }
   }
 

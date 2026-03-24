@@ -85,9 +85,11 @@ export class HomeComponent implements OnInit {
   private readonly sliceTotal = 8;
   /** Relative slide index from Owl (matches @for $index) */
   mainSliderActiveIndex = 0;
-  /** Shown after slice stagger (~800ms) */
-  showSliderText = false;
-  private mainSliderTextTimer: ReturnType<typeof setTimeout> | null = null;
+  /**
+   * Hero caption reveal: 0 hidden, then after slice stagger (~800ms) h5 → +100ms h2 → +100ms button.
+   */
+  heroCaptionStep: 0 | 1 | 2 | 3 = 0;
+  private heroCaptionTimers: ReturnType<typeof setTimeout>[] = [];
   sanitizedVideoUrl: SafeResourceUrl;
   rawVideoUrl = 'https://gofly-wp.egenstheme.com/wp-content/uploads/2025/09/home1-banner-video.mp4';
 
@@ -443,26 +445,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.clearMainSliderTextTimer();
+    this.clearHeroCaptionTimers();
     this.desktopMediaQuery?.removeEventListener('change', this.handleDesktopMediaQueryChange);
     this.$destory.next();
     this.$destory.complete();
   }
 
-  /**
-   * Panorama-style horizontal position for each strip (0 … 100%).
-   * With background-size 800% × 100%, each slice shows 1/8 of the image across the full width.
-   */
-  getSliceBackgroundPositionX(sliceIndex: number): string {
-    const last = this.sliceTotal - 1;
-    const x = last === 0 ? 0 : (sliceIndex / last) * 100;
-    return `${x}%`;
-  }
-
-  /**
-   * Site-root URL for static assets (works with hash routing and avoids `../` vs current route).
-   * Public for hero underlay `<img [src]>`.
-   */
   resolveSliderAssetUrl(path: string): string {
     if (!path) return path;
     if (/^https?:\/\//i.test(path)) return path;
@@ -490,17 +478,6 @@ export class HomeComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustStyle(`url("${url}")`);
   }
 
-  /** Layout only — never put url() here or it will be sanitized. */
-  getSliceLayoutStyle(sliceIndex: number): Record<string, string> {
-    const x = this.getSliceBackgroundPositionX(sliceIndex);
-    return {
-      'background-size': 'cover',
-      'background-position': `${x} center`,
-      'background-repeat': 'no-repeat',
-      left: `calc((100% / ${this.sliceTotal}) * ${sliceIndex})`,
-      width: 'calc(100% / 8)',
-    };
-  }
 
   onMainSliderInitialized(data: SlidesOutputData): void {
     this.applyMainSliderSlideState(data, true);
@@ -515,28 +492,33 @@ export class HomeComponent implements OnInit {
     if (scheduleTextReveal) {
       this.scheduleSliderTextReveal();
     } else {
-      this.clearMainSliderTextTimer();
-      this.showSliderText = false;
+      this.clearHeroCaptionTimers();
+      this.heroCaptionStep = 0;
     }
     this.cdr.markForCheck();
   }
 
   private scheduleSliderTextReveal(): void {
-    this.clearMainSliderTextTimer();
-    this.showSliderText = false;
+    this.clearHeroCaptionTimers();
+    this.heroCaptionStep = 0;
     this.cdr.markForCheck();
-    this.mainSliderTextTimer = setTimeout(() => {
-      this.showSliderText = true;
-      this.mainSliderTextTimer = null;
-      this.cdr.markForCheck();
-    }, 800);
+
+    const scheduleStep = (ms: number, step: 1 | 2 | 3) => {
+      const id = setTimeout(() => {
+        this.heroCaptionStep = step;
+        this.cdr.markForCheck();
+      }, ms);
+      this.heroCaptionTimers.push(id);
+    };
+
+    scheduleStep(800, 1);
+    scheduleStep(1500, 2);
+    scheduleStep(2000, 3);
   }
 
-  private clearMainSliderTextTimer(): void {
-    if (this.mainSliderTextTimer !== null) {
-      clearTimeout(this.mainSliderTextTimer);
-      this.mainSliderTextTimer = null;
-    }
+  private clearHeroCaptionTimers(): void {
+    this.heroCaptionTimers.forEach(clearTimeout);
+    this.heroCaptionTimers = [];
   }
 
   private initHeroImagesByViewport(): void {
@@ -676,14 +658,15 @@ export class HomeComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    nav: false,
+    nav: true,
     navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
     items: 1,
     autoplay: true,
     smartSpeed: 2500,
     // Custom slice + text animations handle hero motion; disable Owl fade on the slide
-    animateIn: false,
-    animateOut: false,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+
   };
 
 

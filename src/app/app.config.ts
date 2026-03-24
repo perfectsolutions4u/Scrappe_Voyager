@@ -21,9 +21,6 @@ import { environment } from '../environments/environment';
 export const appConfig: ApplicationConfig = {
   providers: [
     // Use HashLocationStrategy only in production to avoid 404 errors on refresh
-    // In development, use PathLocationStrategy (default) for better dev experience
-    // Production URLs will be: http://domain.com/#/route
-    // Development URLs will be: http://localhost:4200/route (works with ng serve)
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy, // PathLocationStrategy : HashLocationStrategy

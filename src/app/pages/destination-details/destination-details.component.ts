@@ -11,11 +11,12 @@ import { TourCartComponent } from '../../shared/components/tour-cart/tour-cart.c
 import { WhyChooseUs } from '../../shared/components/why-choose-us/why-choose-us.component';
 import { IBlog } from '../../core/interfaces/iblog';
 import { BlogCartComponent } from '../../shared/components/blog-cart/blog-cart.component';
+import { FaqContent } from "../../shared/components/faq-content/faq-content.component";
 
 @Component({
   selector: 'app-destination-details',
   standalone: true,
-  imports: [BannerComponent, CarouselModule, TourCartComponent, WhyChooseUs, BlogCartComponent],
+  imports: [BannerComponent, CarouselModule, TourCartComponent, WhyChooseUs, BlogCartComponent, FaqContent],
   templateUrl: './destination-details.component.html',
   styleUrl: './destination-details.component.scss',
 })

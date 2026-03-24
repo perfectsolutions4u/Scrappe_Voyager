@@ -104,7 +104,7 @@ main {
       top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
+      width: 85%;
       max-width: 1200px;
       padding: 1rem;
       z-index: 2;
@@ -120,12 +120,24 @@ main {
       max-width: 90%;
       color: #fff;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      opacity: 0;
-      transform: translateY(30px);
-      will-change: transform, opacity;
-      transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
+      h5,
+      h2,
+      .mainBtn {
+        opacity: 0;
+        transform: translateY(30px);
+        will-change: transform, opacity;
+        transition:
+          opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      h5.hero-caption-visible,
+      h2.hero-caption-visible,
+      .mainBtn.hero-caption-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       h5 {
         font-size: clamp(0.95rem, 2.2vw, 1.25rem);
@@ -139,11 +151,6 @@ main {
         margin: 0;
         line-height: 1.2;
       }
-    }
-
-    .slider-content.show-text .slider-content__text {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     @media (max-width: 768px) {
@@ -176,7 +183,48 @@ main {
         font-size: 1.5rem;
       }
     }
+
+    ::ng-deep .owl-theme .owl-nav [class*=owl-] {
+      font-size: 32px !important;
+      background-color: transparent !important;
+      color: #fff !important;
+      border-radius: 50% !important;
+      padding: 0.25rem !important;
+      width: 2.2rem !important;
+      height: 2.2rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border: none !important; 
+      position: absolute;
+      top: 50% !important;
+      transform: translateY(-50%);
+    }
+  
+    ::ng-deep .owl-theme .owl-nav [class*=owl-].owl-prev {
+      left: 10px !important;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: $primary-color !important;
+        color: #fff !important;
+      }
+    }
+  
+    ::ng-deep .owl-theme .owl-nav [class*=owl-].owl-next {
+      right: 10px !important;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: $primary-color !important;
+        color: #fff !important;
+      }
+    }
   }
+
 
   .formBox {
     position: relative;

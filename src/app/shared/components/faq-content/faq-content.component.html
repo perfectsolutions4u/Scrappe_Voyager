@@ -12,8 +12,10 @@
         >
           <span class="faq-question-text">{{ faq.question || 'No question' }}</span>
           <span class="faq-icon">
+            <!-- minus open collapse -->
             @if (isOpen(i)) {
-            <svg
+              <i class="fa-solid fa-minus-square"></i>
+            <!-- <svg
               width="12"
               height="12"
               viewBox="0 0 12 12"
@@ -21,9 +23,12 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M6 3L10 7H2L6 3Z" fill="currentColor" transform="rotate(180 6 6)" />
-            </svg>
-            } @else {
-            <svg
+            </svg> -->
+            } 
+            <!-- plus close collapse-->
+            @else {
+              <i class="fa-solid fa-plus-square"></i>
+            <!-- <svg
               width="12"
               height="12"
               viewBox="0 0 12 12"
@@ -31,7 +36,7 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M6 3L10 7H2L6 3Z" fill="currentColor" />
-            </svg>
+            </svg> -->
             }
           </span>
         </button>

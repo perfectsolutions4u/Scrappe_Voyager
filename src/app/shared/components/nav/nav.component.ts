@@ -102,11 +102,11 @@ export class NavComponent implements OnInit, OnDestroy {
 
 
   siteTitle: string[] = [
-    'one-click booking , up to 50% off on your favorite tours', 
-    'easy booking , fast payment , secure checkout',
-     'best deals , best prices , best tours',
-     'custome your trip plan and get special discount instantly',
-     'easy family holiday planning , get special discount instantly',
+      'one-click booking , up to 50% off on your favorite tours', 
+      'easy booking , fast payment , secure checkout and best deals',
+      'best deals , best prices , best tours and best experiences',
+      'customize your trip plan and get special discount instantly',
+      'easy family holiday planning and get special discount instantly',
     ];
 
   siteTitleOptions: OwlOptions = {

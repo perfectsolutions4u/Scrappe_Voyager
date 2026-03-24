@@ -1,20 +1,23 @@
+@use '../../../styles/variables.scss' as *;
+
 .whatsapp-icon {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   width: 45px;
   height: 45px;
-  background-color: #25d366;
+  background-color: $primary-color;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: $second-color;
   font-size: 25px;
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
   transition: all 0.3s ease;
   text-decoration: none;
+  animation: bounce 2s infinite;
 
   &:hover {
     transform: scale(1.1);
@@ -23,5 +26,17 @@
 
   i {
     display: block;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

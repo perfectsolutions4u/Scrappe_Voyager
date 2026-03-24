@@ -99,12 +99,12 @@
 
           <!-- highlights -->
           <div class="mb-5">
-            <h2 class="text-capitalize mb-3 text-color h4">
-              Highlights of <span class="textMainColor mx-1">{{ tour.title }}</span>
-            </h2>
             @if (tour.highlights) {
+              <h2 class="text-capitalize mb-3 text-color h4">
+                Highlights of <span class="textMainColor mx-1">{{ tour.title }}</span>
+              </h2>
             <div class="border p-3 rounded-3">
-              <div class="d-flex align-items-center gap-2">
+              <div class="d-flex  gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                   <path
                     fill="#1781FE"
@@ -115,9 +115,7 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   ></path>
                 </svg>
-                <span class="text-color-secondary fontsm">{{
-                  tour.highlights || 'No highlights found'
-                }}</span>
+                <span class="text-color-secondary fontsm" [innerHTML]="tour.highlights || 'No highlights found'"></span>
               </div>
             </div>
             }
