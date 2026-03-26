@@ -4,12 +4,36 @@
 app-home {
   .newServices {
     .item {
-      min-height: 140px;
+      min-height: 120px;
+      
+      h3{
+        text-align: start !important;
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        
+      }
+      p{
+        font-size: clamp(0.8rem, 1vw, 1.5rem);
+        margin-top: 6px;
+      }
+      svg{
+        
+        width: 40px !important;
+        height: 40px !important;
+
+        &.last{
+          margin-block: 5px;
+        }
+      }
     }
 
     @media (max-width: 767px) {
       .item {
-        min-height: auto;
+        min-height: 195px;
+        p{text-align: center !important; font-size: 0.7rem !important;}
+        svg{
+          width: 30px !important;
+          height: 30px !important;
+        }
       }
     }
   }

@@ -37,7 +37,7 @@ import { DestinationCartComponent } from '../../shared/components/destination-ca
 import { IBlog } from '../../core/interfaces/iblog';
 import { BlogCartComponent } from '../../shared/components/blog-cart/blog-cart.component';
 import { BestServices } from '../../shared/components/best-services/best-services.component';
-import { OwlOptions, CarouselModule, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions, CarouselModule, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { MakeTripFormComponent } from '../../shared/components/make-trip-form/make-trip-form.component';
 import { Parteners } from '../../shared/components/parteners/parteners.component';
 import { FaqContent } from '../../shared/components/faq-content/faq-content.component';
@@ -74,6 +74,7 @@ import { VideoComponent } from '../../shared/components/video/video.component';
 export class HomeComponent implements OnInit {
   @ViewChild('StartDatepicker') startDatepicker!: MatDatepicker<Date>;
   @ViewChild('EndDatepicker') endDatepicker!: MatDatepicker<Date>;
+  @ViewChild('heroCarousel') heroCarousel?: CarouselComponent;
 
   /** Past calendar days disabled (today onward only). */
   readonly minSelectableDate = DatepickerService.startOfTodayLocal();
@@ -115,17 +116,20 @@ export class HomeComponent implements OnInit {
   }
 
   imageDesktop = [
-    '../../../assets/image/Grand.webp',
-    '../../../assets/image/Scarabee/Scarabee-slider1.png',
-    '../../../assets/image/Scarabee/Scarabee-slider2.png',
-    '../../../assets/image/Scarabee/Scarabee-banner.png',
-    '../../../assets/image/Scarabee/Scarabee-Guest.png',
+    '../../../assets/image/Scarabee/1.png',
+    '../../../assets/image/Scarabee/4.png',
+    '../../../assets/image/Scarabee/3.png',
+    '../../../assets/image/Scarabee/2.png',
+    '../../../assets/image/Scarabee/5.png',
+    // '../../../assets/image/Scarabee/Scarabee-banner.png',
+    // '../../../assets/image/Scarabee/Scarabee-Guest.png',
     
   ];
   imageMobile = [
-    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile1.png',
-    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile2.png',
-    '../../../assets/image/Scarabee-mobile-view/Scarabee-slider-mobile3.png',
+    '../../../assets/image/Scarabee-mobile-view/mobile1.png',
+    '../../../assets/image/Scarabee-mobile-view/mobile2.png',
+    '../../../assets/image/Scarabee-mobile-view/mobile3.png',
+    '../../../assets/image/Scarabee-mobile-view/mobile4.png',
     
   ];
 
@@ -293,9 +297,6 @@ export class HomeComponent implements OnInit {
 
   onMakeTripSubmit() {
     if (this.makeTripForm.invalid) return;
-
-    // console.log('fire done onMakeTripSubmit');
-    // console.log(this.makeTripForm.value);
 
     const formValue = this.makeTripForm.value;
 
@@ -491,7 +492,7 @@ export class HomeComponent implements OnInit {
   }
 
   /** Owl can briefly report NaN/undefined; clamp to a valid slide index. */
-  private normalizeMainSliderIndex(pos: number | undefined): number {
+  normalizeMainSliderIndex(pos: number | undefined): number {
     if (typeof pos !== 'number' || Number.isNaN(pos)) {
       return 0;
     }
@@ -503,6 +504,38 @@ export class HomeComponent implements OnInit {
 
   isHeroSlideActive(slideIndex: number): boolean {
     return this.normalizeMainSliderIndex(this.mainSliderActiveIndex) === slideIndex;
+  }
+
+  get heroSlideCount(): number {
+    return this.useDesktopImages ? this.imageDesktop.length : this.imageMobile.length;
+  }
+
+  /** Indices for hero nav dashes (0 .. count-1). */
+  get heroNavDotIndices(): number[] {
+    const n = this.heroSlideCount;
+    return n > 0 ? Array.from({ length: n }, (_, i) => i) : [];
+  }
+
+  get activeHeroCaption(): { subText: string; mainText: string } {
+    const i = this.normalizeMainSliderIndex(this.mainSliderActiveIndex);
+    const list = this.sliderNavText;
+    if (!list.length) {
+      return { subText: '', mainText: '' };
+    }
+    return list[Math.min(i, list.length - 1)];
+  }
+
+  heroNavNext(): void {
+    this.heroCarousel?.next();
+  }
+
+  heroNavPrev(): void {
+    this.heroCarousel?.prev();
+  }
+
+  goToHeroSlide(index: number): void {
+    const i = Math.max(0, Math.min(Math.floor(index), this.heroSlideCount - 1));
+    this.heroCarousel?.to(`hero-slide-${i}`);
   }
 
   getTrustedSliceBackground(image: string): SafeStyle {
@@ -543,9 +576,9 @@ export class HomeComponent implements OnInit {
       this.heroCaptionTimers.push(id);
     };
 
-    scheduleStep(800, 1);
-    scheduleStep(1500, 2);
-    scheduleStep(2000, 3);
+    scheduleStep(400, 1);
+    scheduleStep(800, 2);
+    scheduleStep(1200, 3);
   }
 
   private clearHeroCaptionTimers(): void {
@@ -684,17 +717,40 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  /** One caption per hero slide (desktop ordering); mobile uses the first N entries. */
+  sliderNavText: { subText: string; mainText: string }[] = [
+    {
+      subText: 'Get unforgettable pleasure with us',
+      mainText: 'Explore the beauty of Egypt',
+    },
+    {
+      subText: 'Get unforgettable pleasure with us',
+      mainText: 'Natural Wonder Egypt Secrets',
+    },
+    {
+      subText: 'Get unforgettable pleasure with us',
+      mainText: 'Let’s make your best trip with us',
+    },
+    {
+      subText: 'Get unforgettable pleasure with us',
+      mainText: 'Discover timeless treasures with us',
+    },
+    {
+      subText: 'Get unforgettable pleasure with us',
+      mainText: 'Your journey starts here in Egypt',
+    },
+  ];
+
   sliderOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
-    nav: true,
-    navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+    dots: false,
+    nav: false,
     items: 1,
     autoplay: true,
-    smartSpeed: 2500,
+    smartSpeed: 3500,
     // Custom slice + text animations handle hero motion; disable Owl fade on the slide
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',

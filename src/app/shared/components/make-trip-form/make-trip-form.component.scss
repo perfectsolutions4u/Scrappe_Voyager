@@ -16,7 +16,7 @@
   .make-trip-form-wrapper {
     text-align: center;
     color: white;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../assets/scarabee-banner.webp');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../assets/image/makeTrip-form-banner.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -116,7 +116,7 @@
     }
 
     &:disabled {
-      opacity: 0.6;
+      
       cursor: not-allowed;
     }
   }

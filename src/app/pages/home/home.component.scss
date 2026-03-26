@@ -101,29 +101,31 @@ main {
 
     .slider-content {
       position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 85%;
+      top: 50%;
+      left: 6%;
+      right: auto;
+      transform: translateY(-50%);
+      width: min(52rem, 58%);
       max-width: 1200px;
       padding: 1rem;
       z-index: 2;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 1.5rem;
       box-sizing: border-box;
     }
 
     .slider-content__text {
       width: 100%;
-      max-width: 90%;
+      max-width: 100%;
       color: #fff;
+      text-align: left;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 
       h5,
       h2,
-      .mainBtn {
+      .hero-slider__actions {
         opacity: 0;
         transform: translateY(30px);
         will-change: transform, opacity;
@@ -134,94 +136,192 @@ main {
 
       h5.hero-caption-visible,
       h2.hero-caption-visible,
-      .mainBtn.hero-caption-visible {
+      .hero-slider__actions.hero-caption-visible {
         opacity: 1;
         transform: translateY(0);
       }
 
-      h5 {
-        font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-        font-weight: 600;
+      h5.hero-slider__sub {
+        font-size: clamp(1.9rem, 3vw, 2.5rem);
+        font-weight: 500;
         margin: 0 0 0.5rem 0;
+        font-style: italic;
+        letter-spacing: 0.02em;
       }
 
+      // h5 {
+      //   font-size: clamp(1.9rem, 3vw, 2.5rem);
+      //   font-weight: 600;
+      //   margin: 0 0 0.5rem 0;
+      // }
+
       h2 {
-        font-size: clamp(1.75rem, 5vw, 3.25rem);
+        font-size: clamp(2rem, 5vw, 3.75rem);
         font-weight: 700;
         margin: 0;
         line-height: 1.2;
+      }
+
+      .hero-slider__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem ;
+        margin-top: 0.5rem;
+      }
+      
+      .hero-slider__btn {
+        color: #fff !important;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none; 
+        padding: 0.75rem 1rem;
+        font-size: clamp(0.7rem, 2vw, 1rem);
+
+        &.hero-slider__btn--primary {
+          background: $primary-color !important;
+
+        }
+
+        &:hover {
+          background: $second-color !important;
+        }
+      }
+
+      .mainBtn--outline {
+        background: transparent !important;
+        color: #fff !important;
+        border: 2px solid rgba(255, 255, 255, 0.95) !important;
+
+        // &::after {
+        //   display: none;
+        // }
+
+        &:hover {
+          // background: $primary-color !important;
+          border: 2px solid $primary-color !important;
+        }
+      }
+    }
+
+    .main-slider__nav-vertical {
+      position: absolute;
+      right: clamp(0.75rem, 3vw, 1.75rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .main-slider__nav-fab {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(40, 40, 40, 0.45);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+
+      &:hover {
+        background: rgba(60, 60, 60, 0.65);
+        border-color: rgba(255, 255, 255, 0.55);
+      }
+
+      &:focus-visible {
+        outline: 2px solid $second-color;
+        outline-offset: 2px;
+      }
+    }
+
+    .main-slider__nav-arrow {
+      font-size: 1.1rem;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .main-slider__nav-dashes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .main-slider__dash {
+      width: 4px;
+      height: 1.35rem;
+      border-radius: 2px;
+      padding: 0;
+      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      cursor: pointer;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        height 0.25s ease;
+
+      &:hover {
+        transform: scaleX(1.15);
+      }
+
+      &--active {
+        background: $second-color;
+        height: 1.55rem;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $second-color;
+        outline-offset: 2px;
       }
     }
 
     @media (max-width: 768px) {
       .slider-content {
         gap: 1rem;
-        padding: 0.75rem;
+        padding: 0.5rem;
+        width: 90%;
       }
 
       .slider-content__text {
         max-width: 100%;
 
-        h5 {
-          font-size: 1rem;
-        }
+        // h5 {
+        //   font-size: 1rem;
+        // }
 
-        h2 {
-          font-size: 1.75rem;
-        }
+        // h2 {
+        //   font-size: 1.75rem;
+        // }
       }
     }
 
     @media (max-width: 576px) {
+      // .slider-content {
+        
+      // }
       min-height: 360px;
 
       &__slide {
         min-height: 360px;
       }
 
-      .slider-content__text h2 {
-        font-size: 1.5rem;
-      }
+      // .slider-content__text h2 {
+      //   font-size: 1.5rem;
+      // }
     }
 
-    ::ng-deep .owl-theme .owl-nav [class*=owl-] {
-      font-size: 32px !important;
-      background-color: transparent !important;
-      color: #fff !important;
-      border-radius: 50% !important;
-      padding: 0.25rem !important;
-      width: 2.2rem !important;
-      height: 2.2rem !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      border: none !important; 
-      position: absolute;
-      top: 50% !important;
-      transform: translateY(-50%);
-    }
-  
-    ::ng-deep .owl-theme .owl-nav [class*=owl-].owl-prev {
-      left: 10px !important;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      
-      &:hover {
-        background-color: $primary-color !important;
-        color: #fff !important;
-      }
-    }
-  
-    ::ng-deep .owl-theme .owl-nav [class*=owl-].owl-next {
-      right: 10px !important;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      
-      &:hover {
-        background-color: $primary-color !important;
-        color: #fff !important;
-      }
+    /* Default Owl nav/dots disabled in TS; hide any residual UI */
+    ::ng-deep .main-slider__carousel .owl-nav,
+    ::ng-deep .main-slider__carousel .owl-dots {
+      display: none !important;
     }
   }
 
