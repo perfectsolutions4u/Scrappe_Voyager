@@ -3,7 +3,7 @@
   role="button"
   class="destination-cart cPointer d-flex flex-column rounded-4 overflow-hidden transition"
 >
-  <figure class="img-Hove rounded-4 overflow-hidden position-relative mb-0">
+  <figure class=" rounded-4 overflow-hidden position-relative mb-0">
     <img
       class="w-100 h-100 object-fit-cover transition"
       [src]="destination?.banner"
@@ -11,11 +11,11 @@
       [title]="destination?.title"
       [alt]="destination?.title"
     />
-    <figcaption class="p-2 text-center text-capitalize fw-bold d-flex flex-column justify-content-end">
-      <h3 [routerLink]="['/destination', destination?.slug]" class="transition fs-5 mt-2">
+    <figcaption class="d-flex flex-column justify-content-end pb-2">
+      <h3 [routerLink]="['/destination', destination?.slug]" class="transition fs-5 my-2 text-white text-capitalize text-center">
         {{ destination?.title }}
       </h3>
-      <h4 class="transition fs-6">
+      <h4 class="transition fs-6 text-center text-white">
         tours
         <b class="textSecondColor">({{ destination?.tours_count }})</b>
       </h4>
