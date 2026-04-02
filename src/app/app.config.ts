@@ -21,10 +21,10 @@ import { environment } from '../environments/environment';
 export const appConfig: ApplicationConfig = {
   providers: [
     // Use HashLocationStrategy only in production to avoid 404 errors on refresh
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy, // PathLocationStrategy : HashLocationStrategy
-    },
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: HashLocationStrategy, // PathLocationStrategy : HashLocationStrategy
+    // },
     provideAnimations(), // Required for Angular Material animations and ngx-toastr
     provideNativeDateAdapter(), // Required for Angular Material Datepicker
     provideToastr({
