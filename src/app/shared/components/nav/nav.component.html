@@ -197,9 +197,9 @@
       </div>
 
        <!-- Main Navigation Bar - Desktop -->
-       <div class="col-lg-7 d-none d-lg-block ">
+       <div class="col-lg-8 d-none d-lg-block">
         <nav class="main-navbar">
-          <ul class="navbar-nav justify-content-center justify-content-xl-end">
+          <ul class="navbar-nav justify-content-center ">
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -316,7 +316,7 @@
       </div>
 
       <!-- Right Side Icons - Desktop -->
-      <div class="col-lg-3 d-none d-lg-flex justify-content-end align-items-center gap-1">
+      <div class="col-lg-2 d-none d-lg-flex justify-content-end align-items-center gap-1">
         <!-- Search Icon -->
         <button class="btn mobile-btn border rounded-2 mx-1" (click)="openSearchOverlay()">
           <i class="fas fa-search"></i>
@@ -390,7 +390,16 @@
 
         @if (!isLoggedIn()) {
         <!-- login button -->
-        <button class="mainBtn mx-1 px-2 fontsm" routerLink="/login"><i class="fas fa-user"></i> Login</button>
+        <button class="mainBtn mx-1 px-2 fontsm border rounded-2 textSecondColor" routerLink="/login">
+          <!-- <i class="fas fa-user"></i> -->
+           Login
+        </button>
+        }
+        @if (isLoggedIn()) {
+        <!-- logout button -->
+        <button class="mainBtn mx-1 px-2 fontsm border rounded-2 textSecondColor" (click)="logout()">
+           Logout
+        </button>
         }
       </div>
 

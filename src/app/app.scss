@@ -1,7 +1,14 @@
+// google fonts --> playfair display
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 figure {
   width: 500px;
   height: 200px;
   object-fit: cover;
+}
+
+.typing-text {
+  font-family: "Playfair Display", serif !important; 
 }
 
 .typing-cursor {
