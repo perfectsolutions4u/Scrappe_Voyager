@@ -1,0 +1,62 @@
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="testimonials__inner">
+    <header class="testimonials__header">
+      <div class="testimonials__google-badge">
+        <i class="fab fa-google" aria-hidden="true"></i>
+        <span>Google Reviews</span>
+      </div>
+      <h2 id="testimonials-heading" class="testimonials__title">What Our Travelers Say</h2>
+      @if (!loading && reviews.length > 0) {
+        <div class="testimonials__aggregate" aria-label="Overall rating">
+          <div class="testimonials__stars testimonials__stars--lg" role="presentation">
+            @for (i of starIndexes; track i) {
+              <i
+                class="fa fa-star"
+                [ngClass]="i <= averageRating + 0.25 ? 'fa-solid' : 'fa-regular'"
+                aria-hidden="true"
+              ></i>
+            }
+          </div>
+          <p class="testimonials__aggregate-text">
+            <span class="testimonials__aggregate-score">{{ averageRating | number : '1.1-1' }}</span>
+            out of 5
+          </p>
+        </div>
+      }
+    </header>
+
+    @if (loading) {
+      <p class="testimonials__state">Loading reviews…</p>
+    } @else if (loadError) {
+      <p class="testimonials__state">Reviews could not be loaded.</p>
+    } @else if (reviews.length === 0) {
+      <p class="testimonials__state">No reviews yet.</p>
+    } @else {
+      <div class="testimonials__grid">
+        @for (review of displayedReviews(); track review.id) {
+          <article class="testimonials__card">
+            <div class="testimonials__stars" role="img" [attr.aria-label]="review.rate + ' out of 5 stars'">
+              @for (i of starIndexes; track i) {
+                <i
+                  class="fa fa-star"
+                  [ngClass]="i <= review.rate + 0.25 ? 'fa-solid' : 'fa-regular'"
+                  aria-hidden="true"
+                ></i>
+              }
+            </div>
+            <blockquote class="testimonials__quote">“{{ review.content }}”</blockquote>
+            <!-- <div class="testimonials__divider"></div> -->
+            <div class="testimonials__author">
+              <div class="testimonials__avatar" aria-hidden="true">{{ review.initial }}</div>
+              <div class="testimonials__meta">
+                <div class="testimonials__name">{{ review.reviewer_name }}</div>
+               
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+  </div>
+</section>

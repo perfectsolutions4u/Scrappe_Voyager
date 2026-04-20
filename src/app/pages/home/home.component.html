@@ -68,7 +68,7 @@
         </owl-carousel-o>
       </div>
 
-      <div class="slider-content bg-succes" [class.show-text]="heroCaptionStep > 0">
+      <!-- <div class="slider-content bg-succes" [class.show-text]="heroCaptionStep > 0">
         <div class="slider-content__text mb-5">
           <h5 class="hero-slider__sub mb-4 special-font" [class.hero-caption-visible]="heroCaptionStep >= 1">
             {{ activeHeroCaption.subText }}
@@ -90,7 +90,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       @if (isBrowser && heroSlideCount > 0) {
         <div class="main-slider__nav-vertical" aria-label="Hero slider navigation">
@@ -128,7 +128,7 @@
       
     </div>
     <!-- form search -->
-    <div class="formBox bg-white rounded-4 sideBar text-capitalize">
+    <!-- <div class="formBox bg-white rounded-4 sideBar text-capitalize">
       <mat-tab-group>
         <mat-tab [label]="'home.findYourTour' | translate">
           <form
@@ -249,7 +249,7 @@
               </div>
             </div>
 
-            <!-- if have exact time -->
+            
             @if (MarkTime==='exact') {
             <div class=" col-6 col-lg-3">
               <div class="input-with-icon-label">
@@ -302,7 +302,7 @@
             </div>
             }
 
-            <!-- if have aproximate time -->
+            
             @if (MarkTime==='approximate') {
             <div class=" col-6 col-lg-6">
               <div class="input-with-icon-label">
@@ -335,16 +335,25 @@
           </form>
         </mat-tab>
       </mat-tab-group>
-    </div>
+    </div> -->
 
   </div>
 </main>
 
 
 <!-- new section for our services -->
-<section class="my-5 pt-5 newServices">
+<section class="my-5 newServices">
   <div class="container">
-   <div class="row g-1 g-md-3">
+
+    <div class="mainTitle">
+      <h2 class="text-capitalize">Private tours in Egypt</h2>
+      <p>Customized and private stays, cruises and excursions</p>
+    </div>
+    <p>We offer an unforgettable tour of Egypt, showcasing iconic sites while exploring charming, off-the-beaten-path locations. We ensure your trip unfolds at a comfortable pace, allowing you to savor the authentic wonders of this magnificent country.
+      <br> <b>Avoid the standardized approaches</b> of traditional tour operators and let us offer you a unique experience. <br> The tours presented on our website are suggestions, but we are fully available to customize your trip to your exact preferences. Don't hesitate to <span routerLink="/contact" class="textSecondColor fw-bold cPointer">contact us</span> ; our local agency 's expertise <b>will make all the difference</b> in creating a tailor-made journey that meets your expectations.
+    </p>
+
+   <div class="row g-1 g-md-3 mt-4">
     <div class="col-4">
       <div class=" item bgMainColor text-white  rounded-4 p-2 py-1">
         <div class="d-flex align-items-center flex-column flex-md-row gap-1">
@@ -383,10 +392,10 @@
 
    <div class="mt-5 flexCenter text-capitalize gap-2 flex-wrap">
     <div class="bg-secondary bg-opacity-10 rounded-pill px-3 py-1 ">
-      You’ve Customize Your Travel Package by One Click.
+      personalize your dream trip 
     </div>
     <div routerLink="/makeTrip" class="bg-secondary bg-opacity-10 rounded-pill px-3 py-1 fw-bold cPointer">
-      Customize Package <i class="fa fa-arrow-right mx-1"></i>
+      start now <i class="fa fa-arrow-right mx-1"></i>
     </div>
    </div>
   </div>
@@ -436,9 +445,8 @@
 
 
 <!-- Featured Destinations -->
-<section class="featured-destinations my-5 pt-5">
+<!-- <section class="featured-destinations my-5 pt-5">
   <div class="container">
-    <!-- main title -->
     <div class="row justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-8">
         <div class="mainTitle">
@@ -448,7 +456,6 @@
       </div>
     </div>
 
-    <!-- destinations cards slider carousel -->
     <owl-carousel-o [options]="destinationsOptions">
       @for (des of allDestinations; track des.id) {
       <ng-template carouselSlide>
@@ -457,7 +464,7 @@
       }
     </owl-carousel-o>
   </div>
-</section>
+</section> -->
 
 <!-- new about section -->
  <!-- <section class="new-about-section my-5 py-5">
@@ -546,7 +553,7 @@
  </section> -->
 
  <!-- video -->
- <section class="video-section my-5 ">
+ <!-- <section class="video-section my-5 ">
   <div class="container">
     <div class="mainTitle">
       <h2 class="text-capitalize">Who We Are</h2>
@@ -603,32 +610,34 @@
 
     <app-video></app-video>
   </div>
- </section>
+ </section> -->
 
 <!-- Best services -->
 <!-- <app-best-services></app-best-services> -->
 
-<!-- our popular tours slider carousel  day tours-->
+<!-- our popular tours slider carousel  nile cruises tours-->
 <section class="our-tours my-5 pt-5">
   <div class="container">
     <!-- main title -->
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center mb-1">
       <div class="col-xl-6 col-lg-8">
         <div class="mainTitle">
-          <h2 class="text-capitalize">Popular Day Tours</h2>
-          <p>A curated list of the most popular tour of day tour category based on different destinations.</p>
+          <h2 class="text-capitalize">Our tours in Egypt with a cruise</h2>
+          <p>Let our professionals take you and guide you! The felucca or dahabieh, charming sailing boats typical of Egypt, and cruise ships are dream solutions for discovering Egypt's historical sites, as well as timeless places and off-the-beaten-path locations; enjoy the magical atmosphere of the Nile or the wonders of Lake Nasser.</p>
         </div>
       </div>
     </div>
 
-    <!-- tours cards slider carousel -->
-    <owl-carousel-o [options]="popularToursOptions">
-      @for (tour of dayTourTours; track tour.id) {
-      <ng-template carouselSlide>
-        <app-tour-cart [tour]="tour"></app-tour-cart>
-      </ng-template>
+    <div class="row g-3">
+      @for (tour of nileCruisesTours.slice(0,6); track tour.id) {
+      <div class="col-sm-6 col-lg-4">
+        <app-tour-cart [tour]="tour" ></app-tour-cart>
+      </div>
       }
-    </owl-carousel-o>
+    </div>
+    <button routerLink="/tour" [queryParams]="{type: 'nile-cruises-tours'}" class="mainBtn Btn flexBetween gap-2 mt-4 mx-auto">
+      {{ 'common.viewAllTours' | translate }}<i class="fa fa-arrow-right text-white"></i>
+    </button>
   </div>
 </section>
 
@@ -639,8 +648,40 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-xl-6 col-lg-8">
         <div class="mainTitle">
-          <h2 class="text-capitalize">Popular Multi-Days Tours</h2>
-          <p>A curated list of the most popular tour of multi-days category based on different destinations.</p>
+          <h2 class="text-capitalize">Journeys to discover the marvelous Egypt</h2>
+          <p>Your French-speaking Egyptologist guide will take care of you!
+            He will accompany you from your arrival at the airport or departure from your hotel, pamper you until your return, and create a unique and exclusive stay just for you, off the beaten track...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- tours cards   -->
+    <div class="row g-3">
+      @for (tour of multiDaysTours.slice(-6); track tour.id) {
+      <div class="col-md-6 col-lg-4">
+        <app-tour-cart [tour]="tour"></app-tour-cart>
+      </div>
+      }
+    </div>
+
+    <button routerLink="/tour" [queryParams]="{type: 'multi-days-tours'}" class="mainBtn Btn flexBetween gap-2 mt-4 mx-auto">
+      {{ 'common.viewAllTours' | translate }}<i class="fa fa-arrow-right text-white"></i>
+    </button>
+  </div>
+</section>
+
+<!-- make trip form -->
+<app-make-trip-form></app-make-trip-form>
+
+<!-- our popular tours slider carousel  packages tours  deserts-->
+<section class="my-5 pt-5">
+  <div class="container">
+    <!-- main title -->
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xl-6 col-lg-8">
+        <div class="mainTitle">
+          <h2 class="text-capitalize">Stays in the heart of Egypt's western desert</h2>
+          <p>Going to the Egyptian desert and its oases is a completely different way to experience this wonderful country of Egypt alongside your private guide.</p>
         </div>
       </div>
     </div>
@@ -653,11 +694,15 @@
       </div>
       }
     </div>
+
+    <button routerLink="/tour" [queryParams]="{type: 'packages'}" class="mainBtn Btn flexBetween gap-2 mt-4 mx-auto">
+      {{ 'common.viewAllTours' | translate }}<i class="fa fa-arrow-right text-white"></i>
+    </button>
   </div>
 </section>
 
-<!-- make trip form -->
-<app-make-trip-form></app-make-trip-form>
+<!-- testimonials 'tour reviews' -->
+<app-testimonials></app-testimonials>
 
 
 <!-- Travel Inspirations 'blogs' -->

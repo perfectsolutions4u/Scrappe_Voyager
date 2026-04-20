@@ -2,8 +2,8 @@
 
 main {
 
-  margin-bottom: 110px;
-  $slider-height: calc(100vh - 110px);
+  // margin-bottom: 110px;
+  $slider-height: calc(100vh - 50px);
   height: $slider-height;
 
   .main-slider {
@@ -921,6 +921,6 @@ main {
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 150px;
+    // margin-bottom: 150px;
   }
 }

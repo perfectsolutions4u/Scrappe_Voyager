@@ -42,6 +42,7 @@ import { MakeTripFormComponent } from '../../shared/components/make-trip-form/ma
 import { Parteners } from '../../shared/components/parteners/parteners.component';
 import { FaqContent } from '../../shared/components/faq-content/faq-content.component';
 import { VideoComponent } from '../../shared/components/video/video.component';
+import { TestimonialsComponent } from '../../shared/components/testimonials/testimonials.component';
 
 @Component({
   selector: 'app-home',
@@ -59,14 +60,15 @@ import { VideoComponent } from '../../shared/components/video/video.component';
     MatInputModule,
     MatNativeDateModule,
     TourCartComponent,
-    DestinationCartComponent,
+    // DestinationCartComponent,
     BlogCartComponent,
     CarouselModule,
     MakeTripFormComponent,
     // Parteners,
     FaqContent,
-    VideoComponent,
+    // VideoComponent,
     CommonModule,
+    TestimonialsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -116,6 +118,9 @@ export class HomeComponent implements OnInit {
   }
 
   imageDesktop = [
+    '../../../assets/image/Scarabee/Scarabee-slider3.png',
+    '../../../assets/image/Scarabee/Scarabee-slider4.png',
+    '../../../assets/image/Scarabee/Scarabee-slider5.png',
     '../../../assets/image/Scarabee/1.png',
     '../../../assets/image/Scarabee/4.png',
     '../../../assets/image/Scarabee/3.png',
@@ -152,7 +157,8 @@ export class HomeComponent implements OnInit {
   ];
   popularTours: Itour[] = [];
   packagesTours: Itour[] = [];
-  dayTourTours: Itour[] = [];
+  nileCruisesTours: Itour[] = [];
+  multiDaysTours: Itour[] = [];
   allDestinations: IDestination[] = [];
   allCategories: ICategory[] = [];
   allDurations: IDuration[] = [];
@@ -425,9 +431,59 @@ export class HomeComponent implements OnInit {
   }
 
   getPopularTours() {
-    // packages tours
+    // multi-days tours
     this._DataService
       .getTours({category_slug: 'Multi-Days-Tours'})
+      .pipe(takeUntil(this.$destory))
+      .subscribe({
+        next: (res) => {
+          // console.log('popular day tours', res);
+          const multiDaysTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
+          if (Array.isArray(multiDaysTours) && multiDaysTours.length > 0) {
+            setTimeout(() => {
+              this.multiDaysTours = multiDaysTours;
+              console.log('packages tours', this.multiDaysTours);
+              this.cdr.markForCheck();
+            }, 0);
+          } else {
+            // Ensure it's always an array to avoid iterator errors
+            this.multiDaysTours = [];
+          }
+        },
+        error: (err) => {
+          console.error('Error loading popular tours:', err);
+          // this.popularTours = [];
+        },
+      });
+
+    // nile-cruises-tours
+    this._DataService
+      .getTours({category_slug: 'nile-cruises-tours'})
+      .pipe(takeUntil(this.$destory))
+      .subscribe({
+        next: (res) => {
+          // console.log('popular day tours', res);
+          const nileCruisesTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
+          if (Array.isArray(nileCruisesTours) && nileCruisesTours.length > 0) {
+            setTimeout(() => {
+              this.nileCruisesTours = nileCruisesTours;
+              console.log('nile cruises tours', this.nileCruisesTours);
+              this.cdr.markForCheck();
+            }, 0);
+          } else {
+            // Ensure it's always an array to avoid iterator errors
+            this.nileCruisesTours = [];
+          }
+        },
+        error: (err) => {
+          console.error('Error loading nile cruises tours:', err);
+          // this.popularTours = [];
+        },
+      });
+
+    // packages tours
+    this._DataService
+      .getTours({category_slug: 'packages'})
       .pipe(takeUntil(this.$destory))
       .subscribe({
         next: (res) => {
@@ -445,32 +501,7 @@ export class HomeComponent implements OnInit {
           }
         },
         error: (err) => {
-          console.error('Error loading popular tours:', err);
-          // this.popularTours = [];
-        },
-      });
-
-    // day tour tours
-    this._DataService
-      .getTours({category_slug: 'day-tours'})
-      .pipe(takeUntil(this.$destory))
-      .subscribe({
-        next: (res) => {
-          // console.log('popular day tours', res);
-          const dayTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
-          if (Array.isArray(dayTours) && dayTours.length > 0) {
-            setTimeout(() => {
-              this.dayTourTours = dayTours;
-              console.log('day tour tours', this.dayTourTours);
-              this.cdr.markForCheck();
-            }, 0);
-          } else {
-            // Ensure it's always an array to avoid iterator errors
-            this.dayTourTours = [];
-          }
-        },
-        error: (err) => {
-          console.error('Error loading day tour tours:', err);
+          console.error('Error loading packages tours:', err);
           // this.popularTours = [];
         },
       });

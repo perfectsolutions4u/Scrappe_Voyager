@@ -57,7 +57,7 @@ export class FooterComponent implements OnInit {
           ? item.option_value[0] || ''
           : item.option_value || '';
       }
-      this.logo= '../../../../assets/Scarabee Voyageur.webp'
+      // this.logo= '../../../../assets/Scarabee Voyageur.webp'
       if (item.option_key === 'address') {
         this.address = Array.isArray(item.option_value)
           ? item.option_value[0] || ''

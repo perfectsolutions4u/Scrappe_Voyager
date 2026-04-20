@@ -270,7 +270,7 @@ export class ProfileComponent implements OnInit {
   }
 
   showCountries(): void {
-    const cachedCountries = this._DataService.getFromLocalStorage('majestic_countries');
+    const cachedCountries = this._DataService.getFromLocalStorage('scarabée voyageur_countries');
     if (cachedCountries && cachedCountries.data) {
       setTimeout(() => {
         this.countriesList = cachedCountries.data;

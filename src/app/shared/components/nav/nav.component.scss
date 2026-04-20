@@ -173,7 +173,7 @@
 
 // Top Header
 .top-header {
-  background-color: $primary-color;
+  background-color: #fff;
   padding: 0.5rem 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -240,7 +240,7 @@
   .language-btn {
     background: none;
     border: none;
-    color: #fff;
+    color: $primary-color;
     font-size: 0.9rem;
     padding: 0.5rem;
     cursor: pointer;
@@ -252,7 +252,7 @@
     font-family: $bady-font;
 
     i:first-child {
-      color: #fff;
+      color: $primary-color;
     }
 
     &:hover {
@@ -403,12 +403,12 @@
   .nav-link {
     display: block;
     padding: 0.5rem 0.75rem;
-    color: #fff ;
+    color: $primary-color ;
     text-decoration: none;
     font-family: $bady-font;
     transition: $transition;
     border-bottom: 3px solid transparent;
-    font-size:  .9rem;
+    font-size:  1rem;
     font-weight: bold;
     
     &:hover,

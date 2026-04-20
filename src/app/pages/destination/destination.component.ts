@@ -45,7 +45,7 @@ export class DestinationComponent implements OnInit {
   }
 
   getDestination(page: number = 1) {
-    const cachedDestinations = this.dataService.getFromLocalStorage('majestic_destinations');
+    const cachedDestinations = this.dataService.getFromLocalStorage('scarabée voyageur_destinations');
     if (cachedDestinations?.data?.data) {
       this.allDestinations = cachedDestinations.data.data.data.reverse() || [];
       this.hasLoaded = true;

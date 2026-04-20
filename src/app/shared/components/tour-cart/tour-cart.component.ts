@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { DataService } from '../../../services/data.service';
 import { CommonModule } from '@angular/common';
 import { Itour } from '../../../core/interfaces/itour';
 import { CurrencyService } from '../../../services/currency.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tour-cart',
@@ -22,6 +23,14 @@ export class TourCartComponent implements OnInit {
     public translate: TranslateService,
     private _CurrencyService: CurrencyService
   ) {}
+
+  private _DomSanitizer = inject(DomSanitizer);
+
+  overviewSafeHtml(): SafeHtml {
+    return this._DomSanitizer.bypassSecurityTrustHtml(
+      this.tour?.overview_text || 'No description available'
+    );
+  }
 
   @Input() layoutType: 'grid' | 'list' = 'grid';
   @Input() tour?: Itour;

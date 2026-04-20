@@ -18,7 +18,7 @@
   <div class="sidebar-header">
     <a routerLink="/" class="sidebar-logo" (click)="sidebarOpen.set(false)">
       <img [src]="logo" alt="logo" title="logo" class="logo-img" />
-      <!-- <span>Majestic Travel</span> -->
+      <!-- <span>scarabée voyageur Travel</span> -->
     </a>
     <button class="close-btn" (click)="sidebarOpen.set(false)">
       <i class="fas fa-times"></i>
@@ -389,14 +389,14 @@
 
         @if (!isLoggedIn()) {
         <!-- login button -->
-        <button class="mainBtn mx-1 px-2 fontsm border rounded-2 textSecondColor" routerLink="/login">
+        <button class="secBtn mx-1 px-2 fontsm border rounded-2 " routerLink="/login">
           <!-- <i class="fas fa-user"></i> -->
            Login
         </button>
         }
         @if (isLoggedIn()) {
         <!-- logout button -->
-        <button class="mainBtn mx-1 px-2 fontsm border rounded-2 textSecondColor" (click)="logout()">
+        <button class="secBtn mx-1 px-2 fontsm border rounded-2 " (click)="logout()">
            Logout
         </button>
         }

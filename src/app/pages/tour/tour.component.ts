@@ -188,7 +188,7 @@ export class TourComponent implements OnInit {
   }
 
   getDestinations(): void {
-    const cachedDestinations = this.getFromLocalStorage('majestic_destinations');
+    const cachedDestinations = this.getFromLocalStorage('scarabée voyageur_destinations');
     if (cachedDestinations?.data?.data) {
       setTimeout(() => {
         this.allDestinations = cachedDestinations.data.data.data;
@@ -235,7 +235,7 @@ export class TourComponent implements OnInit {
   }
 
   getCategories(): void {
-    const cachedCategories = this.getFromLocalStorage('majestic_categories');
+    const cachedCategories = this.getFromLocalStorage('scarabée voyageur_categories');
     if (cachedCategories?.data?.data && Array.isArray(cachedCategories.data.data)) {
       setTimeout(() => {
         this.allCategories = cachedCategories.data.data;
@@ -287,7 +287,7 @@ export class TourComponent implements OnInit {
   }
 
   getDurations(): void {
-    const cachedDurations = this.getFromLocalStorage('majestic_durations');
+    const cachedDurations = this.getFromLocalStorage('scarabée voyageur_durations');
     // Durations might be stored directly as array or nested in data.data
     if (cachedDurations?.data) {
       setTimeout(() => {

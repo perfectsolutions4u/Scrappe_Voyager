@@ -2,7 +2,7 @@
   [routerLink]="['/tour', tour?.slug]"
   role="button"
   [ngClass]="layoutType === 'grid' ? 'row gx-3 flex-column' : 'row gx-3 flex-wrap'"
-  class="tour align-items-center rounded-4 overflow-hidden border transition p-2 ms-1 mb-1"
+  class="tour align-items-center rounded-4 overflow-hidden border transition ms-1 mb-1"
 >
   <div [ngClass]="layoutType === 'grid' ? '' : ' col-md-5'" class="px-0">
     <figure class="img-Hover rounded-3 overflow-hidden position-relative mb-0">
@@ -17,7 +17,7 @@
 
       <span
         (click)="tour && tour.id && addFav(tour.id, $event)"
-        class="textMainColor bg-white rounded-circle p-1 pb-0 fs-5 fw-bold position-absolute top-0 end-0 m-2 z-3"
+        class="favBtn textMainColor bg-white rounded-circle p-2 fw-bold position-absolute top-0 end-0 m-2 z-3 flexCenter"
       >
         <i
           [ngClass]="{
@@ -52,6 +52,8 @@
       <h3 [routerLink]="['/tour', tour?.slug]" class="text-capitalize transition cPointer">
         {{ tour?.title }}
       </h3>
+
+      <p class="description fontsm" [innerHTML]="overviewSafeHtml()"></p>
 
       <!-- destination -->
       @if (tour && tour.destinations && tour.destinations.length > 0) {

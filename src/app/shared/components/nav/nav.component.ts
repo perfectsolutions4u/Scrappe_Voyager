@@ -128,7 +128,7 @@ export class NavComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         const logo = res.data.find((item: any) => item.option_key === 'logo');
         this.logo = logo?.option_value[0] || '';
-        this.logo= '../../../../assets/Scarabee Voyageur.webp'
+        // this.logo= '../../../../assets/Scarabee Voyageur.webp'
         const title = res.data.find((item: any) => item.option_key === 'site_title');
         this.title = title?.option_value[0] || '';
         const phoneNumber = res.data.find((item: any) => item.option_key === 'CONTACT_PHONE_NUMBER');
