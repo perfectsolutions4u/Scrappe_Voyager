@@ -125,6 +125,7 @@ export class HomeComponent implements OnInit {
     '../../../assets/image/Scarabee/4.png',
     '../../../assets/image/Scarabee/3.png',
     '../../../assets/image/Scarabee/2.png',
+    '../../../assets/image/Scarabee/gem-desktop.webp',
     
   ];
   imageMobile = [
