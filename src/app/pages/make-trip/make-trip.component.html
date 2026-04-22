@@ -13,15 +13,15 @@
             <ng-template matStepLabel>
               <div class="step-label">
                 <i class="fa fa-map-marker-alt me-2"></i>
-                Choose Your Destinations
+                {{ 'makeTrip.chooseYourDestinations' | translate }}
               </div>
             </ng-template>
 
             <div class="step-content" @fadeInUp>
               <div class="step-header">
-                <h2 class="step-title">Where would you like to go?</h2>
+                <h2 class="step-title">{{ 'makeTrip.whereWouldYouLikeToGo' | translate }}</h2>
                 <p class="step-subtitle">
-                  Select your dream destination from our amazing collection
+                  {{ 'makeTrip.selectDreamDestination' | translate }}
                 </p>
               </div>
 
@@ -58,7 +58,7 @@
                         </div>
                         <div class="destination-overlay">
                           <i class="fa fa-eye me-2"></i>
-                          View Details
+                          {{ 'makeTrip.viewDetails' | translate }}
                         </div>
                       </figure>
                       <figcaption class="card_data text-center">
@@ -74,7 +74,7 @@
 
               <div class="step-actions" @fadeInUp>
                 <button class="modern-btn btn-primary" matStepperNext>
-                  <span>Continue</span>
+                  <span>{{ 'makeTrip.continue' | translate }}</span>
                   <i class="fa fa-arrow-right ms-2"></i>
                 </button>
               </div>
@@ -93,32 +93,32 @@
             <ng-template matStepLabel>
               <div class="step-label">
                 <i class="fa fa-calendar-alt me-2"></i>
-                Pickup Travel Dates
+                {{ 'makeTrip.pickupTravelDates' | translate }}
               </div>
             </ng-template>
 
             <div class="step-content" @fadeInUp>
               <div class="step-header">
-                <h2 class="step-title">When do you want to travel?</h2>
-                <p class="step-subtitle">Choose your preferred travel dates</p>
+                <h2 class="step-title">{{ 'makeTrip.whenDoYouWantToTravel' | translate }}</h2>
+                <p class="step-subtitle">{{ 'makeTrip.choosePreferredTravelDates' | translate }}</p>
               </div>
 
               <div class="row g-3 my-3">
                 <div class="col-lg-5" @slideInLeft>
                   <div class="date-type-card">
-                    <h4 class="date-type-title">Select Date Type</h4>
+                    <h4 class="date-type-title">{{ 'makeTrip.selectDateType' | translate }}</h4>
                     <mat-radio-group
                       class="date-radio-group d-flex flex-column"
-                      aria-label="Pickup Travel Dates"
+                      [attr.aria-label]="'makeTrip.pickupTravelDates' | translate"
                       formControlName="type"
                     >
                       <mat-radio-button class="date-radio-option" checked value="exact_time">
                         <i class="fa fa-calendar-check me-2"></i>
-                        I know the exact dates
+                        {{ 'makeTrip.iKnowExactDates' | translate }}
                       </mat-radio-button>
                       <mat-radio-button class="date-radio-option" value="approx_time">
                         <i class="fa fa-calendar-week me-2"></i>
-                        I have approximate dates
+                        {{ 'makeTrip.iHaveApproximateDates' | translate }}
                       </mat-radio-button>
                     </mat-radio-group>
                   </div>
@@ -132,10 +132,10 @@
                   <div class="date-picker-card">
                     <h4 class="date-picker-title">
                       <i class="fa fa-calendar me-2"></i>
-                      Select Date Range
+                      {{ 'makeTrip.selectDateRange' | translate }}
                     </h4>
                     <mat-form-field appearance="outline" class="w-100 date-range-field">
-                      <mat-label>Select a date range</mat-label>
+                      <mat-label>{{ 'makeTrip.selectDateRange' | translate }}</mat-label>
                       <mat-date-range-input
                         [formGroup]="secondFormGroup"
                         [rangePicker]="picker"
@@ -145,7 +145,7 @@
                           matStartDate
                           matInput
                           formControlName="start_date"
-                          placeholder="Start date"
+                          [placeholder]="'makeTrip.startDate' | translate"
                           class="date-input"
                           (click)="picker.open()"
                           readonly
@@ -154,7 +154,7 @@
                           matEndDate
                           matInput
                           formControlName="end_date"
-                          placeholder="End date"
+                          [placeholder]="'makeTrip.endDate' | translate"
                           class="date-input"
                           (click)="picker.open()"
                           readonly
@@ -178,10 +178,10 @@
                   <div class="date-picker-card">
                     <h4 class="date-picker-title">
                       <i class="fa fa-calendar-week me-2"></i>
-                      Select Month
+                      {{ 'makeTrip.selectMonth' | translate }}
                     </h4>
                     <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>Select Month</mat-label>
+                      <mat-label>{{ 'makeTrip.selectMonth' | translate }}</mat-label>
                       <mat-select formControlName="month">
                         <mat-option *ngFor="let month of monthList; index as i" [value]="i + 1">
                           {{ month }}
@@ -195,10 +195,10 @@
               <div class="step-actions" @fadeInUp *ngIf="!prefilled">
                 <button class="modern-btn btn-secondary" matStepperPrevious>
                   <i class="fa fa-arrow-left me-2"></i>
-                  <span>Back</span>
+                  <span>{{ 'makeTrip.back' | translate }}</span>
                 </button>
                 <button class="modern-btn btn-primary" matStepperNext>
-                  <span>Continue</span>
+                  <span>{{ 'makeTrip.continue' | translate }}</span>
                   <i class="fa fa-arrow-right ms-2"></i>
                 </button>
               </div>
@@ -212,30 +212,30 @@
             <ng-template matStepLabel>
               <div class="step-label">
                 <i class="fa fa-user-edit me-2"></i>
-                Complete Your Information
+                {{ 'makeTrip.completeYourInformation' | translate }}
               </div>
             </ng-template>
 
             <div class="step-content" @fadeInUp>
               <div class="step-header">
-                <h2 class="step-title">Tell us about yourself</h2>
-                <p class="step-subtitle">Fill in your details to complete your trip inquiry</p>
+                <h2 class="step-title">{{ 'makeTrip.tellUsAboutYourself' | translate }}</h2>
+                <p class="step-subtitle">{{ 'makeTrip.fillDetailsForInquiry' | translate }}</p>
               </div>
 
               <div class="form-section">
                 <h4 class="section-title">
                   <i class="fa fa-user me-2"></i>
-                  Personal Information
+                  {{ 'makeTrip.personalInformation' | translate }}
                 </h4>
                 <div class="row g-4">
                   <div class="col-md-4" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>First name</mat-label>
+                      <mat-label>{{ 'makeTrip.firstName' | translate }}</mat-label>
                       <input
                         type="text"
                         matInput
                         formControlName="first_name"
-                        placeholder="Ahmed"
+                        [placeholder]="'makeTrip.firstNamePlaceholder' | translate"
                         [class.is-invalid]="isFieldInvalid('first_name')"
                       />
                       <!-- <mat-icon matPrefix>person</mat-icon> -->
@@ -243,12 +243,12 @@
                   </div>
                   <div class="col-md-4" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Last name</mat-label>
+                      <mat-label>{{ 'makeTrip.lastName' | translate }}</mat-label>
                       <input
                         type="text"
                         matInput
                         formControlName="last_name"
-                        placeholder="Zenger"
+                        [placeholder]="'makeTrip.lastNamePlaceholder' | translate"
                         [class.is-invalid]="isFieldInvalid('last_name')"
                       />
                       <!-- <mat-icon matPrefix>person_outline</mat-icon> -->
@@ -256,12 +256,12 @@
                   </div>
                   <div class="col-md-4" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Email</mat-label>
+                      <mat-label>{{ 'makeTrip.email' | translate }}</mat-label>
                       <input
                         type="email"
                         matInput
                         formControlName="email"
-                        placeholder="ahmed@gmail.com"
+                        [placeholder]="'makeTrip.emailPlaceholder' | translate"
                         [class.is-invalid]="isFieldInvalid('email')"
                       />
                       <!-- <mat-icon matPrefix>email</mat-icon> -->
@@ -269,7 +269,7 @@
                   </div>
                   <div class="col-md-6" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Nationality</mat-label>
+                      <mat-label>{{ 'makeTrip.nationality' | translate }}</mat-label>
                       <mat-select formControlName="nationality">
                         <mat-option *ngFor="let item of countriesList" [value]="item.name">
                           {{ item.name }}
@@ -280,7 +280,7 @@
                   </div>
                   <div class="col-md-6" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Phone number</mat-label>
+                      <mat-label>{{ 'makeTrip.phoneNumber' | translate }}</mat-label>
                       <input
                         type="number"
                         matInput
@@ -297,12 +297,12 @@
               <div class="form-section">
                 <h4 class="section-title">
                   <i class="fa fa-dollar-sign me-2"></i>
-                  Budget & Preferences
+                  {{ 'makeTrip.budgetPreferences' | translate }}
                 </h4>
                 <div class="row g-4">
                   <div class="col-md-6" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Min Budget</mat-label>
+                      <mat-label>{{ 'makeTrip.minBudget' | translate }}</mat-label>
                       <input
                         matInput
                         type="number"
@@ -314,7 +314,7 @@
                   </div>
                   <div class="col-md-6" @fadeInUp>
                     <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                      <mat-label>Max Budget</mat-label>
+                      <mat-label>{{ 'makeTrip.maxBudget' | translate }}</mat-label>
                       <input
                         matInput
                         type="number"
@@ -334,7 +334,7 @@
                       />
                       <label for="flight_offer" class="checkbox-label">
                         <i class="fa fa-plane me-2"></i>
-                        Add flight offer to my trip
+                        {{ 'makeTrip.addFlightOffer' | translate }}
                       </label>
                     </div>
                   </div>
@@ -344,14 +344,14 @@
               <div class="form-section">
                 <h4 class="section-title">
                   <i class="fa fa-users me-2"></i>
-                  Travelers
+                  {{ 'makeTrip.travelers' | translate }}
                 </h4>
                 <div class="row g-4">
                   <div class="col-md-4" @fadeInUp>
                     <div class="traveler-counter-card">
                       <label class="traveler-label">
                         <i class="fa fa-user-tie me-2"></i>
-                        Adults ( +12 )
+                        {{ 'makeTrip.adults' | translate }}
                       </label>
                       <div class="counter-wrapper">
                         <button
@@ -379,7 +379,7 @@
                     <div class="traveler-counter-card">
                       <label class="traveler-label">
                         <i class="fa fa-child me-2"></i>
-                        Children ( 2 to 11 )
+                        {{ 'makeTrip.children' | translate }}
                       </label>
                       <div class="counter-wrapper">
                         <button
@@ -407,7 +407,7 @@
                     <div class="traveler-counter-card">
                       <label class="traveler-label">
                         <i class="fa fa-baby me-2"></i>
-                        Infants ( 0 to 2 )
+                        {{ 'makeTrip.infants' | translate }}
                       </label>
                       <div class="counter-wrapper">
                         <button
@@ -437,15 +437,15 @@
               <div class="form-section" @fadeInUp>
                 <h4 class="section-title">
                   <i class="fa fa-sticky-note me-2"></i>
-                  Additional Notes
+                  {{ 'makeTrip.additionalNotes' | translate }}
                 </h4>
                 <mat-form-field appearance="outline" class="w-100 modern-form-field">
-                  <mat-label>Notes</mat-label>
+                  <mat-label>{{ 'makeTrip.notes' | translate }}</mat-label>
                   <textarea
                     matInput
                     formControlName="additional_notes"
                     rows="4"
-                    placeholder="Add any special requests or notes here..."
+                    [placeholder]="'makeTrip.notesPlaceholder' | translate"
                   ></textarea>
                   <!-- <mat-icon matPrefix>note</mat-icon> -->
                 </mat-form-field>
@@ -459,15 +459,15 @@
                   type="button"
                 >
                   <i class="fa fa-arrow-left me-2"></i>
-                  <span>Back</span>
+                  <span>{{ 'makeTrip.back' | translate }}</span>
                 </button>
                 <button (click)="submitForm()" class="modern-btn btn-success " type="button">
                   <i class="fa fa-paper-plane me-2"></i>
-                  <span>Submit Inquiry</span>
+                  <span>{{ 'makeTrip.submitInquiry' | translate }}</span>
                 </button>
                 <button class="modern-btn btn-outline " (click)="stepper.reset()" type="button">
                   <i class="fa fa-redo me-2"></i>
-                  <span>Reset</span>
+                  <span>{{ 'makeTrip.reset' | translate }}</span>
                 </button>
               </div>
             </div>

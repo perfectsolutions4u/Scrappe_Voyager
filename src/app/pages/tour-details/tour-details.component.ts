@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatepickerService } from '../../services/datepicker.service';
 import { SeoService } from '../../services/seo.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 declare var bootstrap: any;
 
@@ -40,6 +41,7 @@ declare var bootstrap: any;
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    TranslateModule,
   ],
   templateUrl: './tour-details.component.html',
   styleUrl: './tour-details.component.scss',
@@ -56,7 +58,8 @@ export class TourDetailsComponent implements OnInit {
     private _ToastrService: ToastrService,
     private _Router: Router,
     private datepickerService: DatepickerService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private translate: TranslateService
   ) {}
   slug: string = '';
   tour: Itour | null = null;
@@ -311,24 +314,24 @@ export class TourDetailsComponent implements OnInit {
       this.reviews.length || this.tour?.reviews_number || 0;
 
     if (reviewCount === 0) {
-      return 'New Tour';
+      return this.translate.instant('tourDetails.newTour');
     }
 
     // Calculate average rating from actual reviews if available
     const averageRating = this.getAverageRating();
 
     if (averageRating >= 4.5) {
-      return 'Excellent Quality';
+      return this.translate.instant('tourDetails.excellentQuality');
     } else if (averageRating >= 4.0) {
-      return 'Very Good Quality';
+      return this.translate.instant('tourDetails.veryGoodQuality');
     } else if (averageRating >= 3.5) {
-      return 'Good Quality';
+      return this.translate.instant('tourDetails.goodQuality');
     } else if (averageRating >= 3.0) {
-      return 'Average Quality';
+      return this.translate.instant('tourDetails.averageQuality');
     } else if (averageRating > 0) {
-      return 'Below Average Quality';
+      return this.translate.instant('tourDetails.belowAverageQuality');
     } else {
-      return 'No Rating Available';
+      return this.translate.instant('tourDetails.noRatingAvailable');
     }
   }
 
@@ -347,7 +350,7 @@ export class TourDetailsComponent implements OnInit {
   // check pricing
   getTourPricing(adultNum: number) {
     if (!this.tour) {
-      this._ToastrService.error('No data available.');
+      this._ToastrService.error(this.translate.instant('tourDetails.noDataAvailable'));
       // console.log('No data available.');
       return;
     }
@@ -612,7 +615,7 @@ export class TourDetailsComponent implements OnInit {
   getFormattedDate(): string {
     const dateValue = this.bookingForm.get('start_date')?.value;
     if (!dateValue) {
-      return 'Select Date';
+      return this.translate.instant('tourDetails.selectDate');
     }
 
     // Handle both Date objects and date strings (YYYY-MM-DD format)
@@ -627,7 +630,7 @@ export class TourDetailsComponent implements OnInit {
     }
 
     if (isNaN(date.getTime())) {
-      return 'Select Date';
+      return this.translate.instant('tourDetails.selectDate');
     }
 
     const options: Intl.DateTimeFormatOptions = {
@@ -636,7 +639,8 @@ export class TourDetailsComponent implements OnInit {
       weekday: 'long',
       year: 'numeric',
     };
-    return date.toLocaleDateString('en-US', options);
+    const locale = this.translate.currentLang === 'fr' ? 'fr-FR' : 'en-US';
+    return date.toLocaleDateString(locale, options);
   }
 
   // Get travelers display text
@@ -645,10 +649,34 @@ export class TourDetailsComponent implements OnInit {
     const children = this.bookingForm.get('children')?.value || 0;
     const infants = this.bookingForm.get('infants')?.value || 0;
     const parts: string[] = [];
-    if (adults > 0) parts.push(`${adults} ${adults === 1 ? 'Adult' : 'Adults'}`);
-    if (children > 0) parts.push(`${children} ${children === 1 ? 'Child' : 'Children'}`);
-    if (infants > 0) parts.push(`${infants} ${infants === 1 ? 'Infant' : 'Infants'}`);
-    return parts.length > 0 ? parts.join(', ') : 'Select Travelers';
+    if (adults > 0) {
+      parts.push(
+        `${adults} ${
+          adults === 1
+            ? this.translate.instant('tourDetails.adult')
+            : this.translate.instant('tourDetails.adults')
+        }`
+      );
+    }
+    if (children > 0) {
+      parts.push(
+        `${children} ${
+          children === 1
+            ? this.translate.instant('tourDetails.child')
+            : this.translate.instant('tourDetails.children')
+        }`
+      );
+    }
+    if (infants > 0) {
+      parts.push(
+        `${infants} ${
+          infants === 1
+            ? this.translate.instant('tourDetails.infant')
+            : this.translate.instant('tourDetails.infants')
+        }`
+      );
+    }
+    return parts.length > 0 ? parts.join(', ') : this.translate.instant('tourDetails.selectTravelers');
   }
 
   // Select tour type
@@ -740,7 +768,7 @@ export class TourDetailsComponent implements OnInit {
 
 
       // Format email body
-      const tourTitle = this.tour?.title || 'Tour Enquiry';
+      const tourTitle = this.tour?.title || this.translate.instant('tourDetails.tourEnquiry');
       const emailBody = `
 New Tour Enquiry
 
@@ -751,13 +779,13 @@ Phone: ${formValue.phone}
 Country: ${formValue.country}
 Subject: ${formValue.subject}
 Tour Details: ${formValue.message || 'N/A'}, ${formValue.number_of_people ? `Number of People: ${formValue.number_of_people}` : ''}, ${formattedDate ? `Travel Date: ${formattedDate}` : ''}, ${formValue.subject ? `Subject: ${formValue.subject}` : ''}
-Save Info: ${formValue.save_info ? 'Yes' : 'No'}
+Save Info: ${formValue.save_info ? this.translate.instant('tourDetails.yes') : this.translate.instant('tourDetails.no')}
       `;
 
       // Set email preview
       this.emailPreview = {
         to: this.settingsEmail || 'info@example.com',
-        subject: `Tour Enquiry - ${tourTitle}`,
+        subject: `${this.translate.instant('tourDetails.tourEnquiry')} - ${tourTitle}`,
         body: emailBody,
       };
 
@@ -765,14 +793,14 @@ Save Info: ${formValue.save_info ? 'Yes' : 'No'}
       this.showEmailConfirmation = true;
       this._cdr.markForCheck();
     } else {
-      this._ToastrService.error('Please fill in all required fields');
+      this._ToastrService.error(this.translate.instant('tourDetails.fillRequiredFields'));
     }
   }
 
   // Confirm and send email
   confirmAndSendEmail(): void {
     if (!this.emailPreview.to) {
-      this._ToastrService.error('Email address not found in settings');
+      this._ToastrService.error(this.translate.instant('tourDetails.emailNotFoundInSettings'));
       return;
     }
 
@@ -788,7 +816,7 @@ Save Info: ${formValue.save_info ? 'Yes' : 'No'}
 
     // Show success message and reset form
     setTimeout(() => {
-      this._ToastrService.success('Email client opened. Please send the enquiry.');
+      this._ToastrService.success(this.translate.instant('tourDetails.emailClientOpened'));
       this.enquiryForm.reset();
       this.enquiryForm.get('tour_id')?.setValue(this.tour?.id);
       this.isEnquirySubmitting = false;
@@ -813,7 +841,7 @@ Save Info: ${formValue.save_info ? 'Yes' : 'No'}
   getEnquiryFormattedDate(): string {
     const dateValue = this.enquiryForm.get('travel_date')?.value;
     if (!dateValue) {
-      return 'Select Date';
+      return this.translate.instant('tourDetails.selectDate');
     }
 
     let date: Date;
@@ -826,7 +854,7 @@ Save Info: ${formValue.save_info ? 'Yes' : 'No'}
     }
 
     if (isNaN(date.getTime())) {
-      return 'Select Date';
+      return this.translate.instant('tourDetails.selectDate');
     }
 
     const options: Intl.DateTimeFormatOptions = {
@@ -834,7 +862,8 @@ Save Info: ${formValue.save_info ? 'Yes' : 'No'}
       month: '2-digit',
       year: 'numeric',
     };
-    return date.toLocaleDateString('en-US', options);
+    const locale = this.translate.currentLang === 'fr' ? 'fr-FR' : 'en-US';
+    return date.toLocaleDateString(locale, options);
   }
 
   // Close modal and remove all backdrops

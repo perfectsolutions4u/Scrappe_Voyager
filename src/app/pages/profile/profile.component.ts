@@ -23,6 +23,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { TourCartComponent } from '../../shared/components/tour-cart/tour-cart.component';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -35,6 +36,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
     ReactiveFormsModule,
     CarouselModule,
     TourCartComponent,
+    TranslateModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [

@@ -7,11 +7,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ToastrService } from 'ngx-toastr';
 import { TourCartComponent } from '../../shared/components/tour-cart/tour-cart.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [BannerComponent, CommonModule, ReactiveFormsModule, CarouselModule],
+  imports: [BannerComponent, CommonModule, ReactiveFormsModule, CarouselModule, TranslateModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })

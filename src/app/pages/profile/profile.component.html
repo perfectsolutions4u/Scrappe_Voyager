@@ -17,7 +17,7 @@
                   />
                   <div class="image-overlay">
                     <i class="fa fa-camera"></i>
-                    <span>Change Photo</span>
+                    <span>{{ 'profile.changePhoto' | translate }}</span>
                   </div>
                 </div>
                 } @else { @if (files().length > 0) { @for (file of files(); track file) {
@@ -31,7 +31,7 @@
                 <app-ngx-dropzone-label>
                   <div class="upload-placeholder">
                     <i class="fa fa-cloud-upload-alt"></i>
-                    <span>Upload Your Image</span>
+                    <span>{{ 'profile.uploadYourImage' | translate }}</span>
                   </div>
                 </app-ngx-dropzone-label>
                 } }
@@ -59,7 +59,7 @@
               >
                 <div class="menu-item-content">
                   <i class="fa fa-gauge menu-icon"></i>
-                  <span class="menu-text">Dashboard</span>
+                  <span class="menu-text">{{ 'profile.dashboard' | translate }}</span>
                 </div>
                 <div class="menu-indicator"></div>
               </li>
@@ -70,7 +70,7 @@
               >
                 <div class="menu-item-content">
                   <i class="fa fa-id-card menu-icon"></i>
-                  <span class="menu-text">My Profile</span>
+                  <span class="menu-text">{{ 'profile.myProfile' | translate }}</span>
                 </div>
                 <div class="menu-indicator"></div>
               </li>
@@ -81,7 +81,7 @@
               >
                 <div class="menu-item-content">
                   <i class="fa fa-clipboard-list menu-icon"></i>
-                  <span class="menu-text">My Booking</span>
+                  <span class="menu-text">{{ 'profile.myBooking' | translate }}</span>
                 </div>
                 <div class="menu-indicator"></div>
               </li>
@@ -92,7 +92,7 @@
               >
                 <div class="menu-item-content">
                   <i class="fa fa-heart-circle-plus menu-icon"></i>
-                  <span class="menu-text">My Wishlist</span>
+                  <span class="menu-text">{{ 'profile.myWishlist' | translate }}</span>
                 </div>
                 <div class="menu-indicator"></div>
               </li>
@@ -103,14 +103,14 @@
               >
                 <div class="menu-item-content">
                   <i class="fa fa-gear menu-icon"></i>
-                  <span class="menu-text">Settings</span>
+                  <span class="menu-text">{{ 'profile.settings' | translate }}</span>
                 </div>
                 <div class="menu-indicator"></div>
               </li>
               <li role="button" class="logout-item" (click)="logout()">
                 <div class="menu-item-content">
                   <i class="fa fa-arrow-right-from-bracket menu-icon"></i>
-                  <span class="menu-text">Logout</span>
+                  <span class="menu-text">{{ 'profile.logout' | translate }}</span>
                 </div>
               </li>
             </ul>
@@ -125,8 +125,8 @@
           @if (selectedTab === 'dashboard') {
           <div class="tab-content" [@tabContent]>
             <div class="content-header mb-4">
-              <h3 class="content-title">Dashboard Overview</h3>
-              <p class="content-subtitle">Welcome back! Here's your activity summary</p>
+              <h3 class="content-title">{{ 'profile.dashboardOverview' | translate }}</h3>
+              <p class="content-subtitle">{{ 'profile.activitySummary' | translate }}</p>
             </div>
             <div class="row g-4" [@staggerCards]>
               <div class="col-md-6">
@@ -136,7 +136,7 @@
                   </div>
                   <div class="stat-content">
                     <h2 class="stat-number">{{ tourCart.length }}</h2>
-                    <p class="stat-label">Total Bookings</p>
+                    <p class="stat-label">{{ 'profile.totalBookings' | translate }}</p>
                   </div>
                   <div class="stat-decoration"></div>
                 </div>
@@ -148,7 +148,7 @@
                   </div>
                   <div class="stat-content">
                     <h2 class="stat-number">{{ favList.length }}</h2>
-                    <p class="stat-label">Favorite Tours</p>
+                    <p class="stat-label">{{ 'profile.favoriteTours' | translate }}</p>
                   </div>
                   <div class="stat-decoration"></div>
                 </div>
@@ -161,8 +161,8 @@
           @if (selectedTab === 'myProfile') {
           <div class="tab-content" [@tabContent]>
             <div class="content-header mb-4">
-              <h3 class="content-title">Profile Information</h3>
-              <p class="content-subtitle">Your personal details and account information</p>
+              <h3 class="content-title">{{ 'profile.profileInformation' | translate }}</h3>
+              <p class="content-subtitle">{{ 'profile.personalDetails' | translate }}</p>
             </div>
             <div class="profile-info-card">
               <div class="info-item">
@@ -170,7 +170,7 @@
                   <i class="fa fa-user"></i>
                 </div>
                 <div class="info-content">
-                  <span class="info-label">Full Name</span>
+                  <span class="info-label">{{ 'profile.fullName' | translate }}</span>
                   <span class="info-value">{{ profilemeData?.name || 'Antoni Jonson' }}</span>
                 </div>
               </div>
@@ -179,7 +179,7 @@
                   <i class="fa fa-envelope"></i>
                 </div>
                 <div class="info-content">
-                  <span class="info-label">Email</span>
+                  <span class="info-label">{{ 'profile.email' | translate }}</span>
                   <span class="info-value">{{ profilemeData?.email || 'jonsonexample.com' }}</span>
                 </div>
               </div>
@@ -188,7 +188,7 @@
                   <i class="fa fa-phone"></i>
                 </div>
                 <div class="info-content">
-                  <span class="info-label">Phone</span>
+                  <span class="info-label">{{ 'profile.phone' | translate }}</span>
                   <span class="info-value">{{ profilemeData?.phone || '+2 134 562 458' }}</span>
                 </div>
               </div>
@@ -197,7 +197,7 @@
                   <i class="fa fa-map-marker-alt"></i>
                 </div>
                 <div class="info-content">
-                  <span class="info-label">Address</span>
+                  <span class="info-label">{{ 'profile.address' | translate }}</span>
                   <span class="info-value">{{ profilemeData?.address || 'New York, USA' }}</span>
                 </div>
               </div>
@@ -206,7 +206,7 @@
                   <i class="fa fa-calendar-alt"></i>
                 </div>
                 <div class="info-content">
-                  <span class="info-label">Join Date</span>
+                  <span class="info-label">{{ 'profile.joinDate' | translate }}</span>
                   <span class="info-value">{{
                     profilemeData?.created_at
                       ? (profilemeData.created_at | date)
@@ -222,8 +222,8 @@
           @if (selectedTab === 'myBooking') {
           <div class="tab-content" [@tabContent]>
             <div class="content-header mb-4">
-              <h3 class="content-title">My Bookings</h3>
-              <p class="content-subtitle">Manage and view your tour bookings</p>
+              <h3 class="content-title">{{ 'profile.myBookings' | translate }}</h3>
+              <p class="content-subtitle">{{ 'profile.manageBookings' | translate }}</p>
             </div>
             @if (haveData) {
             <owl-carousel-o [options]="bookingOptions">
@@ -233,21 +233,21 @@
                   <app-tour-cart [tour]="cart.tour"></app-tour-cart>
                   <div class="booking-details">
                     <div class="detail-row">
-                      <span class="detail-label">Guests:</span>
+                      <span class="detail-label">{{ 'profile.guests' | translate }}:</span>
                       <span class="detail-value">
-                        <span *ngIf="cart.adults" class="badge">{{ cart.adults }} Adults</span>
+                        <span *ngIf="cart.adults" class="badge">{{ cart.adults }} {{ 'profile.adults' | translate }}</span>
                         <span *ngIf="cart.children" class="badge"
-                          >{{ cart.children }} Children</span
+                          >{{ cart.children }} {{ 'profile.children' | translate }}</span
                         >
-                        <span *ngIf="cart.infants" class="badge">{{ cart.infants }} Infants</span>
+                        <span *ngIf="cart.infants" class="badge">{{ cart.infants }} {{ 'profile.infants' | translate }}</span>
                       </span>
                     </div>
                     <div class="detail-row">
-                      <span class="detail-label">Total Price:</span>
+                      <span class="detail-label">{{ 'profile.totalPrice' | translate }}:</span>
                       <span class="detail-value price">{{ cart.totalPrice | currency }}</span>
                     </div>
                     <div class="detail-row">
-                      <span class="detail-label">Booking Date:</span>
+                      <span class="detail-label">{{ 'profile.bookingDate' | translate }}:</span>
                       <span class="detail-value">{{ cart.start_date | date }}</span>
                     </div>
                   </div>
@@ -258,8 +258,8 @@
             } @else {
             <div class="empty-state">
               <i class="fa fa-shopping-cart empty-icon"></i>
-              <h4>No Tours in Booking Cart</h4>
-              <p>Start exploring and book your first tour!</p>
+              <h4>{{ 'profile.noToursInBookingCart' | translate }}</h4>
+              <p>{{ 'profile.startExploringBookFirst' | translate }}</p>
             </div>
             }
           </div>
@@ -269,8 +269,8 @@
           @if (selectedTab === 'myWishlist') {
           <div class="tab-content" [@tabContent]>
             <div class="content-header mb-4">
-              <h3 class="content-title">My Wishlist</h3>
-              <p class="content-subtitle">Your saved favorite tours</p>
+              <h3 class="content-title">{{ 'profile.myWishlist' | translate }}</h3>
+              <p class="content-subtitle">{{ 'profile.savedFavoriteTours' | translate }}</p>
             </div>
             @if (haveData) {
             <owl-carousel-o [options]="bookingOptions">
@@ -283,8 +283,8 @@
             } @else {
             <div class="empty-state">
               <i class="fa fa-heart empty-icon"></i>
-              <h4>No Tours in Wishlist</h4>
-              <p>Add tours to your wishlist to save them for later!</p>
+              <h4>{{ 'profile.noToursInWishlist' | translate }}</h4>
+              <p>{{ 'profile.addToursToWishlist' | translate }}</p>
             </div>
             }
           </div>
@@ -294,8 +294,8 @@
           @if (selectedTab === 'setting') {
           <div class="tab-content" [@tabContent]>
             <div class="content-header mb-4">
-              <h3 class="content-title">Account Settings</h3>
-              <p class="content-subtitle">Update your profile information and preferences</p>
+              <h3 class="content-title">{{ 'profile.accountSettings' | translate }}</h3>
+              <p class="content-subtitle">{{ 'profile.updateProfilePreferences' | translate }}</p>
             </div>
             <form
               [formGroup]="updateProfile"
@@ -307,13 +307,13 @@
                   <div class="form-group">
                     <label for="name" class="form-label">
                       <i class="fa fa-file-signature"></i>
-                      Full Name
+                      {{ 'profile.fullName' | translate }}
                     </label>
                     <input
                       type="text"
                       id="name"
                       formControlName="name"
-                      placeholder="Your Full Name"
+                      [placeholder]="'profile.yourFullName' | translate"
                       class="form-control modern-input"
                     />
                   </div>
@@ -322,13 +322,13 @@
                   <div class="form-group">
                     <label for="phone" class="form-label">
                       <i class="fa fa-phone-volume"></i>
-                      Phone
+                      {{ 'profile.phone' | translate }}
                     </label>
                     <input
                       type="tel"
                       id="phone"
                       formControlName="phone"
-                      placeholder="Your Phone"
+                      [placeholder]="'profile.yourPhone' | translate"
                       class="form-control modern-input"
                     />
                   </div>
@@ -337,13 +337,13 @@
                   <div class="form-group">
                     <label for="password" class="form-label">
                       <i class="fa fa-lock"></i>
-                      Password
+                      {{ 'profile.password' | translate }}
                     </label>
                     <input
                       type="password"
                       id="password"
                       formControlName="password"
-                      placeholder="Your Password"
+                      [placeholder]="'profile.yourPassword' | translate"
                       class="form-control modern-input"
                     />
                   </div>
@@ -352,13 +352,13 @@
                   <div class="form-group">
                     <label for="password_confirmation" class="form-label">
                       <i class="fa fa-lock"></i>
-                      Confirm Password
+                      {{ 'profile.confirmPassword' | translate }}
                     </label>
                     <input
                       type="password"
                       id="password_confirmation"
                       formControlName="password_confirmation"
-                      placeholder="Confirm Your Password"
+                      [placeholder]="'profile.confirmYourPassword' | translate"
                       class="form-control modern-input"
                     />
                   </div>
@@ -367,14 +367,14 @@
                   <div class="form-group">
                     <label for="nationality" class="form-label">
                       <i class="fa fa-globe"></i>
-                      Nationality
+                      {{ 'profile.nationality' | translate }}
                     </label>
                     <select
                       id="nationality"
                       formControlName="nationality"
                       class="form-control modern-input"
                     >
-                      <option selected disabled>Select Your Nationality</option>
+                      <option selected disabled>{{ 'profile.selectYourNationality' | translate }}</option>
                       @for (item of countriesList; track $index) {
                       <option [value]="item.name">{{ item.name }}</option>
                       }
@@ -384,7 +384,7 @@
                 <div class="col-12">
                   <button type="submit" class="btn-update">
                     <i class="fa fa-save me-2"></i>
-                    Update Profile Info
+                    {{ 'profile.updateProfileInfo' | translate }}
                   </button>
                 </div>
               </div>

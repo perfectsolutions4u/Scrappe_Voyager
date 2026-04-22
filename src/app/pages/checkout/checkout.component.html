@@ -1,6 +1,6 @@
 <app-banner
-  [title]="'Checkout'"
-  [subtitle]="'Complete your purchase'"
+  [title]="'checkout.title' | translate"
+  [subtitle]="'checkout.subtitle' | translate"
   [backgroundImage]="backgroundImage"
 ></app-banner>
 
@@ -10,100 +10,100 @@
       <div class="col-lg-8 order-2 order-lg-1">
         <div class="bg-light p-3 rounded-3 shadow-sm border">
           <div class="text-start">
-            <h2 class="h3 fw-bold">Billing Details</h2>
-            <p class="fontsm">Please fill in the details below to complete your purchase</p>
+            <h2 class="h3 fw-bold">{{ 'checkout.billingDetails' | translate }}</h2>
+            <p class="fontsm">{{ 'checkout.billingDetailsDescription' | translate }}</p>
           </div>
           <form class="row g-3" [formGroup]="checkoutForm" (ngSubmit)="getCheckoutData()">
             <div class="col-md-6">
-              <label for="first_name" class="form-label">First Name</label>
+              <label for="first_name" class="form-label">{{ 'checkout.firstName' | translate }}</label>
               <input
                 type="text"
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('first_name')"
                 id="first_name"
                 formControlName="first_name"
-                placeholder="First Name"
+                [placeholder]="'checkout.firstName' | translate"
               />
             </div>
             <div class="col-md-6">
-              <label for="last_name" class="form-label">Last Name</label>
+              <label for="last_name" class="form-label">{{ 'checkout.lastName' | translate }}</label>
               <input
                 type="text"
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('last_name')"
                 id="last_name"
                 formControlName="last_name"
-                placeholder="Last Name"
+                [placeholder]="'checkout.lastName' | translate"
               />
             </div>
             <div class="col-md-6">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">{{ 'checkout.email' | translate }}</label>
               <input
                 type="email"
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('email')"
                 id="email"
                 formControlName="email"
-                placeholder="Email"
+                [placeholder]="'checkout.email' | translate"
               />
             </div>
             <div class="col-md-6">
-              <label for="phone" class="form-label">Phone</label>
+              <label for="phone" class="form-label">{{ 'checkout.phone' | translate }}</label>
               <input
                 type="number"
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('phone')"
                 id="phone"
                 formControlName="phone"
-                placeholder="Phone"
+                [placeholder]="'checkout.phone' | translate"
               />
             </div>
             <div class="col-md-6">
-              <label for="state" class="form-label">state</label>
+              <label for="state" class="form-label">{{ 'checkout.state' | translate }}</label>
               <input
                 type="text"
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('state')"
                 id="state"
                 formControlName="state"
-                placeholder="State"
+                [placeholder]="'checkout.state' | translate"
               />
             </div>
             <div class="col-md-6">
-              <label for="country" class="form-label">Country</label>
+              <label for="country" class="form-label">{{ 'checkout.country' | translate }}</label>
               <select
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('country')"
                 id="country"
                 formControlName="country">
-                <option value="" disabled selected>Select Country</option>
+                <option value="" disabled selected>{{ 'checkout.selectCountry' | translate }}</option>
                 @for (country of AllCountries; track $index) {
                 <option [value]="country.name">{{ country.name }}</option>
                 }
               </select>
             </div>
             <div class="col-12">
-              <label for="notes" class="form-label">Notes</label>
+              <label for="notes" class="form-label">{{ 'checkout.notes' | translate }}</label>
               <textarea
                 class="form-control"
                 [class.is-invalid]="isFieldInvalid('notes')"
                 id="notes"
                 formControlName="notes"
-                placeholder="Notes"
+                [placeholder]="'checkout.notes' | translate"
                 rows="3"
               ></textarea>
             </div>
 
             <!-- [disabled]="!checkoutForm.valid || !haveData" -->
-            <button [disabled]="!checkoutForm.valid || !haveData" type="submit" class="mainBtn w-100 mt-3">Submit Order</button>
+            <button [disabled]="!checkoutForm.valid || !haveData" type="submit" class="mainBtn w-100 mt-3">{{ 'checkout.submitOrder' | translate }}</button>
           </form>
         </div>
       </div>
       <div class="col-lg-4 order-1 order-lg-2">
         <div>
           <div class="text-start">
-            <h2 class="h3 fw-bold">Order Summary</h2>
-            <p class="fontsm">Please review the details below to complete your purchase</p>
+            <h2 class="h3 fw-bold">{{ 'checkout.orderSummary' | translate }}</h2>
+            <p class="fontsm">{{ 'checkout.orderSummaryDescription' | translate }}</p>
           </div>
           <!-- cart   carousel -->
           @if (haveData) {
@@ -124,12 +124,12 @@
             }
           </owl-carousel-o>
           } @else {
-          <p class="text-center text-danger">No data found in your cart</p>
+          <p class="text-center text-danger">{{ 'checkout.noDataInCart' | translate }}</p>
           }
 
           <!-- total price before discount coupon -->
           <div class="flexBetween mt-4">
-            <h6 class="mb-1">Total Price</h6>
+            <h6 class="mb-1">{{ 'checkout.totalPrice' | translate }}</h6>
             <h6 class="mb-1 textMainColor fw-bold">{{ getTotalPrice() | currency }}</h6>
           </div>
 
@@ -140,17 +140,17 @@
               class="form-control"
               id="coupon"
               formControlName="coupon_id"
-              placeholder="Enter coupon code"
+              [placeholder]="'checkout.enterCouponCode' | translate"
             />
             <button type="button" class="btn secBtn flex-shrink-0" (click)="applyCoupon()">
-              Apply
+              {{ 'checkout.apply' | translate }}
             </button>
           </div>
 
           <!-- total price after discount coupon -->
           @if (couponApplied) {
           <div class="flexBetween">
-            <h6 class="mb-1">Total Price After Discount</h6>
+            <h6 class="mb-1">{{ 'checkout.totalPriceAfterDiscount' | translate }}</h6>
             <h6 class="mb-1 textMainColor fw-bold">{{ getTotalPrice() | currency }}</h6>
           </div>
           }

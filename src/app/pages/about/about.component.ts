@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { Parteners } from '../../shared/components/parteners/parteners.component';
 import { VideoComponent } from '../../shared/components/video/video.component';
 import { WhyChooseUs } from "../../shared/components/why-choose-us/why-choose-us.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [BannerComponent, BestServices, CommonModule, VideoComponent, WhyChooseUs],
+  imports: [BannerComponent, BestServices, CommonModule, VideoComponent, WhyChooseUs, TranslateModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })

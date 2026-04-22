@@ -1,7 +1,7 @@
 @if (!tour) {
 <div class="loading d-flex justify-content-center align-items-center">
   <div class="spinner-border text-dark" role="status">
-    <span class="visually-hidden text-dark">Loading...</span>
+    <span class="visually-hidden text-dark">{{ 'tourDetails.loading' | translate }}</span>
   </div>
 </div>
 } @if (tour) {
@@ -17,18 +17,17 @@
     <figcaption class="flexCenter">
       <div class="text-center text-white">
         <h6>
-          @if (totalPrice > 0) { Starting From
-          <span class="fs-5 fw-bold">{{ totalPrice | currency }}</span> /per person } @else {
-          Starting From <span class="fs-5 fw-bold">{{ tour.start_from | currency }}</span> /per
-          person }
+          @if (totalPrice > 0) { {{ 'tourDetails.startingFrom' | translate }}
+          <span class="fs-5 fw-bold">{{ totalPrice | currency }}</span> {{ 'tourDetails.perPerson' | translate }} } @else {
+          {{ 'tourDetails.startingFrom' | translate }} <span class="fs-5 fw-bold">{{ tour.start_from | currency }}</span> {{ 'tourDetails.perPerson' | translate }} }
         </h6>
         <h1 class="text-white text-capitalize my-3">{{ tour.title }}</h1>
         <div class="info">
           <span> {{ tour.duration }} </span>
           @if (tour.destinations && tour.destinations.length > 0) {
-          <span> | {{ tour.destinations.length }} destinations </span>
+          <span> | {{ tour.destinations.length }} {{ 'tourDetails.destinations' | translate }} </span>
           } @if (tour.categories && tour.categories.length > 0) {
-          <span> | {{ tour.categories.length }} categories </span>
+          <span> | {{ tour.categories.length }} {{ 'tourDetails.categories' | translate }} </span>
           }
         </div>
       </div>
@@ -43,7 +42,7 @@
         <div>
           <!-- description -->
           <div class="description">
-            <h2 class="text-capitalize mb-3 text-color h4">About Tour Package</h2>
+            <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.aboutTourPackage' | translate }}</h2>
             <p class="text-color-secondary fontsm">{{ tour.overview_text }}</p>
 
             <div class="row g-3 my-4 border p-3 rounded-3">
@@ -51,7 +50,7 @@
                 <div class="d-flex align-items-center">
                   <i class="fa fa-calendar-days me-3 textSecondColor"></i>
                   <div class="">
-                    <h6 class="mb-0">Duration</h6>
+                    <h6 class="mb-0">{{ 'tourDetails.duration' | translate }}</h6>
                     <span class="text-color-secondary fontsm">{{ tour.duration }}</span>
                   </div>
                 </div>
@@ -60,7 +59,7 @@
                 <div class="d-flex align-items-center">
                   <i class="fa fa-calendar-days me-3 textSecondColor"></i>
                   <div>
-                    <h6 class="mb-0">Type</h6>
+                    <h6 class="mb-0">{{ 'tourDetails.type' | translate }}</h6>
                     <span class="text-color-secondary fontsm">{{ tour.type }}</span>
                   </div>
                 </div>
@@ -69,7 +68,7 @@
                 <div class="d-flex align-items-center">
                   <i class="fa fa-calendar-days me-3 textSecondColor"></i>
                   <div>
-                    <h6 class="mb-0">Run</h6>
+                    <h6 class="mb-0">{{ 'tourDetails.run' | translate }}</h6>
                     <span class="text-color-secondary fontsm">{{ tour.run }}</span>
                   </div>
                 </div>
@@ -78,7 +77,7 @@
           </div>
           <!-- gallery -->
           <div class="mb-5">
-            <h2 class="text-capitalize mb-3 text-color h4">Explore Gallery</h2>
+            <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.exploreGallery' | translate }}</h2>
             <owl-carousel-o [options]="galleryOptions">
               @if (tour && tour.gallery && tour.gallery.length > 0) { @for (image of tour.gallery;
               track $index) {
@@ -115,7 +114,7 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   ></path>
                 </svg>
-                <span class="text-color-secondary fontsm" [innerHTML]="tour.highlights || 'No highlights found'"></span>
+                <span class="text-color-secondary fontsm" [innerHTML]="tour.highlights || ('tourDetails.noHighlightsFound' | translate)"></span>
               </div>
             </div>
             }
@@ -123,7 +122,7 @@
 
           <!-- itinerary -->
           <div class="mb-5">
-            <h2 class="text-capitalize mb-3 text-color h4">tour Itinerary</h2>
+            <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.tourItinerary' | translate }}</h2>
             @if (tour && tour.days && tour.days.length > 0) {
             <div class="faq-accordion">
               @for (day of tour.days; track day.id; let i = $index) {
@@ -134,7 +133,7 @@
                   (click)="toggleItinerary(i)"
                   [attr.aria-expanded]="isOpen(i)"
                 >
-                  <span class="faq-question-text">{{ day.title || 'Day ' + (i + 1) }}</span>
+                  <span class="faq-question-text">{{ day.title || (('tourDetails.day' | translate) + ' ' + (i + 1)) }}</span>
                   <span class="faq-icon">
                     @if (isOpen(i)) {
                     <i class="fa fa-minus-square"></i>
@@ -171,7 +170,7 @@
             </div>
             } @else {
             <div class="border p-3 rounded-3">
-              <p class="text-muted mb-0">No itinerary available at the moment.</p>
+              <p class="text-muted mb-0">{{ 'tourDetails.noItineraryAvailable' | translate }}</p>
             </div>
             }
           </div>
@@ -182,7 +181,7 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="">
-                  <h6 class="mb-3 text-capitalize">Tour Included </h6>
+                  <h6 class="mb-3 text-capitalize">{{ 'tourDetails.tourIncluded' | translate }}</h6>
                   <ul class="list-unstyled">
                     @for (include of includedList; track $index) {
                     <li class="d-flex gap-2 mb-2">
@@ -210,7 +209,7 @@
               </div>
               <div class="col-md-6">
                 <div class="">
-                  <h6 class="mb-3 text-capitalize">Tour Excluded </h6>
+                  <h6 class="mb-3 text-capitalize">{{ 'tourDetails.tourExcluded' | translate }}</h6>
                   <ul class="list-unstyled">
                     @for (exclude of excludedList; track $index) {
                     <li class="d-flex gap-2 mb-2">
@@ -243,13 +242,13 @@
 
           <!-- faq -->
           <div class="mb-5">
-            <h2 class="text-capitalize mb-3 text-color h4">Frequently Asked & Question</h2>
+            <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.frequentlyAskedQuestion' | translate }}</h2>
             <app-faq-content></app-faq-content>
           </div>
 
           <!-- reviews -->
           <div class="mb-5 reviews">
-            <h2 class="text-capitalize mb-3 text-color h4">Customer Review & Rating</h2>
+            <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.customerReviewRating' | translate }}</h2>
             <div class="border p-3 rounded-3 text-center py-4">
               <h5 class="text-capitalize h5 mb-0">{{ getReviewQualityText() }}</h5>
               <span class="rating-number fw-bolder">{{ getAverageRating().toFixed(1) }}</span>
@@ -267,7 +266,7 @@
               >
                 @if (isLoading) {
                 <span class="spinner-border spinner-border-sm ms-2"></span>
-                } @else { Write a Review }
+                } @else { {{ 'tourDetails.writeReview' | translate }} }
               </button>
             </div>
 
@@ -289,7 +288,7 @@
                 <p class="text-muted mb-0">{{ review.created_at | date : 'dd/MM/yyyy' }}</p>
               </div>
               } } @else {
-              <p class="text-muted mb-0">No reviews available at the moment.</p>
+              <p class="text-muted mb-0">{{ 'tourDetails.noReviewsAvailable' | translate }}</p>
               }
             </div>
           </div>
@@ -299,14 +298,14 @@
         <div>
           <!-- booking form -->
           <div class="bookingBox border pt-4 pb-3 px-3 rounded-3 mb-4">
-            <p class="text-capitalize mb-1">Starting From</p>
+            <p class="text-capitalize mb-1">{{ 'tourDetails.startingFrom' | translate }}</p>
             <h5 class="text-capitalize">
               @if (totalPrice > 0) {
               <b class="textMainColor fs-3 mb-4">{{ totalPrice | currency }}</b>
               } @else {
               <b class="textMainColor fs-3 mb-4">{{ tour.start_from | currency }}</b>
               }
-              <span class="fontsm mx-1">/per person</span>
+              <span class="fontsm mx-1">{{ 'tourDetails.perPerson' | translate }}</span>
             </h5>
 
             <ul class="list-unstyled my-4">
@@ -321,7 +320,7 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   />
                 </svg>
-                <span class="fontsm">Mony Back Guarentee.</span>
+                <span class="fontsm">{{ 'tourDetails.moneyBackGuarantee' | translate }}</span>
               </li>
               <li class="d-flex gap-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -334,7 +333,7 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   />
                 </svg>
-                <span class="fontsm">Your Safety is Our Top Priority. </span>
+                <span class="fontsm">{{ 'tourDetails.safetyPriority' | translate }}</span>
               </li>
             </ul>
 
@@ -344,7 +343,7 @@
               data-bs-toggle="modal"
               data-bs-target="#availabilityModal"
             >
-              Check Availability
+              {{ 'tourDetails.checkAvailability' | translate }}
             </button>
             <button
               type="button"
@@ -352,14 +351,14 @@
               data-bs-toggle="modal"
               data-bs-target="#enquiryModal"
             >
-              Submit an Enquiry
+              {{ 'tourDetails.submitEnquiry' | translate }}
             </button>
           </div>
 
           <!-- customize your tour -->
           <div class="customizeTour border pt-4 pb-3 px-3 rounded-3 mb-4">
-            <p class="text-capitalize mb-1">Customize</p>
-            <h5 class="text-capitalize">travel package!</h5>
+            <p class="text-capitalize mb-1">{{ 'tourDetails.customize' | translate }}</p>
+            <h5 class="text-capitalize">{{ 'tourDetails.travelPackage' | translate }}</h5>
 
             <ul class="list-unstyled my-4">
               <li class="d-flex gap-2 mb-2">
@@ -373,7 +372,7 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   />
                 </svg>
-                <span class="fontsm">Mony Back Guarentee.</span>
+                <span class="fontsm">{{ 'tourDetails.moneyBackGuarantee' | translate }}</span>
               </li>
               <li class="d-flex gap-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -386,12 +385,12 @@
                     d="M11.6947 6.45795L7.24644 10.9086C7.17556 10.9771 7.08572 11.0126 6.99596 11.0126C6.9494 11.0127 6.90328 11.0035 6.86027 10.9857C6.81727 10.9678 6.77822 10.9416 6.7454 10.9086L4.3038 8.46699C4.16436 8.32987 4.16436 8.10539 4.3038 7.96595L5.16652 7.10083C5.29892 6.96851 5.53524 6.96851 5.66764 7.10083L6.99596 8.42915L10.3309 5.09179C10.3638 5.05887 10.4028 5.03274 10.4457 5.01489C10.4887 4.99705 10.5347 4.98784 10.5812 4.98779C10.6757 4.98779 10.7656 5.02563 10.8317 5.09179L11.6944 5.95699C11.8341 6.09643 11.8341 6.32091 11.6947 6.45795Z"
                   />
                 </svg>
-                <span class="fontsm">Your Safety is Our Top Priority. </span>
+                <span class="fontsm">{{ 'tourDetails.safetyPriority' | translate }}</span>
               </li>
             </ul>
 
             <button type="button" class="secBtn w-100 mb-3 fontsm" routerLink="/makeTrip">
-              Customize Package
+              {{ 'tourDetails.customizePackage' | translate }}
             </button>
           </div>
         </div>
@@ -405,22 +404,22 @@
   class="position-fixed z-3 bottom-0 left-0 right-0 bg-white p-3 border-top w-100 d-md-none flexBetween flex-wrap gap-2"
 >
   <div class="flex-grow-1">
-    <p class="text-capitalize mb-1">Starting From</p>
+    <p class="text-capitalize mb-1">{{ 'tourDetails.startingFrom' | translate }}</p>
     <h5 class="text-capitalize">
       @if (totalPrice > 0) {
       <b class="textMainColor fs-3 mb-4">{{ totalPrice | currency }}</b>
       } @else {
       <b class="textMainColor fs-3 mb-4">{{ tour.start_from | currency }}</b>
       }
-      <span class="fontsm mx-1">/per person</span>
+      <span class="fontsm mx-1">{{ 'tourDetails.perPerson' | translate }}</span>
     </h5>
   </div>
   <div class="d-flex align-items-center gap-2 fontsm">
     <button class="mainBtn" data-bs-toggle="modal" data-bs-target="#availabilityModal">
-      Check Availability
+      {{ 'tourDetails.checkAvailability' | translate }}
     </button>
     <button class="secBtn" data-bs-toggle="modal" data-bs-target="#enquiryModal">
-      Submit an Enquiry
+      {{ 'tourDetails.submitEnquiry' | translate }}
     </button>
   </div>
 </div>
@@ -437,14 +436,13 @@
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
         <!-- <h5 class="modal-title" id="availabilityModalLabel">Check Availability</h5> -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'tourDetails.close' | translate"></button>
       </div>
       <div class="modal-body">
         <div class="mainTitle">
-          <h2 class="text-capitalize mb-3 text-color h4">Dates & Availability</h2>
+          <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.datesAvailability' | translate }}</h2>
           <p>
-            Select your travel date & time, also minium traveller for reason easily booking a
-            package.
+            {{ 'tourDetails.datesAvailabilityDescription' | translate }}
           </p>
         </div>
 
@@ -458,7 +456,7 @@
                   <i class="fa fa-calendar-days input-icon"></i>
                   <div class="input-content">
                     <div class="input-value">{{ getFormattedDate() }}</div>
-                    <div class="input-label">Booking Date</div>
+                    <div class="input-label">{{ 'tourDetails.bookingDate' | translate }}</div>
                   </div>
                   <span class="input-indicator" [class.active]="isDatePickerOpen"></span>
                 </div>
@@ -487,21 +485,21 @@
                   <i class="fa fa-user input-icon"></i>
                   <div class="input-content">
                     <div class="input-value">{{ getTravelersText() }}</div>
-                    <div class="input-label">Select Travelers</div>
+                    <div class="input-label">{{ 'tourDetails.selectTravelers' | translate }}</div>
                   </div>
                   <span class="input-indicator" [class.active]="isTravelersDropdownOpen"></span>
                 </div>
                 @if (isTravelersDropdownOpen) {
                 <div class="travelers-dropdown">
                   <div class="travelers-header">
-                    <h6 class="mb-1">Travelers</h6>
+                    <h6 class="mb-1">{{ 'tourDetails.travelers' | translate }}</h6>
                     <p class="fontsm mb-0 text-color-secondary">
-                      You can book for a maximum number of people 20
+                      {{ 'tourDetails.maxPeople20' | translate }}
                     </p>
                   </div>
                   <div class="travelers-counter">
                     <div class="counter-item">
-                      <label class="counter-label">Adult</label>
+                      <label class="counter-label">{{ 'tourDetails.adult' | translate }}</label>
                       <div class="counter-controls">
                         <button
                           type="button"
@@ -525,7 +523,7 @@
                       </div>
                     </div>
                     <div class="counter-item">
-                      <label class="counter-label">Children</label>
+                      <label class="counter-label">{{ 'tourDetails.children' | translate }}</label>
                       <div class="counter-controls">
                         <button
                           type="button"
@@ -549,7 +547,7 @@
                       </div>
                     </div>
                     <div class="counter-item">
-                      <label class="counter-label">Infants</label>
+                      <label class="counter-label">{{ 'tourDetails.infants' | translate }}</label>
                       <div class="counter-controls">
                         <button
                           type="button"
@@ -583,8 +581,8 @@
           @if (tourOptions.length > 0) {
           <div class="tour-types-section mb-4">
             <div class="flexBetween mb-2">
-              <h6 class="mb-1">Tour Add-ons</h6>
-              <h6 class="mb-1 textMainColor">Total: {{ totalAddOnsPrice | currency }}</h6>
+              <h6 class="mb-1">{{ 'tourDetails.tourAddons' | translate }}</h6>
+              <h6 class="mb-1 textMainColor">{{ 'tourDetails.total' | translate }}: {{ totalAddOnsPrice | currency }}</h6>
             </div>
             @for (option of tour.options; track option.id) {
             <div class="option-dropdown-wrapper mb-2">
@@ -610,18 +608,18 @@
             }
           </div>
           }@else{
-          <p class="text-muted mb-0 fs-3 text-capitalize">No options available at the moment.</p>
+          <p class="text-muted mb-0 fs-3 text-capitalize">{{ 'tourDetails.noOptionsAvailable' | translate }}</p>
           }
 
           <!-- tour price + total price of all selected options -->
           <div class="flexBetween">
-            <h6 class="mb-1">Tour Price</h6>
+            <h6 class="mb-1">{{ 'tourDetails.tourPrice' | translate }}</h6>
             <h6 class="mb-1 textMainColor">{{ totalPrice + totalAddOnsPrice | currency }}</h6>
           </div>
 
           <!-- Submit Button -->
           <div class="text-center mt-4">
-            <button type="submit" class="mainBtn w-100 fontsm">Book Now</button>
+            <button type="submit" class="mainBtn w-100 fontsm">{{ 'tourDetails.bookNow' | translate }}</button>
           </div>
         </form>
       </div>
@@ -635,8 +633,8 @@
 <section class="my-5 related-tours">
   <div class="container">
     <div class="mainTitle">
-      <h2 class="text-capitalize mb-3 text-color h4">Relevant Package</h2>
-      <p>A curated list of the most popular travel packages based on different destinations.</p>
+      <h2 class="text-capitalize mb-3 text-color h4">{{ 'tourDetails.relevantPackage' | translate }}</h2>
+      <p>{{ 'tourDetails.relevantPackageDescription' | translate }}</p>
     </div>
     @if (relatedTours.length > 0) {
     <owl-carousel-o [options]="relatedToursOptions">
@@ -647,7 +645,7 @@
       }
     </owl-carousel-o>
     } @else {
-    <p class="text-muted mb-0 fs-3 text-capitalize">No related tours available at the moment.</p>
+    <p class="text-muted mb-0 fs-3 text-capitalize">{{ 'tourDetails.noRelatedTours' | translate }}</p>
     }
   </div>
 </section>
@@ -663,14 +661,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="writeReviewModalLabel">Write a Review</h5>
+        <h5 class="modal-title" id="writeReviewModalLabel">{{ 'tourDetails.writeReview' | translate }}</h5>
 
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'tourDetails.close' | translate"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="writeReview" (ngSubmit)="submitWriteReview()">
           <div class="mb-3">
-            <label for="reviewer_name" class="form-label">Reviewer Name</label>
+            <label for="reviewer_name" class="form-label">{{ 'tourDetails.reviewerName' | translate }}</label>
             <input
               type="text"
               class="form-control"
@@ -679,18 +677,18 @@
             />
           </div>
           <div class="mb-3">
-            <label for="rate" class="form-label">Rate</label>
+            <label for="rate" class="form-label">{{ 'tourDetails.rate' | translate }}</label>
             <input type="number" max="5" min="0" class="form-control" id="rate" formControlName="rate" />
           </div>
           <div class="mb-3">
             <input type="checkbox" id="confirm" formControlName="confirm" />
-            <label for="confirm" class="form-label ms-2">Confirm</label>
+            <label for="confirm" class="form-label ms-2">{{ 'tourDetails.confirm' | translate }}</label>
           </div>
           <div class="mb-3">
-            <label for="content" class="form-label">Content</label>
+            <label for="content" class="form-label">{{ 'tourDetails.content' | translate }}</label>
             <textarea class="form-control" id="content" formControlName="content"></textarea>
           </div>
-          <button type="submit" class="mainBtn w-100">Submit</button>
+          <button type="submit" class="mainBtn w-100">{{ 'tourDetails.submit' | translate }}</button>
         </form>
       </div>
     </div>
@@ -708,27 +706,27 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content enquiry-modal-content">
       <div class="modal-header border-bottom-0">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" [attr.aria-label]="'tourDetails.close' | translate"></button>
       </div>
       <div class="modal-body">
         <div class="enquiry-form-wrapper">
-          <h2 class="enquiry-title">We'd Love to Hear From You!</h2>
+          <h2 class="enquiry-title">{{ 'tourDetails.enquiryTitle' | translate }}</h2>
 
           <form class="row g-3" [formGroup]="enquiryForm" (ngSubmit)="submitEnquiryForm()">
             <!-- Full Name -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="name" class="form-label">Full Name</label>
+                <label for="name" class="form-label">{{ 'tourDetails.fullName' | translate }}</label>
                 <input
                   type="text"
                   id="name"
                   formControlName="name"
                   class="form-control enquiry-input"
-                  placeholder="Your Name"
+                  [placeholder]="'tourDetails.yourName' | translate"
                 />
                 @if (enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched)
                 {
-                <small class="text-danger">Full name is required</small>
+                <small class="text-danger">{{ 'tourDetails.fullNameRequired' | translate }}</small>
                 }
               </div>
             </div>
@@ -736,19 +734,18 @@
             <!-- Email Address -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">{{ 'tourDetails.emailAddress' | translate }}</label>
                 <input
                   type="email"
                   id="email"
                   formControlName="email"
                   class="form-control enquiry-input"
-                  placeholder="Email Address"
+                  [placeholder]="'tourDetails.emailAddress' | translate"
                 />
                 @if (enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched) {
                 <small class="text-danger">
-                  @if (enquiryForm.get('email')?.errors?.['required']) { Email is required } @else {
-                  @if (enquiryForm.get('email')?.errors?.['email']) { Please enter a valid email
-                  address } }
+                  @if (enquiryForm.get('email')?.errors?.['required']) { {{ 'tourDetails.emailRequired' | translate }} } @else {
+                  @if (enquiryForm.get('email')?.errors?.['email']) { {{ 'tourDetails.validEmailRequired' | translate }} } }
                 </small>
                 }
               </div>
@@ -757,12 +754,12 @@
             <!-- phone number -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="tel" id="phone" formControlName="phone" class="form-control enquiry-input" placeholder="Phone Number" [pattern]="phonePattern" [class.is-invalid]="enquiryForm.get('phone')?.invalid && enquiryForm.get('phone')?.touched" />
+                <label for="phone" class="form-label">{{ 'tourDetails.phoneNumber' | translate }}</label>
+                <input type="tel" id="phone" formControlName="phone" class="form-control enquiry-input" [placeholder]="'tourDetails.phoneNumber' | translate" [pattern]="phonePattern" [class.is-invalid]="enquiryForm.get('phone')?.invalid && enquiryForm.get('phone')?.touched" />
                 @if (enquiryForm.get('phone')?.invalid && enquiryForm.get('phone')?.touched) {
-                <small class="text-danger">Phone number is required</small>
+                <small class="text-danger">{{ 'tourDetails.phoneRequired' | translate }}</small>
                 } @else {
-                @if (enquiryForm.get('phone')?.errors?.['pattern']) { Please enter a valid phone number
+                @if (enquiryForm.get('phone')?.errors?.['pattern']) { {{ 'tourDetails.validPhoneRequired' | translate }}
                 }
                 }
               </div>
@@ -771,16 +768,16 @@
             <!-- country -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" id="country" formControlName="country" class="form-control enquiry-input" placeholder="Country" />
+                <label for="country" class="form-label">{{ 'tourDetails.country' | translate }}</label>
+                <input type="text" id="country" formControlName="country" class="form-control enquiry-input" [placeholder]="'tourDetails.country' | translate" />
               </div>
             </div>
 
             <!-- subject -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="subject" class="form-label">Subject</label>
-                <input type="text" id="subject" formControlName="subject" class="form-control enquiry-input" placeholder="Subject" />
+                <label for="subject" class="form-label">{{ 'tourDetails.subject' | translate }}</label>
+                <input type="text" id="subject" formControlName="subject" class="form-control enquiry-input" [placeholder]="'tourDetails.subject' | translate" />
               </div>
             </div>
 
@@ -788,19 +785,19 @@
             <div class="col-md-6">
               <div class="form-group mb-3">
                 <label for="number_of_people" class="form-label"
-                  >Number of People<span class="text-danger">*</span></label
+                  >{{ 'tourDetails.numberOfPeople' | translate }}<span class="text-danger">*</span></label
                 >
                 <input
                   type="number"
                   id="number_of_people"
                   formControlName="number_of_people"
                   class="form-control enquiry-input"
-                  placeholder="Number of people"
+                  [placeholder]="'tourDetails.numberOfPeople' | translate"
                   min="1"
                 />
                 @if (enquiryForm.get('number_of_people')?.invalid &&
                 enquiryForm.get('number_of_people')?.touched) {
-                <small class="text-danger">Number of people is required</small>
+                <small class="text-danger">{{ 'tourDetails.numberOfPeopleRequired' | translate }}</small>
                 }
               </div>
             </div>
@@ -808,7 +805,7 @@
             <!-- Travel Date -->
             <div class="col-md-6">
               <div class="form-group mb-3">
-                <label for="travel_date" class="form-label">Travel Date</label>
+                <label for="travel_date" class="form-label">{{ 'tourDetails.travelDate' | translate }}</label>
                 <div class="enquiry-date-input-wrapper position-relative">
                   <div class="enquiry-date-input" (click)="openEnquiryDatePicker()">
                     <i class="fa fa-calendar-days me-2"></i>
@@ -828,7 +825,7 @@
                 </div>
                 @if (enquiryForm.get('travel_date')?.invalid &&
                 enquiryForm.get('travel_date')?.touched) {
-                <small class="text-danger">Travel date is required</small>
+                <small class="text-danger">{{ 'tourDetails.travelDateRequired' | translate }}</small>
                 }
               </div>
             </div>
@@ -836,13 +833,13 @@
             <!-- Tour Details -->
             <div class="col-md-12">
               <div class="form-group mb-3">
-                <label for="message" class="form-label">Tour Details</label>
+                <label for="message" class="form-label">{{ 'tourDetails.tourDetailsLabel' | translate }}</label>
                 <textarea
                   id="message"
                   formControlName="message"
                   class="form-control enquiry-textarea"
                   rows="4"
-                  placeholder="Write about tour info"
+                  [placeholder]="'tourDetails.writeTourInfo' | translate"
                 ></textarea>
               </div>
             </div>
@@ -858,7 +855,7 @@
                     class="form-check-input"
                   />
                   <label for="save_info" class="form-check-label">
-                    Save my email address & name when I comment further time.
+                    {{ 'tourDetails.saveInfoLabel' | translate }}
                   </label>
                 </div>
               </div>
@@ -873,7 +870,7 @@
               >
                 @if (isEnquirySubmitting) {
                 <span class="spinner-border spinner-border-sm me-2"></span>
-                } @else { Submit For Enquiry
+                } @else { {{ 'tourDetails.submitForEnquiry' | translate }}
                 <i class="fa fa-arrow-up ms-2"></i>
                 }
               </button>
@@ -897,21 +894,21 @@
   <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Confirm Email Sending</h5>
+        <h5 class="modal-title">{{ 'tourDetails.confirmEmailSending' | translate }}</h5>
         <button type="button" class="btn-close" (click)="cancelEmailSending()"></button>
       </div>
       <div class="modal-body">
         <div class="email-preview">
           <div class="mb-3">
-            <strong>To:</strong>
+            <strong>{{ 'tourDetails.to' | translate }}:</strong>
             <p class="mb-0 text-break">{{ emailPreview.to }}</p>
           </div>
           <div class="mb-3">
-            <strong>Subject:</strong>
+            <strong>{{ 'tourDetails.subject' | translate }}:</strong>
             <p class="mb-0">{{ emailPreview.subject }}</p>
           </div>
           <div class="mb-3">
-            <strong>Content:</strong>
+            <strong>{{ 'tourDetails.content' | translate }}:</strong>
             <div class="email-body-preview border p-3 rounded bg-light">
               <pre class="mb-0 white-space-pre-wrap">{{ emailPreview.body }}</pre>
             </div>
@@ -920,12 +917,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="cancelEmailSending()">
-          Cancel
+          {{ 'tourDetails.cancel' | translate }}
         </button>
         <button type="button" class="btn mainBtn text-white" (click)="confirmAndSendEmail()">
           @if (isEnquirySubmitting) {
           <span class="spinner-border spinner-border-sm me-2"></span>
-          } Confirm & Send
+          } {{ 'tourDetails.confirmAndSend' | translate }}
         </button>
       </div>
     </div>

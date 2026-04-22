@@ -9,18 +9,18 @@
         <div class="filter-sidebar bg-white rounded-3 p-4 shadow-sm">
           <!-- Filter Header -->
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="mb-0 h6 fw-bold">Filter</h3>
+            <h3 class="mb-0 h6 fw-bold">{{ 'tour.filter' | translate }}</h3>
             <div class="d-flex align-items-center gap-3">
               <span
                 (click)="clearAllFilters()"
                 class="textMainColor cPointer fontsm cursor-pointer"
               >
-                Clear All
+                {{ 'tour.clearAll' | translate }}
               </span>
               <i
                 (click)="closeSidebar()"
                 class="fa fa-times text-danger cPointer fs-5 d-lg-none sidebar-close-btn"
-                title="Close"
+                [title]="'tour.close' | translate"
               ></i>
             </div>
           </div>
@@ -31,7 +31,7 @@
               class="filter-title flexBetween mb-3 cPointer"
               (click)="toggleFilterSection('destinations')"
             >
-              <span>Destinations</span>
+              <span>{{ 'tour.destinations' | translate }}</span>
               <div class="d-flex align-items-center gap-2">
                 <i
                   (click)="removeAllDestinations(); $event.stopPropagation()"
@@ -56,7 +56,7 @@
                   (change)="selectAllDestinations()"
                 />
                 <label class="form-check-label fw-semibold" for="dest-all">
-                  Select All @if (safeDestinations && safeDestinations.length > 0) {
+                  {{ 'tour.selectAll' | translate }} @if (safeDestinations && safeDestinations.length > 0) {
                   <span class="text-muted">({{ safeDestinations.length }})</span>
                   }
                 </label>
@@ -90,7 +90,7 @@
               class="filter-title flexBetween mb-3 cPointer"
               (click)="toggleFilterSection('categories')"
             >
-              <span>Tour Type</span>
+              <span>{{ 'tour.tourType' | translate }}</span>
               <div class="d-flex align-items-center gap-2">
                 <i
                   (click)="removeAllCategories(); $event.stopPropagation()"
@@ -115,7 +115,7 @@
                   (change)="selectAllCategories()"
                 />
                 <label class="form-check-label fw-semibold" for="cat-all">
-                  Select All @if (safeCategories && safeCategories.length > 0) {
+                  {{ 'tour.selectAll' | translate }} @if (safeCategories && safeCategories.length > 0) {
                   <span class="text-muted">({{ safeCategories.length }})</span>
                   }
                 </label>
@@ -149,7 +149,7 @@
               class="filter-title flexBetween mb-3 cPointer"
               (click)="toggleFilterSection('pricing')"
             >
-              <span>Pricing</span>
+              <span>{{ 'tour.pricing' | translate }}</span>
               <div class="d-flex align-items-center gap-2">
                 <i
                   (click)="removeAllPrices(); $event.stopPropagation()"
@@ -196,7 +196,7 @@
               class="filter-title flexBetween mb-3 cPointer"
               (click)="toggleFilterSection('duration')"
             >
-              <span>Duration</span>
+              <span>{{ 'tour.duration' | translate }}</span>
               <div class="d-flex align-items-center gap-2">
                 <i
                   (click)="removeAllDurations(); $event.stopPropagation()"
@@ -221,7 +221,7 @@
                   (change)="selectAllDurations()"
                 />
                 <label class="form-check-label fw-semibold" for="dur-all">
-                  Select All @if (safeDurations && safeDurations.length > 0) {
+                  {{ 'tour.selectAll' | translate }} @if (safeDurations && safeDurations.length > 0) {
                   <span class="text-muted">({{ safeDurations.length }})</span>
                   }
                 </label>
@@ -259,7 +259,7 @@
             <h2 class="mb-0">
               <span class="fw-bold textMainColor pe-2 fs-4">{{ totalItems }}</span>
               <span class="text-muted fontsm text-capitalize fw-bold"
-                >Unforgettable Journey Await!</span
+                >{{ 'tour.unforgettableJourneyAwait' | translate }}</span
               >
             </h2>
           </div>
@@ -267,7 +267,7 @@
             <!-- sort button appear in small screens -->
             <div class="cPointer border p-2 rounded-3 d-lg-none" (click)="toggleSidebar()">
               <i class="fa fa-sort me-2 textMainColor"></i>
-              <span class="text-muted fontsm">Filter</span>
+              <span class="text-muted fontsm">{{ 'tour.filter' | translate }}</span>
             </div>
           </div>
           <div class="col-md-6 col-sm-12">
@@ -279,11 +279,11 @@
                 class="border p-2 rounded-3"
                 (change)="onSortChange($event)"
               >
-                <option value="" selected>Sort By: Default</option>
-                <option value="bestseller">Best Seller</option>
-                <option value="recent">Recent</option>
-                <option value="price-low-high">Price: Low to High</option>
-                <option value="price-high-low">Price: High to Low</option>
+                <option value="" selected>{{ 'tour.sortDefault' | translate }}</option>
+                <option value="bestseller">{{ 'tour.bestSeller' | translate }}</option>
+                <option value="recent">{{ 'tour.recent' | translate }}</option>
+                <option value="price-low-high">{{ 'tour.priceLowToHigh' | translate }}</option>
+                <option value="price-high-low">{{ 'tour.priceHighToLow' | translate }}</option>
               </select>
 
               <!-- Layout Toggle -->
@@ -293,7 +293,7 @@
                   class="btn btn-outline-secondary"
                   [class.active]="layoutType === 'grid'"
                   (click)="setLayout('grid')"
-                  title="Grid View"
+                  [title]="'tour.gridView' | translate"
                 >
                   <i class="fas fa-th"></i>
                 </button>
@@ -302,7 +302,7 @@
                   class="btn btn-outline-secondary"
                   [class.active]="layoutType === 'list'"
                   (click)="setLayout('list')"
-                  title="List View"
+                  [title]="'tour.listView' | translate"
                 >
                   <i class="fas fa-list"></i>
                 </button>
@@ -315,7 +315,7 @@
         @if (isLoading) {
         <div class="text-center py-5">
           <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">{{ 'tour.loading' | translate }}</span>
           </div>
         </div>
         }
@@ -335,10 +335,10 @@
         @if (!isLoading && filteredTours.length === 0) {
         <div class="text-center py-5">
           <i class="fas fa-search fa-3x text-muted mb-3"></i>
-          <h4 class="text-muted">No tours found</h4>
-          <p class="text-muted">Try adjusting your filters to see more results.</p>
+          <h4 class="text-muted">{{ 'tour.noToursFound' | translate }}</h4>
+          <p class="text-muted">{{ 'tour.tryAdjustingFilters' | translate }}</p>
           <button class="btn btn-primary mt-3" (click)="clearAllFilters()">
-            Clear All Filters
+            {{ 'tour.clearAllFilters' | translate }}
           </button>
         </div>
         }

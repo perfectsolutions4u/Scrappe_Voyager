@@ -41,7 +41,7 @@ import {
 // import { SeoService } from '../../core/services/seo.service';
 import { SeoService } from '../../services/seo.service';
 import { Subject, takeUntil, tap } from 'rxjs';
-import { _ } from '@ngx-translate/core';
+import { _, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DataService } from '../../services/data.service';
 import { DatepickerService } from '../../services/datepicker.service';
 
@@ -59,6 +59,7 @@ import { DatepickerService } from '../../services/datepicker.service';
     MatIconModule,
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   providers: [
     {
@@ -115,7 +116,8 @@ export class MakeTripComponent implements OnInit, OnDestroy {
     private _Router: Router,
     private seoService: SeoService,
     private cdr: ChangeDetectorRef,
-    private datepickerService: DatepickerService
+    private datepickerService: DatepickerService,
+    private translate: TranslateService
   ) {}
 
   @ViewChild('stepper') stepper!: MatStepper;
@@ -127,19 +129,20 @@ export class MakeTripComponent implements OnInit, OnDestroy {
   submitFormGroup!: FormGroup;
   prefilled = false; // لو في داتا من Home
 
-  monthList = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+  monthList: string[] = [];
+  monthKeys = [
+    'january',
+    'february',
+    'march',
+    'april',
+    'may',
+    'june',
+    'july',
+    'august',
+    'september',
+    'october',
+    'november',
+    'december',
   ];
 
   makeTripForm: any = {};
@@ -157,6 +160,8 @@ export class MakeTripComponent implements OnInit, OnDestroy {
     );
     this.showCountries();
     this.buildForms();
+    this.loadMonths();
+    this.translate.onLangChange.subscribe(() => this.loadMonths());
 
     // this._MaketripService.getCountries().subscribe({
     //   next: (response) => {
@@ -200,6 +205,10 @@ export class MakeTripComponent implements OnInit, OnDestroy {
     });
 
     this.onBudgetChange();
+  }
+
+  loadMonths(): void {
+    this.monthList = this.monthKeys.map((key) => this.translate.instant(`home.months.${key}`));
   }
 
   private buildForms() {

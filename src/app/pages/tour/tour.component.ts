@@ -10,11 +10,12 @@ import { Category, Destination, Itour } from '../../core/interfaces/itour';
 import { DataService } from '../../services/data.service';
 import { TourCartComponent } from '../../shared/components/tour-cart/tour-cart.component';
 import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tour',
   standalone: true,
-  imports: [TourCartComponent, PaginationComponent, CommonModule, FormsModule],
+  imports: [TourCartComponent, PaginationComponent, CommonModule, FormsModule, TranslateModule],
   templateUrl: './tour.component.html',
   styleUrl: './tour.component.scss',
 })

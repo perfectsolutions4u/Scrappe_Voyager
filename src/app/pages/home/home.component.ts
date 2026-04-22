@@ -125,22 +125,23 @@ export class HomeComponent implements OnInit {
     '../../../assets/image/Scarabee/4.png',
     '../../../assets/image/Scarabee/3.png',
     '../../../assets/image/Scarabee/2.png',
-    '../../../assets/image/Scarabee/5.png',
-    // '../../../assets/image/Scarabee/Scarabee-banner.png',
-    // '../../../assets/image/Scarabee/Scarabee-Guest.png',
     
   ];
   imageMobile = [
+    '../../../assets/image/Scarabee-mobile-view/desert2mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/desert1mobile.webp',
     '../../../assets/image/Scarabee-mobile-view/mobile1.png',
     '../../../assets/image/Scarabee-mobile-view/mobile2.png',
     '../../../assets/image/Scarabee-mobile-view/mobile3.png',
-    '../../../assets/image/Scarabee-mobile-view/mobile4.png',
+    '../../../assets/image/Scarabee-mobile-view/karnak-mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/gem-mobile.webp',
     
   ];
 
 
   MarkTime: string = 'exact';
   monthList: string[] = [];
+  sliderNavText: { subText: string; mainText: string }[] = [];
   monthKeys = [
     'january',
     'february',
@@ -219,12 +220,40 @@ export class HomeComponent implements OnInit {
     // Reload months when language changes
     this.translate.onLangChange.subscribe(() => {
       this.loadMonths();
+      this.loadSliderNavText();
       this.cdr.markForCheck();
     });
+
+    this.loadSliderNavText();
   }
 
   loadMonths(): void {
     this.monthList = this.monthKeys.map((key) => this.translate.instant(`home.months.${key}`));
+  }
+
+  loadSliderNavText(): void {
+    this.sliderNavText = [
+      {
+        subText: this.translate.instant('home.slider.captionSub'),
+        mainText: this.translate.instant('home.slider.captionMain1'),
+      },
+      {
+        subText: this.translate.instant('home.slider.captionSub'),
+        mainText: this.translate.instant('home.slider.captionMain2'),
+      },
+      {
+        subText: this.translate.instant('home.slider.captionSub'),
+        mainText: this.translate.instant('home.slider.captionMain3'),
+      },
+      {
+        subText: this.translate.instant('home.slider.captionSub'),
+        mainText: this.translate.instant('home.slider.captionMain4'),
+      },
+      {
+        subText: this.translate.instant('home.slider.captionSub'),
+        mainText: this.translate.instant('home.slider.captionMain5'),
+      },
+    ];
   }
 
   getSettingsAndUpdateSeo(): void {
@@ -747,30 +776,6 @@ export class HomeComponent implements OnInit {
         },
       });
   }
-
-  /** One caption per hero slide (desktop ordering); mobile uses the first N entries. */
-  sliderNavText: { subText: string; mainText: string }[] = [
-    {
-      subText: 'Get unforgettable pleasure with us',
-      mainText: 'Explore the beauty of Egypt',
-    },
-    {
-      subText: 'Get unforgettable pleasure with us',
-      mainText: 'Natural Wonder Egypt Secrets',
-    },
-    {
-      subText: 'Get unforgettable pleasure with us',
-      mainText: 'Let’s make your best trip with us',
-    },
-    {
-      subText: 'Get unforgettable pleasure with us',
-      mainText: 'Discover timeless treasures with us',
-    },
-    {
-      subText: 'Get unforgettable pleasure with us',
-      mainText: 'Your journey starts here in Egypt',
-    },
-  ];
 
   sliderOptions: OwlOptions = {
     loop: true,
