@@ -118,24 +118,26 @@ export class HomeComponent implements OnInit {
   }
 
   imageDesktop = [
+    '../../../assets/image/Scarabee/Pyramid-of-Giza.webp',
+    '../../../assets/image/Scarabee/4.png',
+    '../../../assets/image/Scarabee/1.png',
+    '../../../assets/image/Scarabee/cairo-grand-egyptian-museum.webp',
+    '../../../assets/image/Scarabee/Restoration-Efforts-and-Preservation-of-Dendera-Temple-Egypt-Tours-Portal.webp',
     '../../../assets/image/Scarabee/Scarabee-slider3.png',
     '../../../assets/image/Scarabee/Scarabee-slider4.png',
     '../../../assets/image/Scarabee/Scarabee-slider5.png',
-    '../../../assets/image/Scarabee/1.png',
-    '../../../assets/image/Scarabee/4.png',
-    '../../../assets/image/Scarabee/3.png',
-    '../../../assets/image/Scarabee/2.png',
-    '../../../assets/image/Scarabee/gem-desktop.webp',
+
     
   ];
   imageMobile = [
-    '../../../assets/image/Scarabee-mobile-view/desert2mobile.webp',
-    '../../../assets/image/Scarabee-mobile-view/desert1mobile.webp',
-    '../../../assets/image/Scarabee-mobile-view/mobile1.png',
-    '../../../assets/image/Scarabee-mobile-view/mobile2.png',
-    '../../../assets/image/Scarabee-mobile-view/mobile3.png',
+    '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_gmwql9gmwql9gmwq.png',
+    '../../../assets/image/Scarabee-mobile-view/abosimpl.png',
     '../../../assets/image/Scarabee-mobile-view/karnak-mobile.webp',
     '../../../assets/image/Scarabee-mobile-view/gem-mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_nanyvrnanyvrnany.png',
+    '../../../assets/image/Scarabee-mobile-view/desert2mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/desert1mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_jl5v9jl5v9jl5v9j.png',
     
   ];
 
