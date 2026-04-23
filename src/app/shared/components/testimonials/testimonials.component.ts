@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, of } from 'rxjs';
 import { DataService } from '../../../services/data.service';
@@ -8,6 +8,8 @@ export interface TestimonialView {
   id: number;
   rate: number;
   content: string;
+  shortContent: string;
+  isLongContent: boolean;
   reviewer_name: string;
   initial: string;
   dateLabel: string;
@@ -20,36 +22,42 @@ export interface TestimonialView {
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
 })
-export class TestimonialsComponent {
+export class TestimonialsComponent implements OnInit {
   private readonly dataService = inject(DataService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
 
-  /** Optional link for “See all reviews on Google”. */
   @Input() googleReviewsUrl = '#';
 
   readonly starIndexes = [1, 2, 3, 4, 5] as const;
 
   reviews: TestimonialView[] = [];
+  visibleReviews: TestimonialView[] = [];
   averageRating = 0;
   loading = true;
   loadError = false;
+  readonly contentPreviewLength = 150;
+  private readonly expandedReviewIds = new Set<number>();
 
-  constructor() {
+  ngOnInit(): void {
     this.dataService
       .getreviews()
       .pipe(
-        takeUntilDestroyed(),
+        takeUntilDestroyed(this.destroyRef),
         catchError(() => {
           this.loadError = true;
+          this.loading = false;
+          this.cdr.detectChanges();
           return of(null);
         })
       )
       .subscribe((res) => {
-        this.loading = false;
-        console.log('res', res);
-        const raw = this.extractReviewList(res.data);
+        const raw = this.extractReviewList(res?.data);
         this.reviews = raw.map((r, index) => this.normalizeReview(r, index));
+        this.visibleReviews = this.reviews.slice(0, 6);
         this.averageRating = this.computeAverage(this.reviews);
-        console.log('reviews', this.reviews);
+        this.loading = false;
+        this.cdr.detectChanges();
       });
   }
 
@@ -78,12 +86,26 @@ export class TestimonialsComponent {
       (typeof raw?.content === 'string' && raw.content) ||
       (typeof raw?.comment === 'string' && raw.comment) ||
       '';
+    const normalizedContent = content.trim();
+    const isLongContent = normalizedContent.length > this.contentPreviewLength;
+    const shortContent = isLongContent
+      ? `${normalizedContent.slice(0, this.contentPreviewLength).trimEnd()}...`
+      : normalizedContent;
     const id = typeof raw?.id === 'number' ? raw.id : fallbackIndex;
     const trimmed = name.trim();
     const initial = trimmed ? trimmed.charAt(0).toUpperCase() : '?';
     const dateLabel = this.formatReviewDate(raw?.created_at ?? raw?.date);
 
-    return { id, rate, content, reviewer_name: name, initial, dateLabel };
+    return {
+      id,
+      rate,
+      content: normalizedContent,
+      shortContent,
+      isLongContent,
+      reviewer_name: name,
+      initial,
+      dateLabel,
+    };
   }
 
   private formatReviewDate(value: unknown): string {
@@ -105,7 +127,15 @@ export class TestimonialsComponent {
     return sum / list.length;
   }
 
-  displayedReviews(): TestimonialView[] {
-    return this.reviews.slice(0, 6);
+  isExpanded(reviewId: number): boolean {
+    return this.expandedReviewIds.has(reviewId);
+  }
+
+  toggleExpanded(reviewId: number): void {
+    if (this.expandedReviewIds.has(reviewId)) {
+      this.expandedReviewIds.delete(reviewId);
+      return;
+    }
+    this.expandedReviewIds.add(reviewId);
   }
 }

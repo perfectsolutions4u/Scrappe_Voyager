@@ -33,7 +33,7 @@
       <p class="testimonials__state">No reviews yet.</p>
     } @else {
       <div class="testimonials__grid">
-        @for (review of displayedReviews(); track review.id) {
+        @for (review of visibleReviews; track review.id) {
           <article class="testimonials__card">
             <div class="testimonials__stars" role="img" [attr.aria-label]="review.rate + ' out of 5 stars'">
               @for (i of starIndexes; track i) {
@@ -44,8 +44,17 @@
                 ></i>
               }
             </div>
-            <blockquote class="testimonials__quote">“{{ review.content }}”</blockquote>
-            <!-- <div class="testimonials__divider"></div> -->
+            <blockquote class="testimonials__quote">
+              “{{ isExpanded(review.id) ? review.content : review.shortContent }}”
+              @if (review.isLongContent) {
+                <span
+                  class="testimonials__read-more cPointer d-block pt-3"
+                  (click)="toggleExpanded(review.id)"
+                >
+                  {{ isExpanded(review.id) ? 'Read less' : 'Read more' }}
+                </span>
+              }
+            </blockquote>
             <div class="testimonials__author">
               <div class="testimonials__avatar" aria-hidden="true">{{ review.initial }}</div>
               <div class="testimonials__meta">

@@ -142,5 +142,19 @@ $testimonials-muted: #94a3b8;
   color: $primary-color;
 }
 
-
+.testimonials__read-more {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $second-color;
+  text-decoration: none;
+  width: fit-content;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    text-decoration-color: $second-color;
+    transition: $transition-fast;
+    color: $primary-color;
+  }
+}
 
