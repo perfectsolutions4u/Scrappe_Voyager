@@ -111,7 +111,18 @@
        >
        
          <button class="btn language-btn" type="button">
-           <i class="fas fa-globe"></i>
+           <!-- <i class="fas fa-globe"></i> -->
+            @if (getCurrentLanguageCode() === 'EN') {
+              <span class="flag-icon">
+                <img src="../../../../assets/image/Flag_of_the_United_Kingdom.png" class="w-100 h-100 object-fit-cover" alt="flag of the united kingdom">
+              </span> 
+            }@else if (getCurrentLanguageCode() === 'FR') {
+              <span class="flag-icon">
+                <img src="../../../../assets/image/france.jpg" class="w-100 h-100 object-fit-cover" alt="france flag">
+              </span>
+            }@else {
+               <i class="fas fa-globe"></i>
+            }
            <span>{{ getCurrentLanguageCode() }}</span>
            <!-- <i class="fas fa-chevron-down"></i> -->
          </button>
@@ -119,12 +130,21 @@
          <ul class="submenu">
            <li class="cPointer">
              <a (click)="selectLanguage('en')">
-                <span class="flag-icon">🇬🇧</span> English
+                <!-- <span class="flag-icon">🇬🇧</span>  -->
+                <span class="flag-icon me-2">
+                  <img src="../../../../assets/image/Flag_of_the_United_Kingdom.png" class="w-100 h-100 object-fit-cover" alt="flag of the united kingdom">
+                </span> 
+
+                English
               </a>
            </li>
-           <li>
+           <li class="cPointer">
             <a (click)="selectLanguage('fr')">
-              <span class="flag-icon">🇫🇷</span> French
+              <!-- <span class="flag-icon">🇫🇷</span>  -->
+              <span class="flag-icon me-2">
+                <img src="../../../../assets/image/france.jpg" class="w-100 h-100 object-fit-cover" alt="france flag">
+              </span> 
+              French
             </a>
            </li>
          </ul>
@@ -271,17 +291,33 @@
                   (mouseleave)="showLanguage.set(false)"
                 >
                   <button class="btn language-btn" type="button">
-                    <i class="fas fa-globe"></i>
+                    @if (getCurrentLanguageCode() === 'EN') {
+                      <span class="flag-icon">
+                        <img src="../../../../assets/image/Flag_of_the_United_Kingdom.png" class="w-100 h-100 object-fit-cover" alt="flag of the united kingdom">
+                      </span> 
+                    }@else if (getCurrentLanguageCode() === 'FR') {
+                      <span class="flag-icon">
+                        <img src="../../../../assets/image/france.jpg" class="w-100 h-100 object-fit-cover" alt="france flag">
+                      </span>
+                    }@else {
+                       <i class="fas fa-globe"></i>
+                    }
                     <span>{{ getCurrentLanguageCode() }}</span>
                     <!-- <i class="fas fa-chevron-down"></i> -->
                   </button>
                   @if (showLanguage()) {
                   <div class="dropdown-menu show">
                     <a class="dropdown-item cPointer" (click)="selectLanguage('en')">
-                      <span class="flag-icon">🇬🇧</span> English
+                      <span class="flag-icon">
+                        <img src="../../../../assets/image/Flag_of_the_United_Kingdom.png" class="w-100 h-100 object-fit-cover" alt="flag of the united kingdom">
+                      </span> 
+                      English
                     </a>
                     <a class="dropdown-item cPointer" (click)="selectLanguage('fr')">
-                      <span class="flag-icon">🇫🇷</span> French
+                      <span class="flag-icon">
+                        <img src="../../../../assets/image/france.jpg" class="w-100 h-100 object-fit-cover" alt="france flag">
+                      </span> 
+                       French
                     </a>
                   </div>
                 }

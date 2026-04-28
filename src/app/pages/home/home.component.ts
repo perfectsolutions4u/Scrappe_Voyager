@@ -120,24 +120,28 @@ export class HomeComponent implements OnInit {
   imageDesktop = [
     '../../../assets/image/Scarabee/Pyramid-of-Giza.webp',
     '../../../assets/image/Scarabee/4.png',
-    '../../../assets/image/Scarabee/1.png',
+    '../../../assets/image/Scarabee/2h-media-dXrbcgsnQ3U-unsplash.jpg',
+    // '../../../assets/image/Scarabee/1.png',
     '../../../assets/image/Scarabee/cairo-grand-egyptian-museum.webp',
     '../../../assets/image/Scarabee/Restoration-Efforts-and-Preservation-of-Dendera-Temple-Egypt-Tours-Portal.webp',
     '../../../assets/image/Scarabee/Scarabee-slider3.png',
     '../../../assets/image/Scarabee/Scarabee-slider4.png',
-    '../../../assets/image/Scarabee/Scarabee-slider5.png',
+    '../../../assets/image/Scarabee/Tomb-of-Ramses.jpg',
+    // '../../../assets/image/Scarabee/Scarabee-slider5.png',
 
     
   ];
   imageMobile = [
     '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_gmwql9gmwql9gmwq.png',
     '../../../assets/image/Scarabee-mobile-view/abosimpl.png',
-    '../../../assets/image/Scarabee-mobile-view/karnak-mobile.webp',
+    '../../../assets/image/Scarabee-mobile-view/number3-mobile.png',
+    // '../../../assets/image/Scarabee-mobile-view/karnak-mobile.webp',
     '../../../assets/image/Scarabee-mobile-view/gem-mobile.webp',
     '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_nanyvrnanyvrnany.png',
     '../../../assets/image/Scarabee-mobile-view/desert2mobile.webp',
     '../../../assets/image/Scarabee-mobile-view/desert1mobile.webp',
-    '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_jl5v9jl5v9jl5v9j.png',
+    '../../../assets/image/Scarabee/Tomb-of-Ramses.jpg',
+    // '../../../assets/image/Scarabee-mobile-view/Gemini_Generated_Image_jl5v9jl5v9jl5v9j.png',
     
   ];
 

@@ -265,6 +265,15 @@
     }
   }
 
+  .flag-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
   &.mobile {
     .language-btn {
       border: none;
@@ -363,8 +372,12 @@
   font-family: $bady-font;
 
   .flag-icon {
+    display: inline-block;
     margin-right: 0.5rem;
-    font-size: 0.5rem;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
     cursor: pointer;
   }
 
