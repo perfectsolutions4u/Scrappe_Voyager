@@ -98,7 +98,9 @@
       "october": "Octobre",
       "november": "Novembre",
       "december": "Décembre"
-    }
+    },
+    "dayTours": "Nos circuits et excursions en Égypte, de un à cinq jours",
+    "dayToursDescription": "Excursions en Égypte avec escales hors des sentiers battus. Au-delà de partager des connaissances, votre guide privé vous accompagnera de votre hôtel jusqu'à votre retour et créera des moments inoubliables..."
   },
   "common": {
     "makeTrip": "Créer un voyage",

@@ -3,13 +3,19 @@
 main {
 
   // margin-bottom: 110px;
-  $slider-height: calc(100vh - 77px);
-  height: $slider-height;
 
   .main-slider {
+    /* Hero height from width: adjust --hero-aspect-w / --hero-aspect-h (e.g. 21 / 9). Capped by viewport below nav. */
+    --nav-offset: 1px;
+    --hero-aspect-w: 22;
+    --hero-aspect-h: 7;
+    --slider-height: min(
+      calc(100vw * var(--hero-aspect-h) / var(--hero-aspect-w)),
+      calc(100vh - var(--nav-offset))
+    );
     position: relative;
     width: 100%;
-    height: $slider-height;
+    height: var(--slider-height);
     overflow: hidden;
 
     &__carousel {
@@ -17,13 +23,13 @@ main {
       inset: 0;
       z-index: 0;
       /* Without this, % heights inside Owl can collapse to 0 (custom elements default to inline). */
-      min-height: $slider-height;
+      min-height: var(--slider-height);
     }
 
     &__slide {
       position: relative;
       width: 100%;
-      height: $slider-height;
+      height: var(--slider-height);
     }
 
     /** Full-bleed fallback / underlay for slice `background-image` issues */
@@ -81,7 +87,7 @@ main {
         display: block;
         width: 100%;
         height: 100%;
-        min-height: $slider-height;
+        min-height: var(--slider-height);
       }
 
       .owl-carousel,
@@ -90,12 +96,12 @@ main {
       .owl-stage,
       .owl-item {
         height: 100%;
-        min-height: $slider-height;
+        min-height: var(--slider-height);
       }
 
       .owl-item .main-slider__slide {
         height: 100%;
-        min-height: $slider-height;
+        min-height: var(--slider-height);
       }
     }
 
@@ -257,16 +263,16 @@ main {
 
     .main-slider__dash {
       width: 4px;
-      height: 1.35rem;
+      height: 0.5rem;
       border-radius: 2px;
       padding: 0;
       border: none;
       background: rgba(255, 255, 255, 0.95);
       cursor: pointer;
       transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        height 0.25s ease;
+        background 0.85s ease,
+        transform 0.85s ease,
+        height 0.85s ease;
 
       &:hover {
         transform: scaleX(1.15);
@@ -274,7 +280,7 @@ main {
 
       &--active {
         background: $second-color;
-        height: 1.55rem;
+        height: 1.2rem;
       }
 
       &:focus-visible {
@@ -304,13 +310,16 @@ main {
     }
 
     @media (max-width: 576px) {
-      // .slider-content {
-        
-      // }
-      min-height: 360px;
+      --slider-height: max(
+        360px,
+        min(
+          calc(100vw * var(--hero-aspect-h) / var(--hero-aspect-w)),
+          calc(100vh - var(--nav-offset))
+        )
+      );
 
       &__slide {
-        min-height: 360px;
+        min-height: var(--slider-height);
       }
 
       // .slider-content__text h2 {

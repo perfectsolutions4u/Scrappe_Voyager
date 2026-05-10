@@ -98,7 +98,9 @@
       "october": "October",
       "november": "November",
       "december": "December"
-    }
+    },
+    "dayTours": "Our tours and excursions in Egypt, from one to five days",
+    "dayToursDescription": "Excursions in Egypt with stops off the beaten path. Beyond sharing knowledge, your private guide will accompany you from your hotel until your return and create unforgettable moments..."
   },
   "common": {
     "makeTrip": "Make Trip",

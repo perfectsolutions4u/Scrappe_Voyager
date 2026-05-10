@@ -3,6 +3,28 @@
 /* Home-only sections: lives in global bundle to keep home.component.scss under anyComponentStyle budget */
 app-home {
   .newServices {
+    .title {
+      h2{
+        font-size: clamp(2rem, 2vw, 2.2rem);
+        font-weight: 400;
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        text-decoration-color: $second-color;
+        color: $primary-color;
+        margin-bottom: 15px;
+
+      }
+      h5{
+        font-size: clamp(1.3rem, 1vw, 1.5rem);
+        color: $primary-color;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+    }
+    p.fontsm{
+      font-size: 12.5px;
+      
+    }
     .item {
       min-height: 120px;
       

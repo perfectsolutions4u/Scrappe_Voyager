@@ -49,11 +49,11 @@
           }
       </div> -->
 
-      <h3 [routerLink]="['/tour', tour?.slug]" class="text-capitalize transition cPointer">
+      <h3 [routerLink]="['/tour', tour?.slug]" class="transition cPointer">
         {{ tour?.title }}
       </h3>
 
-      <p class="description fontsm" [innerHTML]="overviewSafeHtml()"></p>
+      <p class="description " [innerHTML]="overviewSafeHtml()"></p>
 
       <!-- destination -->
       @if (tour && tour.destinations && tour.destinations.length > 0) {
@@ -73,7 +73,7 @@
         <div>
           <span class="fontsm text-muted">start from</span> <br>
           @let dp = getDisplayPrice(tour?.start_from);
-          <b class="textMainColor fs-5">{{ dp.symbol }}{{ dp.value | number:'1.2-2' }}</b>
+          <b class="textMainColor">{{ dp.symbol }}{{ dp.value | number:'1.2-2' }}</b>
           <!-- <span class="textMainColor fs-5 fw-bold">
             {{ tour?.start_from | currency }}
           </span> -->

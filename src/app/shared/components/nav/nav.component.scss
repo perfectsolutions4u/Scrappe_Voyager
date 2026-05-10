@@ -92,7 +92,7 @@
       padding: 0.5rem 0.75rem;
       color: $second-color;
       text-decoration: none;
-      font-family: $bady-font;
+      font-family: $paragraph-font;
       transition: $transition;
       border-left: 3px solid transparent;
       font-weight: bold;
@@ -154,7 +154,7 @@
   color: #25d366;
   border: $border;
   border-radius: $border-radius;
-  font-family: $bady-font;
+  font-family: $paragraph-font;
   font-weight: 500;
   text-decoration: none;
 
@@ -218,7 +218,7 @@
   border: $border;
   border-radius: $border-radius;
   height: 45px;
-  font-family: $bady-font;
+  font-family: $paragraph-font;
   color: $text-color;
 
   &:focus {
@@ -249,7 +249,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: $bady-font;
+    font-family: $paragraph-font;
 
     i:first-child {
       color: $primary-color;
@@ -369,7 +369,7 @@
   color: $second-color;
   text-decoration: none;
   transition: $transition;
-  font-family: $bady-font;
+  font-family: $paragraph-font;
 
   .flag-icon {
     display: inline-block;
@@ -418,11 +418,11 @@
     padding: 0.5rem 0.75rem;
     color: $primary-color ;
     text-decoration: none;
-    font-family: $bady-font;
+    font-family: $paragraph-font;
     transition: $transition;
     border-bottom: 3px solid transparent;
     font-size:  1rem;
-    font-weight: bold;
+    font-weight: 500;
     
     &:hover,
     &.active {
@@ -469,7 +469,7 @@
         color: $second-color;
         text-decoration: none;
         transition: $transition;
-        font-family: $bady-font;
+        font-family: $paragraph-font;
 
         &:hover {
           background-color: $primary-white-color;
@@ -535,7 +535,7 @@
   border: $border;
   border-radius: $border-radius;
   height: 50px;
-  font-family: $bady-font;
+  font-family: $paragraph-font;
   color: $text-color;
   font-size: 1rem;
 

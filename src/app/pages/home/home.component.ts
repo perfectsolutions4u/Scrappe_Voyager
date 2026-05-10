@@ -167,6 +167,7 @@ export class HomeComponent implements OnInit {
   packagesTours: Itour[] = [];
   nileCruisesTours: Itour[] = [];
   multiDaysTours: Itour[] = [];
+  dayTours: Itour[] = [];
   allDestinations: IDestination[] = [];
   allCategories: ICategory[] = [];
   allDurations: IDuration[] = [];
@@ -539,6 +540,24 @@ export class HomeComponent implements OnInit {
         error: (err) => {
           console.error('Error loading packages tours:', err);
           // this.popularTours = [];
+        },
+      });
+
+    // day tours
+    this._DataService
+      .getTours({category_slug: 'day-tours'})
+      .pipe(takeUntil(this.$destory))
+      .subscribe({
+        next: (res) => {
+          console.log('day tours', res);
+          const dayTours = res?.data?.data || res?.data || (Array.isArray(res) ? res : []);
+          if (Array.isArray(dayTours) && dayTours.length > 0) {
+            setTimeout(() => {
+              this.dayTours = dayTours;
+              console.log('day tours', this.dayTours);
+              this.cdr.markForCheck();
+            }, 0);
+          }
         },
       });
 
