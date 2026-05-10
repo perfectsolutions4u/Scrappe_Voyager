@@ -5,10 +5,23 @@ main {
   // margin-bottom: 110px;
 
   .main-slider {
-    /* Hero height from width: adjust --hero-aspect-w / --hero-aspect-h (e.g. 21 / 9). Capped by viewport below nav. */
-    --nav-offset: 1px;
-    --hero-aspect-w: 22;
-    --hero-aspect-h: 7;
+    /* Hero height from width: adjust --hero-aspect-w / --hero-aspect-h (e.g. 22 / 7). Capped by viewport below nav. */
+    // in mobile
+    @media (max-width: 767px) {
+      --nav-offset: 1px;
+      --hero-aspect-w: 22;
+      --hero-aspect-h: 7;
+    }
+    // in desktop
+    @media (min-width: 768px) {
+      --nav-offset: 1px;
+      --hero-aspect-w: 1;
+      --hero-aspect-h: 1;
+    }
+
+    // --nav-offset: 1px;
+    // --hero-aspect-w: 22;
+    // --hero-aspect-h: 7;
     --slider-height: min(
       calc(100vw * var(--hero-aspect-h) / var(--hero-aspect-w)),
       calc(100vh - var(--nav-offset))

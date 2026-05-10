@@ -141,7 +141,7 @@ body{
 }
 
 .mainTitle{
-  text-align: center;
+  // text-align: center;
   margin-bottom: 1.5rem;
   h2{
     font-size: 1.7rem;
@@ -154,13 +154,13 @@ body{
 
     // font-weight: 400;
     color: $primary-color;
-    text-align: center !important;
+    // text-align: center;
   }
 
-  @media screen and (max-width:768px) {
-    text-align: start !important;
-    & p{text-align: start !important;}
-  }
+  // @media screen and (max-width:768px) {
+  //   text-align: start !important;
+  //   & p{text-align: start !important;}
+  // }
 }
 
 figure.img-Hover{
