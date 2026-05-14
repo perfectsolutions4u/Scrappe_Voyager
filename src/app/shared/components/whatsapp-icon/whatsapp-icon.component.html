@@ -1,3 +1,72 @@
-<a [href]="getWhatsAppUrl()" target="_blank" class="whatsapp-icon" aria-label="Contact us on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+<div
+  class="contact-fab"
+  [class.contact-fab--touch]="isCoarsePointer"
+  [class.contact-fab--open]="dropdownOpen"
+>
+  <button
+    type="button"
+    class="contact-fab__trigger"
+    aria-label="Contact options"
+    [attr.aria-expanded]="isCoarsePointer ? dropdownOpen : null"
+    aria-haspopup="true"
+    aria-controls="contact-fab-menu"
+    (click)="toggleDropdown($event)"
+  >
+  
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </button>
+
+  <div
+    id="contact-fab-menu"
+    class="contact-fab__dropdown"
+    role="menu"
+    aria-label="Choose how to contact us"
+  >
+    <a
+      class="contact-fab__item contact-fab__item--whatsapp"
+      [href]="getWhatsAppUrl()"
+      target="_blank"
+      rel="noopener noreferrer"
+      role="menuitem"
+      (click)="onContactLinkClick($event, whatsappNumber)"
+    >
+      <span class="contact-fab__item-icon" aria-hidden="true">
+        <i class="fab fa-whatsapp"></i>
+      </span>
+      <span class="contact-fab__item-body">
+        <span class="contact-fab__item-label">WhatsApp</span>
+        <span class="contact-fab__item-value">{{ whatsappNumber || '—' }}</span>
+      </span>
+    </a>
+
+    <a
+      class="contact-fab__item contact-fab__item--phone"
+      [href]="getTelHref()"
+      role="menuitem"
+      (click)="onContactLinkClick($event, phoneNumber)"
+    >
+      <span class="contact-fab__item-icon" aria-hidden="true">
+        <i class="fas fa-phone-volume"></i>
+      </span>
+      <span class="contact-fab__item-body">
+        <span class="contact-fab__item-label">Phone</span>
+        <span class="contact-fab__item-value">{{ phoneNumber || '—' }}</span>
+      </span>
+    </a>
+
+    <a
+      class="contact-fab__item contact-fab__item--email"
+      [href]="getMailtoHref()"
+      role="menuitem"
+      (click)="onContactLinkClick($event, email)"
+    >
+      <span class="contact-fab__item-icon" aria-hidden="true">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="contact-fab__item-body">
+        <span class="contact-fab__item-label">Email</span>
+        <span class="contact-fab__item-value">{{ email || '—' }}</span>
+      </span>
+    </a>
+  </div>
+</div>
