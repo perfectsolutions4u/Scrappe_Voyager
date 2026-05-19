@@ -69,16 +69,17 @@
       }
 
       <!-- duration - price -->
-       <div class="flexBetween  align-items-end mt-3">
-        <div>
+       <div class="flexBetween  align-items-end mt-3 durationBox">
+        <!-- <div>
           <span class="fontsm text-muted">start from</span> <br>
           @let dp = getDisplayPrice(tour?.start_from);
           <b class="textMainColor">{{ dp.symbol }}{{ dp.value | number:'1.2-2' }}</b>
-          <!-- <span class="textMainColor fs-5 fw-bold">
-            {{ tour?.start_from | currency }}
-          </span> -->
-        </div>
+        </div> -->
+        <!-- <span class="textMainColor fs-5 fw-bold">
+          {{ tour?.start_from | currency }}
+        </span> -->
 
+        
         @if (tour && tour.duration ) {
           <div class="durationBox py-1 px-2 rounded-2 border">
             <i class="fa-regular fa-clock-four me-1 text-muted"></i>
@@ -87,8 +88,8 @@
             </span>
           </div>
         }
+      </div>
 
-       </div>
 
       @if (cartItemId != null) {
       <button
